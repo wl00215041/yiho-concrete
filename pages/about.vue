@@ -1,0 +1,87 @@
+<template>
+  <div>
+    <PageBanner image="/images/6.jpeg" title="關於我們" sub-title="About Us" sub-title-color="#E8382F"></PageBanner>
+    <PageSection title="從柑仔店來的混凝土專家" icon-color="#E8382F">
+      <div class="flex flex-col gap-6 max-w-[777px] text-[#585858] mb-14">
+        <p>柑仔店是台灣早期重要的生活中心之一，在沒有便利商店的年代，人民大小生活物品的採購，都在這樣傳統小店完成。隨著時代更迭，充滿人情味的柑仔店漸漸地黯淡在台灣的大街小巷之中。</p>
+        <p>毅和實業成立於1993年9月26日，本公司目前設有竹南港墘廠、大厝廠以及新竹寶山科園廠，持續以先進的設備，專業的技術，產製預拌混凝土，為客戶提供優質的服務。</p>
+      </div>
+      <div class="grid grid-cols-3 gap-8 mb-14">
+        <img src="/images/7.jpeg" alt="about-us" class="w-full rounded-[10px] h-[240px]" />
+        <img src="/images/2.jpeg" alt="about-us" class="w-full rounded-[10px] h-[240px] object-cover" />
+        <img src="/images/3.jpeg" alt="about-us" class="w-full rounded-[10px] h-[240px]" />
+      </div>
+      <div class="flex flex-col items-center text-center self-center gap-6 max-w-[745px] text-[#585858] mb-14">
+        <p>
+          毅和實業的其中一位創辦人林慶波先生三十多年前也在這樣的小巷子裡，經營著柑仔店。柑仔店裏頭那銀貨兩訖之外的人情味也被創辦人帶進毅和實業的企業文化之中。我們的服務以客戶為中心，如果你有一個夢想，需要混凝土將其構築起來，請給我們一個機會為你灌溉，我們承諾每一米都是我們的責任。
+        </p>
+        <div>
+          <p>我們的第一個十年用心摸索、理解如何產製符合客戶期待的優良混凝土。</p>
+          <p>第二個十年，我們穩定自己的步伐持續成長茁壯。</p>
+          <p>第三個十年，我們用過去二十年的經驗，在新竹寶山，親自設計、建造屬於混凝土的旗艦廠房。</p>
+        </div>
+
+      </div>
+    </PageSection>
+    <div class="bg-[url(/images/8.jpeg)] h-[350px] rounded-t-[80px] -ml-11 -mr-11 pt-12 mb-[82px]">
+      <div class="text-white text-2xl text-center mb-[42px]">我們持續的進步以期讓自己有更加完善的能力，為您灌溉夢想</div>
+      <div class="flex justify-center gap-[2.625rem]">
+        <div class="inline-flex justify-center items-center w-40 h-40 rounded-full bg-[#E8382F] bg-opacity-70">
+          <SvgoBusinessGrowth filled class="text-[5.25rem]"></SvgoBusinessGrowth>
+        </div>
+        <div class="inline-flex justify-center items-center w-40 h-40 rounded-full bg-[#E8382F] bg-opacity-70">
+          <SvgoProtectionGrowth filled class="text-[5.25rem]"></SvgoProtectionGrowth>
+        </div>
+        <div class="inline-flex justify-center items-center w-40 h-40 rounded-full bg-[#E8382F] bg-opacity-70">
+          <SvgoEcoFriendly filled class="text-[5.25rem]"></SvgoEcoFriendly>
+        </div>
+      </div>
+    </div>
+    <Timeline class="-ml-11 -mr-11 overflow-hidden" v-drag-scroller>
+      <TimelineItem year="1993" title="公司草創">
+        <p class="text-sm text-[#585858]">民國82年 籌備創立
+          專營預拌混凝土產品</p>
+      </TimelineItem>
+      <TimelineItem year="1993" title="竹南港墘廠啟用">
+        <p class="text-sm text-[#585858]">民國82年 廠房1.0</p>
+        <p class="text-sm text-[#585858]">平單軸拌合設備一套</p>
+        <p class="text-sm text-[#585858] whitespace-nowrap">工廠佔地1500坪(當年可設立於農地)</p>
+      </TimelineItem>
+      <TimelineItem year="1999" title="港墘廠損壞">
+        <p class="text-sm text-[#585858]">民國88年  921大地震</p>
+        <p class="text-sm text-[#585858] w-[248px]">廠區設備全毀停業半年，全廠重新修復，重新評估廠房合法性</p>
+      </TimelineItem>
+      <TimelineItem year="2001" title="竹南大厝廠啟用">
+        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
+        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      </TimelineItem>
+      <TimelineItem year="2005" title="新竹寶山科學廠啟用">
+        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
+        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      </TimelineItem>
+
+
+      <TimelineItem year="2005" title="新竹寶山科學廠啟用">
+        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
+        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      </TimelineItem>
+
+      <TimelineItem year="2005" title="新竹寶山科學廠啟用">
+        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
+        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      </TimelineItem>
+
+      <TimelineItem year="2005" title="新竹寶山科學廠啟用">
+        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
+        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      </TimelineItem>
+
+    </Timeline>
+  </div>
+</template>
+<script setup lang="ts">
+definePageMeta({
+  layout: 'page'
+})
+
+</script>
