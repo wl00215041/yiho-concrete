@@ -19,7 +19,7 @@ jobs:
       - run: pnpm install
       - run: npx nuxt build --preset github_pages
         env:
-          NUXT_APP_BASE_URL: yiho-concrete
+          NUXT_APP_BASE_URL: /yiho-concrete
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
