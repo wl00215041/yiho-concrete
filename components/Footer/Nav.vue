@@ -12,75 +12,75 @@ const links = ref([
     items: [
       {
         title: '公司簡介',
-        url: '/about'
+        url: '/'
       },
       {
         title: '大事紀',
-        url: '/history'
+        url: '/'
       }
     ]
   },
   {
     title: '營業據點',
-    url: '/history',
+    url: '/',
     items: [
       {
         title: '港墘廠',
-        url: '/gangqian'
+        url: '/'
       },
       {
         title: '大厝廠',
-        url: '/dachu'
+        url: '/'
       },
       {
         title: '寶山科技園區',
-        url: '/baoshan'
+        url: '/'
       }
     ]
   },
   {
     title: '工程實績',
-    url: '/history',
+    url: '/',
     items: [
       {
         title: '工程實績',
-        url: '/engineering'
+        url: '/'
       }
     ]
   },
   {
     title: '產品資訊',
-    url: '/history',
+    url: '/',
     items: [
       {
         title: '預伴混泥土',
-        url: '/concrete'
+        url: '/'
       },
       {
         title: '品質認證',
-        url: '/quality'
+        url: '/'
       },
       {
         title: '產品炭足跡',
-        url: '/carbon'
+        url: '/'
       }
     ]
   },
   {
     title: '精英招募',
-    url: '/history',
+    url: '/',
     items: [
       {
         title: '經營理念',
-        url: '/philosophy'
+        url: '/'
       },
       {
         title: '職缺資訊',
-        url: '/jobs'
+        url: '/'
       },
       {
         title: '聯絡窗口',
-        url: '/contact'
+        url: '/'
       }
     ]
   }
