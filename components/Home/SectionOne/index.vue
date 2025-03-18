@@ -4,7 +4,7 @@
     <div class="section-content">
       <SectionSubtitle title="全方位建築最佳選擇"></SectionSubtitle>
       <div class="showcases" v-motion-fade-visible v-drag-scroller>
-        <CircleAnimation v-if="breakpoint.lg.value" class="circle-bg"></CircleAnimation>
+        <!-- <CircleAnimation v-if="breakpoint.lg.value" class="circle-bg"></CircleAnimation> -->
         <HomeSectionOneShowCase></HomeSectionOneShowCase>
         <HomeSectionOneShowCase></HomeSectionOneShowCase>
         <HomeSectionOneShowCase></HomeSectionOneShowCase>

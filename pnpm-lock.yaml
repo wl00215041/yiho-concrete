@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@prisma/client':
+        specifier: 6.5.0
+        version: 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
       '@vueuse/core':
         specifier: ^13.0.0
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
@@ -48,12 +51,18 @@ importers:
       '@nuxtjs/tailwindcss':
         specifier: ^6.13.1
         version: 6.13.1(magicast@0.3.5)
+      '@prisma/nuxt':
+        specifier: ^0.3.0
+        version: 0.3.0(magicast@0.3.5)(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.85.1)(terser@5.39.0)(yaml@2.7.0))
       '@vueuse/nuxt':
         specifier: ^12.6.1
         version: 12.8.2(magicast@0.3.5)(nuxt@3.16.0(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.3.1)(eslint@9.22.0(jiti@2.4.2))(ioredis@5.6.0)(lightningcss@1.29.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.35.0)(sass-embedded@1.85.1)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.85.1)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0))(typescript@5.8.2)
       nuxt-svgo:
         specifier: ^4.0.14
         version: 4.0.15(magicast@0.3.5)(vue@3.5.13(typescript@5.8.2))
+      prisma:
+        specifier: 6.5.0
+        version: 6.5.0(typescript@5.8.2)
       sass-embedded:
         specifier: ^1.85.0
         version: 1.85.1
@@ -604,20 +613,20 @@ packages:
     resolution: {integrity: sha512-QcUYprK+e4X2lU6eJDxLuf/mUtCuVPj2RFBoFRlJJxK3wskBejzlRvh1Q0lQCi9tDOnD4iUK1ftcGylE3X3idA==}
     engines: {node: '>= 16'}
 
-  '@intlify/message-compiler@11.0.0-rc.1':
-    resolution: {integrity: sha512-TGw2uBfuTFTegZf/BHtUQBEKxl7Q/dVGLoqRIdw8lFsp9g/53sYn5iD+0HxIzdYjbWL6BTJMXCPUHp9PxDTRPw==}
+  '@intlify/message-compiler@12.0.0-alpha.1':
+    resolution: {integrity: sha512-rS1Lc99D2uaGqWxlrpGPWdgkq2Jox8xxOS9gdIRhuF2CsuJISWQmwd/TjMnWNhwv9olE0aPEBh1323a61Tfp+g==}
     engines: {node: '>= 16'}
 
   '@intlify/shared@10.0.6':
     resolution: {integrity: sha512-2xqwm05YPpo7TM//+v0bzS0FWiTzsjpSMnWdt7ZXs5/ZfQIedSuBXIrskd8HZ7c/cZzo1G9ALHTksnv/74vk/Q==}
     engines: {node: '>= 16'}
 
-  '@intlify/shared@11.0.0-rc.1':
-    resolution: {integrity: sha512-8tR1xe7ZEbkabTuE/tNhzpolygUn9OaYp9yuYAF4MgDNZg06C3Qny80bes2/e9/Wm3aVkPUlCw6WgU7mQd0yEg==}
-    engines: {node: '>= 16'}
-
   '@intlify/shared@11.1.2':
     resolution: {integrity: sha512-dF2iMMy8P9uKVHV/20LA1ulFLL+MKSbfMiixSmn6fpwqzvix38OIc7ebgnFbBqElvghZCW9ACtzKTGKsTGTWGA==}
+    engines: {node: '>= 16'}
+
+  '@intlify/shared@12.0.0-alpha.1':
+    resolution: {integrity: sha512-ZZ5rtlUcEnhhFS+MTrl0V1UoN3yRninGawP3f1YituJN9217xJvpqCSLa9t8NLaVwVIxsRcq4lQe48D0SigmBg==}
     engines: {node: '>= 16'}
 
   '@intlify/unplugin-vue-i18n@6.0.3':
@@ -1014,6 +1023,39 @@ packages:
   '@poppinss/exception@1.2.1':
     resolution: {integrity: sha512-aQypoot0HPSJa6gDPEPTntc1GT6QINrSbgRlRhadGW2WaYqUK3tK4Bw9SBMZXhmxd3GeAlZjVcODHgiu+THY7A==}
     engines: {node: '>=18'}
+
+  '@prisma/client@6.5.0':
+    resolution: {integrity: sha512-M6w1Ql/BeiGoZmhMdAZUXHu5sz5HubyVcKukbLs3l0ELcQb8hTUJxtGEChhv4SVJ0QJlwtLnwOLgIRQhpsm9dw==}
+    engines: {node: '>=18.18'}
+    peerDependencies:
+      prisma: '*'
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+      typescript:
+        optional: true
+
+  '@prisma/config@6.5.0':
+    resolution: {integrity: sha512-sOH/2Go9Zer67DNFLZk6pYOHj+rumSb0VILgltkoxOjYnlLqUpHPAN826vnx8HigqnOCxj9LRhT6U7uLiIIWgw==}
+
+  '@prisma/debug@6.5.0':
+    resolution: {integrity: sha512-fc/nusYBlJMzDmDepdUtH9aBsJrda2JNErP9AzuHbgUEQY0/9zQYZdNlXmKoIWENtio+qarPNe/+DQtrX5kMcQ==}
+
+  '@prisma/engines-version@6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60':
+    resolution: {integrity: sha512-iK3EmiVGFDCmXjSpdsKGNqy9hOdLnvYBrJB61far/oP03hlIxrb04OWmDjNTwtmZ3UZdA5MCvI+f+3k2jPTflQ==}
+
+  '@prisma/engines@6.5.0':
+    resolution: {integrity: sha512-FVPQYHgOllJklN9DUyujXvh3hFJCY0NX86sDmBErLvoZjy2OXGiZ5FNf3J/C4/RZZmCypZBYpBKEhx7b7rEsdw==}
+
+  '@prisma/fetch-engine@6.5.0':
+    resolution: {integrity: sha512-3LhYA+FXP6pqY8FLHCjewyE8pGXXJ7BxZw2rhPq+CZAhvflVzq4K8Qly3OrmOkn6wGlz79nyLQdknyCG2HBTuA==}
+
+  '@prisma/get-platform@6.5.0':
+    resolution: {integrity: sha512-xYcvyJwNMg2eDptBYFqFLUCfgi+wZLcj6HDMsj0Qw0irvauG4IKmkbywnqwok0B+k+W+p+jThM2DKTSmoPCkzw==}
+
+  '@prisma/nuxt@0.3.0':
+    resolution: {integrity: sha512-1lAlzK9IPGHz+6GjhSHVP1EqqCTO0jtJGBwX/LBWVA2bE6J7aeT5aaSg+9SRTFLelEsfopH17fJI7bdTSlNwfA==}
 
   '@redocly/ajv@8.11.2':
     resolution: {integrity: sha512-io1JpnwtIcvojV7QKDUSIuMN/ikdOUd1ReEnUnMKGfDVridQZ31J0MmIuqwuRjWDZfmvr+Q0MqCcfHM2gTivOg==}
@@ -2040,6 +2082,11 @@ packages:
   es-object-atoms@1.1.1:
     resolution: {integrity: sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==}
     engines: {node: '>= 0.4'}
+
+  esbuild-register@3.6.0:
+    resolution: {integrity: sha512-H2/S7Pm8a9CL1uhp9OvjwrBh5Pvx0H8qVOxNu8Wed9Y7qv56MPtq+GGM8RJpq6glYJn9Wspr8uw7l55uyinNeg==}
+    peerDependencies:
+      esbuild: '>=0.12 <1'
 
   esbuild@0.24.2:
     resolution: {integrity: sha512-+9egpBW8I3CD5XPe0n6BfT5fxLzxrlDzqydF3aviG+9ni1lDC/OvMHcxqEFV0+LANZG5R1bFMWfUrjVsdwxJvA==}
@@ -3486,6 +3533,16 @@ packages:
     resolution: {integrity: sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg==}
     engines: {node: '>=18'}
 
+  prisma@6.5.0:
+    resolution: {integrity: sha512-yUGXmWqv5F4PByMSNbYFxke/WbnyTLjnJ5bKr8fLkcnY7U5rU9rUTh/+Fja+gOrRxEgtCbCtca94IeITj4j/pg==}
+    engines: {node: '>=18.18'}
+    hasBin: true
+    peerDependencies:
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -4026,6 +4083,10 @@ packages:
   tinyglobby@0.2.12:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
     engines: {node: '>=12.0.0'}
+
+  tinyrainbow@1.2.0:
+    resolution: {integrity: sha512-weEDEq7Z5eTHPDh4xjX789+fHfF+P8boiFB+0vbWzpbnbsEr/GRaohi/uMKxg8RZMXnl1ItAi/IUHWMsjDV7kQ==}
+    engines: {node: '>=14.0.0'}
 
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
@@ -4946,8 +5007,8 @@ snapshots:
 
   '@intlify/bundle-utils@10.0.0(vue-i18n@10.0.6(vue@3.5.13(typescript@5.8.2)))':
     dependencies:
-      '@intlify/message-compiler': 11.0.0-rc.1
-      '@intlify/shared': 11.0.0-rc.1
+      '@intlify/message-compiler': 12.0.0-alpha.1
+      '@intlify/shared': 12.0.0-alpha.1
       acorn: 8.14.1
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -4978,16 +5039,16 @@ snapshots:
       '@intlify/shared': 10.0.6
       source-map-js: 1.2.1
 
-  '@intlify/message-compiler@11.0.0-rc.1':
+  '@intlify/message-compiler@12.0.0-alpha.1':
     dependencies:
-      '@intlify/shared': 11.0.0-rc.1
+      '@intlify/shared': 12.0.0-alpha.1
       source-map-js: 1.2.1
 
   '@intlify/shared@10.0.6': {}
 
-  '@intlify/shared@11.0.0-rc.1': {}
-
   '@intlify/shared@11.1.2': {}
+
+  '@intlify/shared@12.0.0-alpha.1': {}
 
   '@intlify/unplugin-vue-i18n@6.0.3(@vue/compiler-dom@3.5.13)(eslint@9.22.0(jiti@2.4.2))(rollup@4.35.0)(typescript@5.8.2)(vue-i18n@10.0.6(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
@@ -5620,6 +5681,55 @@ snapshots:
       supports-color: 10.0.0
 
   '@poppinss/exception@1.2.1': {}
+
+  '@prisma/client@6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)':
+    optionalDependencies:
+      prisma: 6.5.0(typescript@5.8.2)
+      typescript: 5.8.2
+
+  '@prisma/config@6.5.0':
+    dependencies:
+      esbuild: 0.25.0
+      esbuild-register: 3.6.0(esbuild@0.25.0)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@prisma/debug@6.5.0': {}
+
+  '@prisma/engines-version@6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60': {}
+
+  '@prisma/engines@6.5.0':
+    dependencies:
+      '@prisma/debug': 6.5.0
+      '@prisma/engines-version': 6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60
+      '@prisma/fetch-engine': 6.5.0
+      '@prisma/get-platform': 6.5.0
+
+  '@prisma/fetch-engine@6.5.0':
+    dependencies:
+      '@prisma/debug': 6.5.0
+      '@prisma/engines-version': 6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60
+      '@prisma/get-platform': 6.5.0
+
+  '@prisma/get-platform@6.5.0':
+    dependencies:
+      '@prisma/debug': 6.5.0
+
+  '@prisma/nuxt@0.3.0(magicast@0.3.5)(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.85.1)(terser@5.39.0)(yaml@2.7.0))':
+    dependencies:
+      '@nuxt/devtools-kit': 1.7.0(magicast@0.3.5)(vite@6.2.1(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(sass-embedded@1.85.1)(terser@5.39.0)(yaml@2.7.0))
+      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@prisma/client': 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
+      consola: 3.4.0
+      defu: 6.1.4
+      pathe: 1.1.2
+      tinyexec: 0.3.2
+      tinyrainbow: 1.2.0
+    transitivePeerDependencies:
+      - magicast
+      - prisma
+      - typescript
+      - vite
 
   '@redocly/ajv@8.11.2':
     dependencies:
@@ -6657,6 +6767,13 @@ snapshots:
   es-object-atoms@1.1.1:
     dependencies:
       es-errors: 1.3.0
+
+  esbuild-register@3.6.0(esbuild@0.25.0):
+    dependencies:
+      debug: 4.4.0(supports-color@9.4.0)
+      esbuild: 0.25.0
+    transitivePeerDependencies:
+      - supports-color
 
   esbuild@0.24.2:
     optionalDependencies:
@@ -8402,6 +8519,16 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
+  prisma@6.5.0(typescript@5.8.2):
+    dependencies:
+      '@prisma/config': 6.5.0
+      '@prisma/engines': 6.5.0
+    optionalDependencies:
+      fsevents: 2.3.3
+      typescript: 5.8.2
+    transitivePeerDependencies:
+      - supports-color
+
   process-nextick-args@2.0.1: {}
 
   process@0.11.10: {}
@@ -8965,6 +9092,8 @@ snapshots:
     dependencies:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2
+
+  tinyrainbow@1.2.0: {}
 
   to-regex-range@5.0.1:
     dependencies:

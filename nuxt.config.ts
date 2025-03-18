@@ -10,7 +10,6 @@ export default defineNuxtConfig({
   },
   modules: [
     '@vueuse/nuxt',
-    '@nuxtjs/i18n',
     '@formkit/auto-animate',
     '@nuxtjs/sitemap',
     '@nuxtjs/device',
@@ -19,7 +18,8 @@ export default defineNuxtConfig({
     'vue3-carousel-nuxt',
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@prisma/nuxt'
   ],
   fonts: {
     families: [
@@ -30,6 +30,13 @@ export default defineNuxtConfig({
   },
   carousel: {
     prefix: 'yiho'
+  },
+  i18n: {
+    locales: [
+      { code: 'zh-tw', language: 'zh-TW' },
+      { code: 'en', language: 'en-US' },
+    ],
+    defaultLocale: 'en',
   },
   vueuse: {
     autoImports: true,
