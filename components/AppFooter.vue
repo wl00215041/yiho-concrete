@@ -1,15 +1,15 @@
 <template>
   <div
-    class="relative flex justify-between footer h-[calc(18.75rem)] pt-[calc(82px)] px-[50px] z-[-1] bg-[#333333] rounded-tl-[60px] -ml-12 -mr-11">
-    <div class="radius"></div>
-    <SvgoDottedTexture filled class="absolute left-[35vw] !w-16 !h-36"></SvgoDottedTexture>
-    <div class="flex-1">
+    class="relative flex flex-col pad:flex-row items-center justify-center pad:justify-between footer h-[calc(18.75rem)] px-[50px] mt-12 z-[-1] bg-[#333333] rounded-tl-[60px]">
+    <div class="flex flex-col items-center">
       <SvgoFullLogo filled class="text-[221px] !h-[45px]"></SvgoFullLogo>
       <div class="text-xl text-white text-opacity-80">© 2025 YIHO Ltd. All rights reserved.</div>
     </div>
-    <div class="flex-1">
+    <div class="hidden pad:block pad:flex-[0.6]">
       <FooterNav></FooterNav>
     </div>
+    <SvgoDottedTexture filled class="pad:absolute pad:left-[40vw] !w-16 !h-36 rotate-90 pad:rotate-0"></SvgoDottedTexture>
+    <SvgoFooterSubtract filled class="hidden pad:inline-block text-[80px] absolute right-0 top-0 -translate-y-full"></SvgoFooterSubtract>
   </div>
 </template>
 

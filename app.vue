@@ -16,8 +16,9 @@
 @use "~/assets/scss/main.scss";
 
 .main {
-  padding: 1.25rem 2.8125rem 0rem 2.8125rem;
+  // padding: 1.25rem 2.8125rem 0rem 2.8125rem;
   // @apply max-w-screen-2xl
+  // @apply py-4
 }
 
 </style>

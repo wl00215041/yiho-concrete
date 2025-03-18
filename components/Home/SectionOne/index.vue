@@ -3,8 +3,8 @@
     <h2 class="section-title">工程實績</h2>
     <div class="section-content">
       <SectionSubtitle title="全方位建築最佳選擇"></SectionSubtitle>
-      <div class="showcases" v-motion-fade-visible>
-        <CircleAnimation class="circle-bg"></CircleAnimation>
+      <div class="showcases" v-motion-fade-visible v-drag-scroller>
+        <CircleAnimation v-if="breakpoint.lg.value" class="circle-bg"></CircleAnimation>
         <HomeSectionOneShowCase></HomeSectionOneShowCase>
         <HomeSectionOneShowCase></HomeSectionOneShowCase>
         <HomeSectionOneShowCase></HomeSectionOneShowCase>
@@ -14,8 +14,20 @@
     </div>
   </section>
 </template>
+<script setup lang="ts">
+import useApp from '~/hooks/useApp';
 
+const { breakpoint } = useApp();
+</script>
 <style lang="scss" scoped>
+
+.section {
+  @apply px-6;
+  
+  @screen pad {
+    @apply px-[1.875rem];
+  }
+}
 
 .section-title {
   font-size: 1.5rem;;
@@ -30,14 +42,20 @@
 }
 
 .showcases {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  // background-image: url('~/assets/icons/bg-circle.svg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
+  @apply flex gap-6 overflow-hidden;
+
+  @screen pad {
+    @apply grid grid-cols-2
+  }
+
+  // display: grid;
+  // width: 100%;
+  // grid-template-columns: repeat(2, 1fr);
+  // gap: 1.5rem;
+  // // background-image: url('~/assets/icons/bg-circle.svg');
+  // background-repeat: no-repeat;
+  // background-position: center center;
+  // position: relative;
 }
 
 .circle-bg {

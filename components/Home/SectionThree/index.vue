@@ -24,7 +24,7 @@
 </template>
 <style lang="scss" scoped>
 .section {
-  @apply rounded-t-[3.75rem] rounded-br-[3.75rem] bg-white -mt-24 px-[2.8125rem] py-[5rem] -ml-11 -mr-11;
+  @apply rounded-t-[3.75rem] rounded-br-[3.75rem] bg-white px-[2.8125rem] py-[5rem];
 }
 
 .showcases {

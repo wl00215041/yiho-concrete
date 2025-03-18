@@ -42,10 +42,6 @@ export default defineComponent({
 
     onMounted(() => {
       const tabName = props.name || `tab-${Date.now()}`
-      tabsState.addTab({
-        title: props.title,
-        name: tabName
-      })
       index.value = tabsState.tabs.length - 1
     })
 

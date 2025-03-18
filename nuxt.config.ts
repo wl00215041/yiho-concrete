@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'nuxt-svgo',
     'vue3-carousel-nuxt',
+    '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss'
   ],
@@ -29,5 +30,8 @@ export default defineNuxtConfig({
   },
   carousel: {
     prefix: 'yiho'
+  },
+  vueuse: {
+    autoImports: true,
   }
 })

@@ -18,6 +18,7 @@
 <style lang="scss" scoped>
 .showcase {
   display: flex;
+  @apply basis-[18.75rem] shrink-0;
   flex-direction: column;
   overflow: hidden;
 
@@ -31,12 +32,12 @@
     position: relative;
     border-radius: 15px;
     overflow: hidden;
-    aspect-ratio: 660 / 300;
+    // aspect-ratio: 660 / 300;
     margin-bottom: 1.5rem;
   }
   &-image {
-    width: 100%;
-    height: 100%;
+    @apply w-full h-[12.5rem];
+
     background-image: url('/images/1.jpeg');
     background-size: cover;
     border-radius: 15px;

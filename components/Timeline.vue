@@ -2,7 +2,7 @@
   <div class="flex py-20 h-[364px]">
     <div class="flex-1 relative flex items-center">
       <div class="track absolute w-full top-0 bottom-0 m-auto"></div>
-      <div class="timeline-items flex items-center gap-[162px] top-0 bottom-0 m-auto pl-[107px]">
+      <div class="timeline-items flex items-center gap-[162px] top-0 bottom-0 m-auto pl-6 pad:pl-[30px] desktop:pl-[107px]">
         <slot></slot>
       </div>
     </div>

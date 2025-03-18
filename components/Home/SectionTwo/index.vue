@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="background"></div>
-    <div class="background-1"></div>
+    
     <div class="section-content">
       <div class="section-contnet-left">
         <div class="radius-wrapper">
@@ -23,7 +23,7 @@
 
 <style lang="scss" scoped>
 .section {
-  @apply relative bg-[#ececec] px-[2.8125rem] py-[5rem] rounded-tl-[3.75rem] rounded-br-[3.75rem] -ml-11 -mr-11;
+  @apply relative bg-[#ececec] px-[2.8125rem] py-[5rem] rounded-tl-[3.75rem] rounded-br-[3.75rem];
 }
 
 .section-title {
@@ -31,11 +31,17 @@
 }
 
 .section-content {
-  @apply relative z-50 flex justify-between;
+  @apply relative z-50 flex gap-6 flex-col lg:flex-row justify-between;
+
+
+}
+
+.section-contnet-left, .section-contnet-right {
+  @apply flex-1;
 }
 
 .section-desc {
-  @apply relative text-xl mb-9;
+  @apply relative text-xl mb-9 text-[#585858];
   max-width: 657px;
 }
 
@@ -63,27 +69,7 @@
   }
 }
 
-.background-1 {
-  @apply absolute top-0 left-0 bottom-0 right-0 overflow-hidden;
-  z-index: 1;
-  /* 設置為比 section-content 的 z-index 低的值 */
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: 41.5625rem;
-    height: 41.5625rem;
-    border: 10rem solid #E8382F;
-    border-radius: 50%;
-    right: calc( -32rem / 2 );
-    top: calc( -32rem / 2 );
-  }
-
-  // &::before {
-  //   transform: translate(-47%, -34%);
-  // }
-
-}
 
 .radius-wrapper {
   @apply absolute -top-[3.75rem] right-0 overflow-hidden w-[7.5rem] h-[7.5rem] rotate-0;

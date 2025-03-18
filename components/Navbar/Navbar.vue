@@ -1,48 +1,70 @@
 <template>
   <nav class="navbar">
-    <div class="nav-links">
-      <NuxtLink class="nav-link" to="/about">關於我們</NuxtLink>
-      <NuxtLink class="nav-link" to="/location">營業據點</NuxtLink>
-      <NuxtLink class="nav-link" to="/achievements">工程實績</NuxtLink>
-      <NuxtLink class="nav-link" to="/products">產品資訊</NuxtLink>
-      <NuxtLink class="nav-link" to="/recruit">精英招募</NuxtLink>
-    </div>
-    <div class="socials">
-      <svgo-social-facebook class="social-icon" filled></svgo-social-facebook>
-      <svgo-social-line class="social-icon" filled></svgo-social-line>
+    <button class="menu-toggle" @click="isOpen = !isOpen">
+      <SvgoClose v-if="isOpen" filled class="!w-[40px] !h-[30px]"></SvgoClose>
+      <SvgoToggler v-else filled class="!w-[40px] !h-[30px]"></SvgoToggler>
+    </button>
+    <div class="nav-links" :class="{ open: isOpen }">
+      <NuxtLink class="nav-link flex items-center justify-between" to="/about">
+        <span>關於我們</span>
+        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+      </NuxtLink>
+      <NuxtLink class="nav-link flex items-center justify-between" to="/location">
+        <span>營業據點</span>
+        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+      </NuxtLink>
+      <NuxtLink class="nav-link flex items-center justify-between" to="/achievements">
+        <span>工程實績</span>
+        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+      </NuxtLink>
+      <NuxtLink class="nav-link flex items-center justify-between" to="/products">
+        <span>產品資訊</span>
+        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+      </NuxtLink>
+      <NuxtLink class="nav-link flex items-center justify-between" to="/recruit">
+        <span>精英招募</span>
+        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+      </NuxtLink>
+      <div class="socials">
+        <svgo-social-facebook class="social-icon" filled></svgo-social-facebook>
+        <svgo-social-line class="social-icon" filled></svgo-social-line>
+      </div>
     </div>
   </nav>
-
 </template>
-<style lang="scss" scoped>
 
+<script lang="ts" setup>
+const isOpen = ref(false);
+</script>
+
+<style lang="scss" scoped>
 .navbar {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  @apply relative flex justify-between items-center;
+}
+
+.menu-toggle {
+  @apply z-50 cursor-pointer desktop:hidden;
 }
 
 .nav-links {
-  display: flex;
-  gap: 2rem;
+  @apply fixed desktop:relative top-20 desktop:top-0 left-0 right-0 lg:left-auto;
+  @apply flex lg:inline-flex flex-col desktop:flex-row lg:w-[18.75rem] desktop:w-auto;
+  @apply invisible desktop:visible bottom-0 bg-[#333333] desktop:bg-transparent bg-opacity-90 z-40 ;
 }
 
-::v-deep(.nav-link) {
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
+.nav-links.open {
+  @apply visible;
 }
 
+:deep(.nav-link) {
+  @apply p-6 text-white desktop:text-[#333333] border-b border-b-white border-opacity-50 text-xl desktop:text-base font-medium;
+}
 
 .socials {
-  display: flex;
-  gap: 1rem;
+  @apply flex gap-6 p-6 mt-4 justify-center;
 }
 
 .social-icon {
-  width: 3.125rem;
-  height: 3.125rem;
-  cursor: pointer;
+  @apply w-[3.125rem] h-[3.125rem] cursor-pointer text-white;
 }
-
 </style>

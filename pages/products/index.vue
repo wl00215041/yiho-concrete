@@ -1,0 +1,72 @@
+<template>
+  <div>
+    <PageBanner image="/images/6.jpeg" title="產品資訊" sub-title="Products" sub-title-color="#0075C2"></PageBanner>
+    <PageSection class="mb-[60px]" title="產品類別" icon-color="#0075C2">
+      <div class="grid grid-cols-1 pad:grid-cols-2 gap-8">
+        <ProductInfo title="超強度混泥土" image="/images/5.jpeg">
+          <p class="mb-[22px]">超越極限的承載力</p>
+          <p>高強度混凝土 超越極限的承載力 專為高層建築、橋樑與重載結構設計，提供卓越的抗壓性能與耐久性</p>
+        </ProductInfo>
+        <ProductInfo title="超強度混泥土" image="/images/5.jpeg">
+          <p class="mb-[22px]">超越極限的承載力</p>
+          <p>高強度混凝土 超越極限的承載力 專為高層建築、橋樑與重載結構設計，提供卓越的抗壓性能與耐久性</p>
+        </ProductInfo>
+        <ProductInfo title="超強度混泥土" image="/images/5.jpeg">
+          <p class="mb-[22px]">超越極限的承載力</p>
+          <p>高強度混凝土 超越極限的承載力 專為高層建築、橋樑與重載結構設計，提供卓越的抗壓性能與耐久性</p>
+        </ProductInfo>
+        <ProductInfo title="超強度混泥土" image="/images/5.jpeg">
+          <p class="mb-[22px]">超越極限的承載力</p>
+          <p>高強度混凝土 超越極限的承載力 專為高層建築、橋樑與重載結構設計，提供卓越的抗壓性能與耐久性</p>
+        </ProductInfo>
+        <ProductInfo title="超強度混泥土" image="/images/5.jpeg">
+          <p class="mb-[22px]">超越極限的承載力</p>
+          <p>高強度混凝土 超越極限的承載力 專為高層建築、橋樑與重載結構設計，提供卓越的抗壓性能與耐久性</p>
+        </ProductInfo>
+      </div>
+      <div></div>
+    </PageSection>
+    <PageSection title="產品類別" class="py-7 bg-[#0075C2] bg-opacity-10 pad:mx-[30px] pad:rounded-[30px] relative mb-[60px]"
+      icon-color="#0075C2">
+      <SvgoQualityIcon filled class="absolute !w-[100px] !h-[60px] desktop:!w-[186px] desktop:!h-[107px] right-[24px] desktop:right-[30px] top-0 z-10 -translate-y-1/2"></SvgoQualityIcon>
+      <SvgoQualityIcon filled class="absolute !w-[100px] !h-[60px] desktop:!w-[186px] desktop:!h-[107px] left-[24px] desktop:left-[30px] bottom-0 z-10 translate-y-1/2 rotate-180"></SvgoQualityIcon>
+      <div class="flex flex-col pad:justify-center pad:flex-row gap-6 pb-10">
+        <div class="w-full max-w-[446px]">
+          <div class=" text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國家標準與法規</div>
+          <ul>
+            <li class="flex justify-between items-center py-[22px] border-b border-dashed border-[#0075C2]">
+              <span>CNS 3090 預拌混凝土國家標準</span>
+              <SvgoDocument filled></SvgoDocument>
+            </li>
+          </ul>
+        </div>
+        <div class="w-full  max-w-[446px]">
+          <div class="w-full text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國家標準與法規</div>
+          <ul>
+            <li class="flex justify-between items-center py-[22px] border-b border-dashed border-[#0075C2]">
+              <span>CNS 3090 預拌混凝土國家標準</span>
+              <SvgoDocument filled></SvgoDocument>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </PageSection>
+    <PageSection title="炭足跡" icon-color="#0075C2">
+        <div class="relative flex flex-col justify-center items-center ">
+          <img src="/images/carbon-footprint-bg.svg" alt="carbon-footprint" class="w-full pad:max-w-[624px] -my-24 desktop:max-w-[793px] object-cover rounded-[20px] mb-[20px]">
+          <div class="text-center font-medium absolute pad:relative flex items-center">
+            <div class="text-lg pad:text-2xl pad:inline-block mr-2">本公司產品從原料開採至生產階段 (A1-A3)</div>
+            <span class="text-[2.5rem]">減少 25% CO₂ 排放</span>
+          </div>
+        </div>
+    </PageSection>
+  </div>
+</template>
+<script setup lang="ts">
+import { TabsTab } from '#components';
+
+definePageMeta({
+  layout: 'page'
+})
+
+</script>

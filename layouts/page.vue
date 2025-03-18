@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageHeader class="mb-8" />
+    <PageHeader />
     <slot />
     <AppFooter class="" />
   </div>
