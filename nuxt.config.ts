@@ -4,7 +4,14 @@ import type { NuxtPage } from "nuxt/schema"
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-09',
   devtools: { enabled: true },
-
+  vite: {
+    resolve: {
+      alias: {
+          ".prisma/client/index-browser":
+          "./node_modules/@prisma/client/index-browser.js",
+        },
+      },
+  },
   vue: {
     propsDestructure: true
   },
