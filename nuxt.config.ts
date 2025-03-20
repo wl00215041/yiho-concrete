@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   vue: {
     propsDestructure: true
   },
+  build: {
+    transpile: ['trpc-nuxt']
+  },
   modules: [
     '@vueuse/nuxt',
     '@formkit/auto-animate',

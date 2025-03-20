@@ -9,11 +9,13 @@
     <HomeSectionOne class="mb-8"></HomeSectionOne>
     <HomeSectionTwo class="mb-8"></HomeSectionTwo>
     <HomeSectionThree></HomeSectionThree>
+    {{ data }}
   </div>
 </template>
 <script setup lang="ts">
+const { $trpcClient } = useNuxtApp()
 
-
+const { data, execute, refresh } = await $trpcClient.userList.useQuery()
 </script>
 
 <style lang="scss" scoped>

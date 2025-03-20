@@ -16,3 +16,58 @@ model User {
   name     String?
   password String
 }
+
+model AchievementYear {
+  id   Int @id @default(autoincrement())
+  year Int
+  AchievementItem AchievementItem[]
+}
+
+model AchievementItem {
+  id           Int    @id @default(autoincrement())
+  name         String
+  manufacturer String
+  created_at   String
+  fk_year_id   Int
+  achievementYear AchievementYear @relation(fields: [fk_year_id], references: [id], onDelete: Cascade)
+}
+
+model AchievementGalleryYear {
+  id   Int @id @default(autoincrement())
+  year Int
+}
+
+model AchievementGallery {
+  id         Int    @id @default(autoincrement())
+  name       String
+  location  String
+  production String
+  created_at String
+  images AchievementGalleryImages[]
+}
+
+model AchievementGalleryImages {
+  id       Int     @id @default(autoincrement())
+  file     String
+  is_cover Boolean
+  created_at String
+  fk_gallery_id Int
+  gallery AchievementGallery @relation(fields: [fk_gallery_id], references: [id])
+}
+
+model Certifications {
+  id          Int    @id @default(autoincrement())
+  name        String
+  file        String
+  created_at  String
+}
+
+model jobs {
+  id          Int    @id @default(autoincrement())
+  name        String
+  experience  String
+  education   String
+  link        String
+  updated_at  String
+  created_at  String
+}
