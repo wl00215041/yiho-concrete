@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@prisma/nuxt'
   ],
+  prisma: {
+    autoSetupPrisma: true,
+  },
   fonts: {
     families: [
       // only resolve this font with the `google` provider
