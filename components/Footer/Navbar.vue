@@ -1,7 +1,9 @@
 <template>
-  <nav class="flex justify-between">
-    <FooterNavCategory v-for="link in links" :title="link.title" :items="link.items"></FooterNavCategory>
-  </nav>
+  <div class="flex justify-between">
+    <ClientOnly>
+      <FooterNavCategory v-for="link in links" :title="link.title" :items="link.items"></FooterNavCategory>
+    </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -6,7 +6,7 @@
       <div class="text-xl text-white text-opacity-80">© 2025 YIHO Ltd. All rights reserved.</div>
     </div>
     <div class="hidden pad:block pad:flex-[0.6]">
-      <FooterNav></FooterNav>
+      <FooterNavbar></FooterNavbar>
     </div>
     <SvgoDottedTexture filled class="pad:absolute pad:left-[40vw] !w-16 !h-36 rotate-90 pad:rotate-0"></SvgoDottedTexture>
     <SvgoFooterSubtract filled class="hidden pad:inline-block text-[80px] absolute right-0 top-0 -translate-y-full"></SvgoFooterSubtract>
