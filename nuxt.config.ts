@@ -37,9 +37,6 @@ export default defineNuxtConfig({
     '@prisma/nuxt',
     '@nuxthub/core'
   ],
-  prisma: {
-    autoSetupPrisma: true,
-  },
   fonts: {
     families: [
       // only resolve this font with the `google` provider
