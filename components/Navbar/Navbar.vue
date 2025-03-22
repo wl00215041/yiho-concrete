@@ -57,11 +57,11 @@ const isOpen = ref(false);
 }
 
 :deep(.nav-link) {
-  @apply p-6 text-white desktop:text-[#333333] border-b border-b-white border-opacity-50 text-xl desktop:text-base font-medium;
+  @apply p-6 text-white desktop:text-[#333333] border-b border-b-white border-opacity-50 text-xl desktop:text-base font-medium desktop:p-0;
 }
 
 .socials {
-  @apply flex gap-6 p-6 mt-4 justify-center;
+  @apply flex gap-6 p-6 mt-4 justify-center desktop:mt-0 desktop:p-0;
 }
 
 .social-icon {

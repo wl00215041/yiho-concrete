@@ -3,15 +3,13 @@
     <h2 class="section-title">工程實績</h2>
     <div class="section-content">
       <SectionSubtitle title="全方位建築最佳選擇"></SectionSubtitle>
-      <ClientOnly fallback-tag="span" fallback="載入列表中...">
-        <div class="showcases" v-motion-fade-visible v-drag-scroller>
-          <!-- <CircleAnimation v-if="breakpoint.lg.value" class="circle-bg"></CircleAnimation> -->
-          <HomeSectionOneShowCase></HomeSectionOneShowCase>
-          <HomeSectionOneShowCase></HomeSectionOneShowCase>
-          <HomeSectionOneShowCase></HomeSectionOneShowCase>
-          <HomeSectionOneShowCase></HomeSectionOneShowCase>
-        </div>
-      </ClientOnly>
+      <div class="showcases" v-motion-fade-visible v-drag-scroller>
+        <!-- <CircleAnimation v-if="breakpoint.lg.value" class="circle-bg"></CircleAnimation> -->
+        <HomeSectionOneShowCase></HomeSectionOneShowCase>
+        <HomeSectionOneShowCase></HomeSectionOneShowCase>
+        <HomeSectionOneShowCase></HomeSectionOneShowCase>
+        <HomeSectionOneShowCase></HomeSectionOneShowCase>
+      </div>
     </div>
   </section>
 </template>
