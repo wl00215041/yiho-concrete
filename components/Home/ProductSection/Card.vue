@@ -1,9 +1,9 @@
 <template>
   <div class="card flex-1 min-w-80">
     <div class="hover-background"></div>
-    <SvgoArrowRight class="absolute right-[calc(14.0625rem/2+1.875rem+1.875rem/2)] text-3xl text-[#777777]"></SvgoArrowRight>
+    <SvgoArrowRight class="absolute left-[calc(70%-15px)] text-3xl text-[#777777]"></SvgoArrowRight>
     <div class="relative"><slot name="title" :title="title">{{ title }}</slot></div>
-    <div class="relative" v-if="$slots.icon"><slot name="icon"></slot></div>
+    <div class="relative w-[30%] flex justify-center" v-if="$slots.icon"><slot name="icon"></slot></div>
   </div>
 </template>
 <script setup lang="ts">
@@ -14,7 +14,7 @@ defineProps({
 </script>
 <style lang="scss" scoped>
 .card {
-  @apply flex items-center h-[135px] bg-[#D9D9D9] justify-between cursor-pointer px-5 rounded-2xl relative overflow-hidden;
+  @apply flex items-center h-[135px] bg-[#D9D9D9] justify-between cursor-pointer pl-5 rounded-2xl relative overflow-hidden;
   @apply text-2xl text-[#333333];
 
   &:hover {

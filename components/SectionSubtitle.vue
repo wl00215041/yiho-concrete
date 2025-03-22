@@ -13,18 +13,14 @@ defineProps({
 </script>
 <style lang="scss" scoped>
 .section-content-subtitle {
-  margin-bottom: 1.875rem;
+  @apply mb-8 pad:mb-16 inline-flex items-center;
 
-  display: inline-flex;
-  align-items: center;
   > span {
-    margin-right: 8px;
-    font-size: 1.875rem;
+    @apply mr-4 text-2xl pad:text-3xl desktop:text-4xl;
   }
 
   > .icon {
-    width: 2.75rem;
-    height: 2.75rem;
+    @apply w-8 h-8 pad:w-11 pad:h-11;
   }
 }
 

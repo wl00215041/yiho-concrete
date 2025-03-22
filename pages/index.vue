@@ -2,13 +2,13 @@
   <div>
     <HomeHeader></HomeHeader>
     <div class="carousel relative">
-      <HomeSlogan class="slogon-placement"></HomeSlogan>
+      <HomeSlogan class="slogan-placement"></HomeSlogan>
       <HomeCarousel></HomeCarousel>
       <HomeAnnouncement></HomeAnnouncement>
     </div> 
-    <HomeSectionOne class="mb-8"></HomeSectionOne>
-    <HomeSectionTwo class="mb-8"></HomeSectionTwo>
-    <HomeSectionThree></HomeSectionThree>
+    <HomeAchievementSection class="mb-8"></HomeAchievementSection>
+    <HomeAboutSection></HomeAboutSection>
+    <HomeProductSection></HomeProductSection>
     {{ data }}
   </div>
 </template>
@@ -38,7 +38,7 @@ const { data, execute, refresh } = await $trpcClient.userList.useQuery()
 }
 
 
-.slogon-placement {
+.slogan-placement {
   @apply absolute top-36 left-10;
 }
 

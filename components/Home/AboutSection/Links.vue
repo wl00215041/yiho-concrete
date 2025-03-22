@@ -1,8 +1,8 @@
 <template>
   <div class="links">
-    <HomeSectionTwoLink title="關於我們"></HomeSectionTwoLink>
-    <HomeSectionTwoLink title="營業據點"></HomeSectionTwoLink>
-    <HomeSectionTwoLink title="精英招募"></HomeSectionTwoLink>
+    <HomeAboutSectionLink title="關於我們"></HomeAboutSectionLink>
+    <HomeAboutSectionLink title="營業據點"></HomeAboutSectionLink>
+    <HomeAboutSectionLink title="精英招募"></HomeAboutSectionLink>
   </div>
 </template>
 

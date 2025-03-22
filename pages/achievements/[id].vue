@@ -4,19 +4,28 @@
     <PageSection title="實績名稱 #1" icon-color="#E8382F">
       <AchievementContractInfo class="inline-block w-full pad:max-w-[579px] rounded-2xl mb-7" location="xxxx"
         product="xxxx" finished-date="xxxx"></AchievementContractInfo>
-      <yiho-carousel v-bind="config">
+      <yiho-carousel v-bind="config"  v-model="currentSlide">
         <yiho-slide v-for="image in images" :key="image.id">
-          <img :src="image.url" alt="image" />
+          <template #default="{ currentIndex, isActive }">
+            <img :src="image.url" alt="Gallery Image" class="gallery-image" />
+          </template>
+        </yiho-slide>
+      </yiho-carousel>
+      <yiho-carousel v-bind="thumbnailsConfig"  v-model="currentSlide">
+        <yiho-slide v-for="image in images" :key="image.id">
+          <template #default="{ currentIndex, isActive }">
+            <div :class="['thumbnail', { 'is-active': isActive }]" @click="slideTo(currentIndex)">
+              <img :src="image.url" alt="Thumbnail Image" class="thumbnail-image" />
+            </div>
+          </template>
         </yiho-slide>
 
         <template #addons>
           <yiho-navigation />
         </template>
       </yiho-carousel>
-
       <div class="text-center py-[60px]">
-
-        <button @click="$router.back()" class="py-[1.125rem] text-center border w-56 border-[#BABABA]">Back</button>
+        <BackButton></BackButton>
       </div>
     </PageSection>
 
@@ -27,6 +36,9 @@
 definePageMeta({
   layout: 'page'
 })
+const currentSlide = ref(0)
+
+const slideTo = (nextSlide: any) => (currentSlide.value = nextSlide)
 
 const images = [
   {
@@ -41,16 +53,35 @@ const images = [
     id: 3,
     url: `/images/3.jpeg`,
   },
+  {
+    id: 4,
+    url: `/images/1.jpeg`,
+  },
+  {
+    id: 5,
+    url: `/images/2.jpeg`,
+  },
+  {
+    id: 6,
+    url: `/images/3.jpeg`,
+  },
 ]
 
 const config = {
-  height: 600,
   itemsToShow: 1,
-  gap: 0,
-  // snapAlign: 'center-even',
-  // autoplay: 4000,
-  // wrapAround: true,
-  pauseAutoplayOnHover: true,
+  wrapAround: true,
+  slideEffect: 'fade',
+  mouseDrag: false,
+  touchDrag: false,
+  height: 600,
 };
+
+const thumbnailsConfig = {
+  height: 143,
+  itemsToShow: 5,
+  wrapAround: true,
+  touchDrag: false,
+  gap: 10,
+}
 
 </script>

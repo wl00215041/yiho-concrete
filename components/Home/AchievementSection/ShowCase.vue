@@ -18,7 +18,7 @@
 <style lang="scss" scoped>
 .showcase {
   display: flex;
-  @apply basis-[18.75rem] shrink-0;
+  @apply basis-[18.75rem] pad:basis-[29.375rem] desktop:basis-[655px] shrink-0;
   flex-direction: column;
   overflow: hidden;
 
@@ -36,8 +36,7 @@
     margin-bottom: 1.5rem;
   }
   &-image {
-    @apply w-full h-[12.5rem];
-
+    @apply w-full h-[12.5rem] pad:h-[13.5rem] desktop:h-[18.9375rem];
     background-image: url('/images/1.jpeg');
     background-size: cover;
     border-radius: 15px;

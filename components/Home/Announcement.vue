@@ -41,7 +41,7 @@ const items = ref([
     @apply bg-[#BABABA] bg-opacity-20 mb-14 mx-[1.875rem]
   }
   @screen desktop {
-    @apply absolute -right-5 -bottom-0 z-10 w-[730px] h-[11.875rem] mb-0 mx-0 rounded-bl-none px-10 py-4;
+    @apply absolute right-0 -bottom-0 z-10 w-[730px] h-[11.875rem] mb-0 mx-0 rounded-bl-none px-10 py-4;
     &::after {
       content: '';
       @apply absolute bottom-0 right-0 top-1 w-[750px] h-[11.875rem]  rounded-bl-[1.875rem] z-[-1];
