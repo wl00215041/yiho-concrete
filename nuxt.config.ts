@@ -33,8 +33,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
-    '@prisma/nuxt',
-    '@nuxthub/core'
+    '@prisma/nuxt'
   ],
   fonts: {
     families: [
