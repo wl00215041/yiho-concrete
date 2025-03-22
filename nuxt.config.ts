@@ -4,10 +4,10 @@ import type { NuxtPage } from "nuxt/schema"
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-09',
   devtools: { enabled: true },
-  app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
-    layoutTransition: { name: 'layout', mode: 'out-in' }
-  },
+  // app: {
+  //   pageTransition: { name: 'page', mode: 'out-in' },
+  //   layoutTransition: { name: 'layout', mode: 'out-in' }
+  // },
   vite: {
     resolve: {
       alias: {
