@@ -23,7 +23,6 @@ export default defineNuxtConfig({
     transpile: ['trpc-nuxt']
   },
   modules: [
-    '@nuxthub/core',
     '@vueuse/nuxt',
     '@formkit/auto-animate',
     '@nuxtjs/sitemap',
