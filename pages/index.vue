@@ -2,7 +2,7 @@
   <div>
     <HomeHeader></HomeHeader>
     <div class="carousel relative">
-      <HomeSlogon class="slogon-placement"></HomeSlogon>
+      <HomeSlogan class="slogon-placement"></HomeSlogan>
       <HomeCarousel></HomeCarousel>
       <HomeAnnouncement></HomeAnnouncement>
     </div> 

@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     transpile: ['trpc-nuxt']
   },
   modules: [
+    '@nuxthub/core',
     '@vueuse/nuxt',
     '@formkit/auto-animate',
     '@nuxtjs/sitemap',
@@ -33,7 +34,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
-    '@prisma/nuxt'
+    '@prisma/nuxt',
+    '@nuxthub/core'
   ],
   prisma: {
     autoSetupPrisma: true,
