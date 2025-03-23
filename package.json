@@ -33,6 +33,7 @@
     "@nuxtjs/tailwindcss": "^6.13.1",
     "@prisma/nuxt": "^0.3.0",
     "@vueuse/nuxt": "^12.6.1",
+    "nuxt-file-storage": "^0.3.0",
     "nuxt-svgo": "^4.0.14",
     "prisma": "6.5.0",
     "sass-embedded": "^1.85.0"

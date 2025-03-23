@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { publicProcedure, router } from '../trpc';
-
+import { TRPCError } from '@trpc/server';
+import { z } from 'zod';
+import { get } from '@vueuse/core';
 const products = [
   {
     id: 1,
@@ -139,6 +141,26 @@ const products = [
   }
 ]
 
+const prisma = new PrismaClient()
+
+
+export const adminProcedure = publicProcedure.use(async (opts) => {
+  const { ctx } = opts;
+  // if (!ctx.user?.isAdmin) {
+  //   throw new TRPCError({ code: 'UNAUTHORIZED' });
+  // }
+  // return opts.next({
+  //   ctx: {
+  //     user: ctx.user,
+  //   },
+  // });
+  return opts.next({
+    ctx: {
+      user: { isAdmin: true },
+    },
+  });
+});
+
 export const appRouter = router({
   productList: publicProcedure.query(async () => {
     return products
@@ -148,7 +170,55 @@ export const appRouter = router({
   }),
   userList: publicProcedure.query(async () => {
     return [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }]
+  }),
+  manager: router({
+    getJobs: adminProcedure.query(async () => {
+      return prisma.jobs.findMany()
+    }),
+    addAchievementYear: adminProcedure.input(z.object({ year: z.number() })).mutation(async (opts) => {
+      const existedYear = await prisma.achievementYear.findFirst({ where: { year: opts.input.year } });
+      if (existedYear) {
+        throw new TRPCError({ code: 'BAD_REQUEST', message: 'Year already exists' });
+      }
+      return prisma.achievementYear.create({
+        data: {
+          year: opts.input.year
+        }
+      })
+    }),
+    addAchievementGalleryYear: adminProcedure.input(z.object({ year: z.number() })).mutation(async (opts) => {
+      const existedYear = await prisma.achievementGalleryYear.findFirst({ where: { year: opts.input.year } });
+      if (existedYear) {
+        throw new TRPCError({ code: 'BAD_REQUEST', message: 'Year already exists' });
+      }
+      return prisma.achievementGalleryYear.create({
+        data: {
+          year: opts.input.year
+        }
+      })
+    }),
+    getAchievementYears: adminProcedure.query(async () => {
+      return prisma.achievementYear.findMany()
+    }),
+    getAchievementGalleryYears: adminProcedure.query(async () => {
+      return prisma.achievementGalleryYear.findMany()
+    }),
+    addAchievement: adminProcedure.input(z.object({ year: z.number(), name: z.string(), manufacturer: z.string() })).mutation(async (opts) => {
+      const year = await prisma.achievementYear.findFirst({ where: { year: opts.input.year } });
+      return prisma.achievementItem.create({
+        data: {
+          name: opts.input.name,
+          manufacturer: opts.input.manufacturer,
+          created_at: (new Date()).toDateString(),
+          fk_year_id: year?.id || 0
+        }
+      })
+    }),
+    getAchievement: adminProcedure.input(Number).query(async (opts) => {
+      return prisma.achievementItem.findMany({ where: { fk_year_id: opts.input } })
+    })
   })
+
 
 });
 

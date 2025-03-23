@@ -33,7 +33,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
-    '@prisma/nuxt'
+    '@prisma/nuxt',
+    'nuxt-file-storage'
   ],
   fonts: {
     families: [
@@ -52,7 +53,11 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'en',
   },
+  fileStorage: {
+    mount: './storage'
+  },
   vueuse: {
     autoImports: true,
-  }
+  },
+  
 })

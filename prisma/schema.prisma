@@ -33,8 +33,9 @@ model AchievementItem {
 }
 
 model AchievementGalleryYear {
-  id   Int @id @default(autoincrement())
-  year Int
+  id                 Int                  @id @default(autoincrement())
+  year               Int
+  AchievementGallery AchievementGallery[]
 }
 
 model AchievementGallery {
@@ -43,6 +44,8 @@ model AchievementGallery {
   location   String
   production String
   created_at String
+  fk_year_id Int
+  year       AchievementGalleryYear     @relation(fields: [fk_year_id], references: [id], onDelete: Cascade)
   images     AchievementGalleryImages[]
 }
 
