@@ -34,7 +34,8 @@ export default defineNuxtConfig({
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
     '@prisma/nuxt',
-    'nuxt-file-storage'
+    'nuxt-file-storage',
+    '@sidebase/nuxt-auth',
   ],
   fonts: {
     families: [
@@ -59,5 +60,18 @@ export default defineNuxtConfig({
   vueuse: {
     autoImports: true,
   },
-  
+  auth: {
+    // isEnabled: true,
+    disableServerSideAuth: true,
+    // originEnvKey: 'AUTH_ORIGIN',
+    // baseURL: 'http://localhost:3000/api/auth',
+    provider: {
+      type: 'authjs',
+      defaultProvider: 'credentials',
+    },
+    sessionRefresh: {
+      enablePeriodically: true,
+      enableOnWindowFocus: true,
+    },
+  }
 })

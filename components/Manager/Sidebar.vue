@@ -192,7 +192,7 @@ const menuGroups = [
       },
       {
         name: "登出",
-        path: "/signin",
+        path: "/k-manager/signout",
         icon: SvgoEnter
       },
     ],

@@ -209,13 +209,17 @@ export const appRouter = router({
         data: {
           name: opts.input.name,
           manufacturer: opts.input.manufacturer,
-          created_at: (new Date()).toDateString(),
+          created_at: (new Date()).toISOString(),
           fk_year_id: year?.id || 0
         }
       })
     }),
-    getAchievement: adminProcedure.input(Number).query(async (opts) => {
-      return prisma.achievementItem.findMany({ where: { fk_year_id: opts.input } })
+    getAchievements: adminProcedure.input(Number).query(async (opts) => {
+      const year = await prisma.achievementYear.findFirst({ where: { year: opts.input } });
+      return prisma.achievementItem.findMany({ where: { fk_year_id: year?.id } })
+    }),
+    batchDeleteAchievements: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
+      return prisma.achievementItem.deleteMany({ where: { id: { in: opts.input } } })
     })
   })
 
