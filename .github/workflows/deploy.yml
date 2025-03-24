@@ -21,6 +21,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             # 創建或進入部署目錄
+            npm install -g pnpm
+            npm install -g pm2
             mkdir -p ~/app
             cd ~/app
             
