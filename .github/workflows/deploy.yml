@@ -20,11 +20,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            pwd
             # 創建或進入部署目錄
-            npm install -g pnpm
             npm install -g pm2
-            mkdir -p ~/app
-            cd ~/app
+            # mkdir -p ~/app
+            cd ~/htdocs/yiho-concrete.cloudeasy.net
             
             # 如果目錄已存在，清理舊版本
             if [ -d ".git" ]; then
@@ -35,7 +35,7 @@ jobs:
             fi
             
             # 安裝依賴
-            export PATH="$PATH:~/.local/share/pnpm"
+            npm install -g pnpm
             pnpm install
             
             # 使用PM2啟動或重啟應用
