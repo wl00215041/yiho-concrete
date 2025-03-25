@@ -66,7 +66,7 @@
   &::before,
   &::after {
     content: '';
-    @apply absolute w-[23.625rem] h-[378px] rounded-full border-[60px] border-[#BABABA];
+    @apply absolute w-[23.625rem] h-[23.625rem] bg-[url(~/assets/icons/bg-circle.svg)];
     @screen pad {
       @apply w-[37.6875rem] h-[37.6875rem];
     }

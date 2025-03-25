@@ -30,7 +30,12 @@
 <script setup lang="ts">
 const { $trpcClient } = useNuxtApp()
 definePageMeta({
-  layout: 'manager'
+  layout: 'manager',
+  middleware: 'sidebase-auth',
+  auth: {
+    unauthenticatedOnly: false,
+    navigateUnauthenticatedTo: '/k-manager/signin'
+  }
 })
 
 const isYearModalOpened = ref(false)

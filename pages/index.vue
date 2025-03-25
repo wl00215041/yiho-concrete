@@ -39,7 +39,7 @@ const { data, execute, refresh } = await $trpcClient.userList.useQuery()
 
 
 .slogan-placement {
-  @apply absolute top-36 left-10;
+  @apply absolute pad:top-36 desktop:top-auto desktop:bottom-32 left-10;
 }
 
 

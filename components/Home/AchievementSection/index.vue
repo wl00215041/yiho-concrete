@@ -26,6 +26,9 @@ const { breakpoint } = useApp();
   @screen pad {
     @apply px-[1.875rem];
   }
+  @screen desktop {
+    @apply px-[2.8125rem];
+  }
 }
 
 .section-title {

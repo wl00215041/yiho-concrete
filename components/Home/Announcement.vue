@@ -1,10 +1,10 @@
 <template>
   <div class="annuncement">
-    <div class="title">What New's</div>
+    <div class="title font-[NTR]">What New's</div>
     <div class="list">
       <div class="item" v-for="item in items" :key="item.id">
-        <div class="date">{{ item.date }}</div>
-        <div class="tag">{{ item.tag }}</div>
+        <div class="date hidden pad:inline-block">{{ item.date }}</div>
+        <div class="tag" :class="item.class">{{ item.tag }}</div>
         <div>
           <div class="date lg:hidden">{{ item.date }}</div>
           <div class="content">{{ item.content}}</div>
@@ -23,12 +23,21 @@ const items = ref([
     date: '2025.02.01',
     tag: '工程實績',
     content: '實績名稱實績名稱實績名稱實績名稱',
+    class: 'bg-[#0075C2]'
   },
   {
     id: 2,
     date: '2025.01.24',
     tag: '品質認證',
     content: '實績名稱實績名稱實績名稱實績名稱',
+    class: 'bg-[#E8382F]'
+  },
+  {
+    id: 3,
+    date: '2025.01.24',
+    tag: '最新消息',
+    content: 'xxxxxx',
+    class: 'bg-[#585858]'
   },
 ])
 
@@ -41,10 +50,10 @@ const items = ref([
     @apply bg-[#BABABA] bg-opacity-20 mb-14 mx-[1.875rem]
   }
   @screen desktop {
-    @apply absolute right-0 -bottom-0 z-10 w-[730px] h-[11.875rem] mb-0 mx-0 rounded-bl-none px-10 py-4;
+    @apply absolute right-0 -bottom-0 z-10 w-[730px] h-[222px] mb-0 mx-0 rounded-bl-none px-10 py-4;
     &::after {
       content: '';
-      @apply absolute bottom-0 right-0 top-1 w-[750px] h-[11.875rem]  rounded-bl-[1.875rem] z-[-1];
+      @apply absolute bottom-0 right-0 top-1 w-[750px] h-[222px]  rounded-bl-[1.875rem] z-[-1];
       background-image: url('~/assets/icons/announcement-bg.svg');
     }
   }
@@ -78,7 +87,7 @@ const items = ref([
 }
 
 .item > .tag {
-  @apply w-[50px] h-[50px] lg:w-auto lg:h-auto bg-[#0075C2] text-white rounded-lg py-2 px-[10px] text-sm flex items-center;
+  @apply w-[50px] h-[50px] lg:w-auto lg:h-auto text-white rounded-lg py-2 px-[10px] text-sm flex items-center;
   // background: #0075C2;
   // color: white;
   // padding: .25rem .75rem;

@@ -22,7 +22,7 @@
 </template>
 <script setup lang="ts">
 definePageMeta({
-  layout: 'manager'
+  layout: 'manager',
 })
 
 const columns = [

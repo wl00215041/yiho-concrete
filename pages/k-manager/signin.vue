@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'login'
+  layout: 'login',
 })
 const router = useRouter()
 const isLoginFailed = ref(false)

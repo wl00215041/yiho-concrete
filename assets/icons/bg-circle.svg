@@ -1,8 +1,3 @@
-<svg width="590" height="590" viewBox="0 0 590 590" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g opacity="0.5">
-<circle cx="295" cy="295" r="293.5" stroke="#E8382F" stroke-opacity="0.8" stroke-width="3"/>
-<circle cx="295" cy="295" r="259.151" stroke="black" stroke-opacity="0.25" stroke-width="3"/>
-<circle cx="295" cy="295" r="224.801" stroke="#E8382F" stroke-opacity="0.8" stroke-width="3"/>
-<circle cx="295" cy="295" r="190.452" stroke="black" stroke-opacity="0.25" stroke-width="3"/>
-</g>
+<svg width="848" height="848" viewBox="0 0 848 848" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M424 848C658.169 848 848 658.169 848 424C848 189.831 658.169 0 424 0C189.831 0 0 189.831 0 424C0 658.169 189.831 848 424 848ZM424 661.823C555.346 661.823 661.823 555.346 661.823 424C661.823 292.654 555.346 186.177 424 186.177C292.654 186.177 186.177 292.654 186.177 424C186.177 555.346 292.654 661.823 424 661.823Z" fill="#D9D9D9"/>
 </svg>

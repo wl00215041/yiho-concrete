@@ -31,7 +31,7 @@
 </template>
 <script setup lang="ts">
 definePageMeta({
-  layout: 'manager'
+  layout: 'manager',
 })
 
 const selectedYear = ref(2022)
