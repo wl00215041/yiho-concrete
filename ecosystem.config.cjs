@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    script: 'pnpm run dev',
+    script: 'pnpm run dev --host',
     watch: '.',
     env: {
       NODE_ENV: 'development',
