@@ -7,7 +7,7 @@
       </div>
       <div class="pad:w-1/2 px-[70px] py-6 pad:py-[76px]">
         <div class="text-[#64748B] font-medium">歡迎回來</div>
-        <h1 class="text-[32px] font-bold mb-9">登入網站後台</h1>
+        <h1 class="text-[32px] font-bold mb-9">註冊初始帳號</h1>
         <form>
           <div class="flex flex-col mb-4">
             <label class="text-[#1C2434] font-medium mb-[10px]" for="username">帳號</label>
@@ -17,8 +17,7 @@
             <label class="text-[#1C2434] font-medium mb-[10px]" for="password" >密碼</label>
             <input v-model="password" class="py-4 px-6 border border-[#E2E8F0] focus:border-[#3C50E0] rounded-lg" type="password" id="password" placeholder="請輸入密碼" />
           </div>
-          <div v-if="isLoginFailed" class="mb-6">不正確的帳號或密碼</div>
-          <button @click.prevent="login" class="py-4 bg-[#3056D3] rounded-lg text-white w-full">登入</button>
+          <button @click.prevent="register" class="py-4 bg-[#3056D3] rounded-lg text-white w-full">註冊</button>
         </form>
       </div>
     </div>
@@ -37,10 +36,10 @@ const password = ref('')
 
 const { $trpcClient } = useNuxtApp()
 
-const { data: systemInfo, refresh } = await $trpcClient.getSystemInfo.useQuery()
+const { data: systemInfo, refresh: galleryRefresh } = await $trpcClient.getSystemInfo.useQuery()
 
-if (!systemInfo.value?.init) {
-  router.push('/k-manager/register')
+if (systemInfo.value?.init) {
+  router.push('/k-manager/signin')
 }
 
 const { signIn, status } = useAuth()
@@ -49,19 +48,13 @@ if (status.value === 'authenticated') {
   router.push('/k-manager/achievement/list')
 }
 
-const login = async () => {
+const register = async () => {
   isLoginFailed.value = false
-  const res = await signIn('credentials', {
+  await $trpcClient.createDefaultUser.mutate({
     username: username.value,
     password: password.value,
-    redirect: false,
   })
-
-  if (res?.error) {
-    isLoginFailed.value = true
-    return
-  }
-  router.push('/k-manager/achievement/list')
+  router.push('/k-manager/signin')
 }
 
 

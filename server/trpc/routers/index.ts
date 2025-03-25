@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client'
 import { publicProcedure, router } from '../trpc';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
-import { get } from '@vueuse/core';
 import managerRoute from './managerRoute';
 const products = [
   {
@@ -192,6 +191,24 @@ export const appRouter = router({
   }),
   getJobs: publicProcedure.query(async () => {
     return prisma.jobs.findMany()
+  }),
+  getSystemInfo: publicProcedure.query(async () => {
+    const userCount = await prisma.user.count()
+    return {
+      init: userCount > 0,
+    }
+  }),
+  createDefaultUser: publicProcedure.input(z.object({ username: z.string(), password: z.string() })).mutation(async (opt) => {
+    const userCount = await prisma.user.count()
+    if (userCount > 0) {
+      throw new TRPCError({ code: 'BAD_REQUEST', message: 'User already exists' });
+    }
+    return prisma.user.create({
+      data: {
+        email: opt.input.username,
+        password: opt.input.password,
+      }
+    })
   }),
   manager: managerRoute
 });
