@@ -1,7 +1,17 @@
 module.exports = {
   apps : [{
     script: 'pnpm run dev',
-    watch: '.'
+    watch: '.',
+    env: {
+      NODE_ENV: 'development',
+      DATABASE_URL: 'file:./dev.db',
+      AUTH_NUXT_SECRET: 'yiho-concrete-sam'
+    },
+    env_production: {
+      NODE_ENV: 'production',
+      DATABASE_URL: 'file:./dev.db',
+      AUTH_NUXT_SECRET: 'yiho-concrete-sam'
+    }
   }],
 
   deploy : {
