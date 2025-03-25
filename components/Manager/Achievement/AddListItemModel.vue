@@ -3,15 +3,15 @@
   <Modal v-model="isOpen" size="2xl">
     <div class="flex flex-col gap-4">
       <form @submit.prevent="addAchievement">
-        <div class="flex flex-col gap-4">
-          <label class="text-[#1C2434] font-medium mb-[10px]" for="manufacturer">承包廠商</label>
+        <div class="flex flex-col gap-4 mb-6">
+          <label class="text-[#1C2434] font-medium mb-[10px]" for="manufacturer">承包廠商<Required></Required></label>
           <input id="manufacturer" class="py-3 px-6" type="text" v-model="manufacturer" placeholder="請輸入承包廠商名稱" />
         </div>
         <div class="flex flex-col gap-4 mb-6">
-          <label class="text-[#1C2434] font-medium mb-[10px]" for="name">工程實績</label>
+          <label class="text-[#1C2434] font-medium mb-[10px]" for="name">工程實績<Required></Required></label>
           <input id="name" class="py-3 px-6" type="text" v-model="name" placeholder="請輸入工程實績名稱" />
         </div>
-        <button class="bg-[#3C50E0] py-3 text-[#EFF4FB] font-medium w-full rounded" type="submit">新增</Button>
+        <button class="bg-[#3C50E0] py-3 text-[#EFF4FB] font-medium w-full rounded disabled:bg-slate-400" :disabled="!manufacturer || !name" type="submit">新增</Button>
       </form>
     </div>
   </Modal>

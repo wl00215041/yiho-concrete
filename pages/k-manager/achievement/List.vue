@@ -17,18 +17,19 @@
           class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
           <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text"
             placeholder="承包廠商、工程實績">
-          <div class="flex gap-4">
-            <ManagerAddAchievementModel v-model:isOpen="isAchievementModalOpened" @onAdd="onAddAchievement">
+          <div class="flex gap-4" :class="{ 'hidden': !selectedYear}">
+            <ManagerAchievementAddListItemModel v-model:isOpen="isAchievementModalOpened" @onAdd="onAddAchievement">
               <template #default="{ open }">
                 <button @click="open" class="min-w-[110px] py-3 rounded bg-[#0075C2] text-white">新增</button>
               </template>
-            </ManagerAddAchievementModel>
+            </ManagerAchievementAddListItemModel>
             <button @click="onDeleteAchievement" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
             <button class="min-w-[110px] py-3 rounded bg-[#585858] text-white">上傳</button>
           </div>
         </div>
-        <ManagerTable :columns="columns" :records="achievements || []" :selectable="true" @selectionChange="onSelectionChange">
+        <ManagerTable v-if="years?.length" :columns="columns" :records="achievements || []" :selectable="true" @selectionChange="onSelectionChange">
         </ManagerTable>
+        <ManagerNoData v-else></ManagerNoData>
       </div>
     </ManagerRecordPage>
   </ManagerPage>
@@ -67,7 +68,11 @@ const onSelectionChange = (selectedIds: number[]) => {
 
 const onAddYear = async (year: number) => {
   await $trpcClient.manager.addAchievementYear.mutate({ year: year })
-  refresh()
+  await refresh()
+  if (!selectedYear.value && years.value?.length) {
+    selectedYear.value = years.value[0].year
+    refresh()
+  }
   isYearModalOpened.value = false
   // years.value.push({ name: year.toString(), value: year })
 }

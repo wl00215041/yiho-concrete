@@ -39,14 +39,15 @@ model AchievementGalleryYear {
 }
 
 model AchievementGallery {
-  id         Int                        @id @default(autoincrement())
-  name       String
-  location   String
-  production String
-  created_at String
-  fk_year_id Int
-  year       AchievementGalleryYear     @relation(fields: [fk_year_id], references: [id], onDelete: Cascade)
-  images     AchievementGalleryImages[]
+  id           Int                        @id @default(autoincrement())
+  name         String
+  location     String
+  product      String
+  finishedDate String
+  created_at   String
+  fk_year_id   Int
+  year         AchievementGalleryYear     @relation(fields: [fk_year_id], references: [id], onDelete: Cascade)
+  images       AchievementGalleryImages[]
 }
 
 model AchievementGalleryImages {
@@ -59,18 +60,19 @@ model AchievementGalleryImages {
 }
 
 model Certifications {
-  id         Int    @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   name       String
-  file       String
+  file       String?
+  type       String
   created_at String
 }
 
-model jobs {
-  id         Int    @id @default(autoincrement())
+model Jobs {
+  id         Int     @id @default(autoincrement())
   name       String
   experience String
   education  String
-  link       String
+  link       String?
   updated_at String
   created_at String
 }
@@ -78,6 +80,14 @@ model jobs {
 model Products {
   id          Int    @id @default(autoincrement())
   name        String
+  description String
+  created_at  String
+}
+
+model News {
+  id          Int    @id @default(autoincrement())
+  title       String
+  link        String
   description String
   created_at  String
 }

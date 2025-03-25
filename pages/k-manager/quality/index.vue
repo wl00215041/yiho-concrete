@@ -2,7 +2,7 @@
   <ManagerPage title="工程實績">
     <ManagerRecordPage>
       <template #sidebar>
-        <ManagerRecordSidebar v-model:selected="selectedYear" :items="years">
+        <ManagerRecordSidebar v-model:selected="selectedType" :items="years">
 
         </ManagerRecordSidebar>
       </template>
@@ -34,7 +34,7 @@ definePageMeta({
   layout: 'manager',
 })
 
-const selectedYear = ref(2022)
+const selectedType = ref('standard')
 
 const years = ref([
   { name: '國家標準與法規', value: 'standard' },

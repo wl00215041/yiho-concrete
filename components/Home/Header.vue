@@ -2,7 +2,7 @@
   <div class="header">
     <div class="logo-container" :class="{ 'is-scroll-top': arrivedState.top }">
       <svgo-logo class="logo relative" filled />
-      <svgo-logo-corner class="corner hidden !w-[180px] !h-[100px] left-0 absolute -bottom-[75px] z-[-1]"
+      <svgo-logo-corner class="corner hidden !w-[180px] !h-[100px] left-[45px] absolute -bottom-[75px] z-[-1]"
         filled></svgo-logo-corner>
     </div>
     <navbar class="navbar"></navbar>

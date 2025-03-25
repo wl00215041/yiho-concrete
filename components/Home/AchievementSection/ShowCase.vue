@@ -1,16 +1,21 @@
 <template>
-  <div class="showcase">
+  <div class="showcase" :style="{ '--image': `url(${image})` }">
     <div class="showcase-wrapper">
       <SpecialRadius></SpecialRadius>
       <div class="showcase-image" />
     </div>
     <div class="showcase-title">
       <svgo-arrow-right class="showcase-arrow"></svgo-arrow-right>
-      <span>實績 #1</span>
+      <span>{{ title }}</span>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+
+defineProps({
+  title: String,
+  image: String
+})
 
 </script>
 
@@ -37,7 +42,7 @@
   }
   &-image {
     @apply w-full h-[12.5rem] pad:h-[13.5rem] desktop:h-[18.9375rem];
-    background-image: url('/images/1.jpeg');
+    background-image: var(--image);
     background-size: cover;
     border-radius: 15px;
     transition: transform 0.3s;

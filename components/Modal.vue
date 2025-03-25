@@ -48,10 +48,10 @@
               </button>
             <div
               v-if="showHeader"
-              class="flex items-center justify-between px-10 pt-10 pb-3"
-              :class="headerClasses"
+              class="flex items-center justify-between px-10 pt-10 "
+              :class="[headerClasses, { 'pb-3': title }]"
             >
-              <h3 class="text-lg font-medium" :class="titleClasses">
+              <h3 v-if="title" class="text-lg font-medium" :class="titleClasses">
                 {{ title }}
               </h3>
 
@@ -92,7 +92,6 @@ const props = defineProps({
   // modal 標題
   title: {
     type: String,
-    default: '對話框'
   },
   // 是否顯示標題區域
   showHeader: {

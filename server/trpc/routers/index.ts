@@ -3,11 +3,12 @@ import { publicProcedure, router } from '../trpc';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { get } from '@vueuse/core';
+import managerRoute from './managerRoute';
 const products = [
   {
     id: 1,
     title: "普通混凝土",
-    imageUrl: '/images/5.jpeg',
+    imageUrl: '/images/products/1.png',
     description: "穩固基礎，百搭之選\n\n結構穩固、應用廣泛，是各類工程最可靠的基本材料，打造安全耐用的建築結構",
     features: [
       "密度低（800 - 1800 kg/m³），減輕結構負荷",
@@ -28,7 +29,7 @@ const products = [
   {
     id: 2,
     title: "高強度混凝土",
-    imageUrl: '/images/5.jpeg',
+    imageUrl: '/images/products/2.png',
     description: "超越極限的承載力\n\n專為高層建築、橋樑與重載結構設計，提供卓越的抗壓性能與耐久性",
     features: [
       "抗壓強度通常遠超過普通混凝土",
@@ -47,7 +48,7 @@ const products = [
   {
     id: 3,
     title: "自充填混凝土",
-    imageUrl: '/images/5.jpeg',
+    imageUrl: '/images/products/3.png',
     description: "施工無憂，品質穩定\n\n高流動性、優異抗離析性，適用於高密度鋼筋結構，提升施工品質",
     features: [
       "使用較高比例之再生材料",
@@ -69,7 +70,7 @@ const products = [
   {
     id: 4,
     title: "水中混凝土",
-    imageUrl: '/images/5.jpeg',
+    imageUrl: '/images/products/4.png',
     description: "抵禦水流，穩固基礎\n\n專為水下環境設計，確保混凝土在水中澆築時不離析、不流失，達到穩定成型",
     features: [
       "水中混凝土是指在水下進行澆築和硬化的混凝土，它與普通的陸上混凝土在配比、施工方法和材料選擇上都有所不同，以適應水下環境的特殊要求",
@@ -88,7 +89,7 @@ const products = [
   {
     id: 5,
     title: "抗彎混凝土",
-    imageUrl: '/images/5.jpeg',
+    imageUrl: '/images/products/5.png',
     description: "強韌結構，承受變形\n\n擁有優異的抗彎強度，專為承受動態負載、抗震與結構變形而設計",
     features: [
       "經由特殊之配比設計",
@@ -106,7 +107,7 @@ const products = [
   {
     id: 6,
     title: "巨積混凝土",
-    imageUrl: '/images/5.jpeg',
+    imageUrl: '/images/products/6.png',
     description: "精準控溫，確保結構穩定\n\n專為大體積結構開發，控制水化熱，減少溫差裂縫，提升施工品質",
     features: [
       "大體積混凝土澆置後，因水泥水化作用產生的熱量不易散失，導致混凝土內部溫升過高，考慮其自體水化熱溫度及體積變化",
@@ -125,7 +126,7 @@ const products = [
   {
     id: 7,
     title: "客製化混凝土",
-    imageUrl: '/images/5.jpeg',
+    imageUrl: '/images/products/7.png',
     description: "量身打造，滿足獨特需求\n\n依據您的設計、環境條件與功能需求，確保每一立方米都符合您的預期",
     features: [
       "根據特定工程的需求，對混凝土的配比、材料和性能進行調整和設計，以達到最佳的工程效果"
@@ -143,24 +144,6 @@ const products = [
 
 const prisma = new PrismaClient()
 
-
-export const adminProcedure = publicProcedure.use(async (opts) => {
-  const { ctx } = opts;
-  // if (!ctx.user?.isAdmin) {
-  //   throw new TRPCError({ code: 'UNAUTHORIZED' });
-  // }
-  // return opts.next({
-  //   ctx: {
-  //     user: ctx.user,
-  //   },
-  // });
-  return opts.next({
-    ctx: {
-      user: { isAdmin: true },
-    },
-  });
-});
-
 export const appRouter = router({
   productList: publicProcedure.query(async () => {
     return products
@@ -171,59 +154,46 @@ export const appRouter = router({
   userList: publicProcedure.query(async () => {
     return [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }]
   }),
-  manager: router({
-    getJobs: adminProcedure.query(async () => {
-      return prisma.jobs.findMany()
-    }),
-    addAchievementYear: adminProcedure.input(z.object({ year: z.number() })).mutation(async (opts) => {
-      const existedYear = await prisma.achievementYear.findFirst({ where: { year: opts.input.year } });
-      if (existedYear) {
-        throw new TRPCError({ code: 'BAD_REQUEST', message: 'Year already exists' });
-      }
-      return prisma.achievementYear.create({
-        data: {
-          year: opts.input.year
-        }
-      })
-    }),
-    addAchievementGalleryYear: adminProcedure.input(z.object({ year: z.number() })).mutation(async (opts) => {
-      const existedYear = await prisma.achievementGalleryYear.findFirst({ where: { year: opts.input.year } });
-      if (existedYear) {
-        throw new TRPCError({ code: 'BAD_REQUEST', message: 'Year already exists' });
-      }
-      return prisma.achievementGalleryYear.create({
-        data: {
-          year: opts.input.year
-        }
-      })
-    }),
-    getAchievementYears: adminProcedure.query(async () => {
-      return prisma.achievementYear.findMany()
-    }),
-    getAchievementGalleryYears: adminProcedure.query(async () => {
-      return prisma.achievementGalleryYear.findMany()
-    }),
-    addAchievement: adminProcedure.input(z.object({ year: z.number(), name: z.string(), manufacturer: z.string() })).mutation(async (opts) => {
-      const year = await prisma.achievementYear.findFirst({ where: { year: opts.input.year } });
-      return prisma.achievementItem.create({
-        data: {
-          name: opts.input.name,
-          manufacturer: opts.input.manufacturer,
-          created_at: (new Date()).toISOString(),
-          fk_year_id: year?.id || 0
-        }
-      })
-    }),
-    getAchievements: adminProcedure.input(Number).query(async (opts) => {
-      const year = await prisma.achievementYear.findFirst({ where: { year: opts.input } });
-      return prisma.achievementItem.findMany({ where: { fk_year_id: year?.id } })
-    }),
-    batchDeleteAchievements: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
-      return prisma.achievementItem.deleteMany({ where: { id: { in: opts.input } } })
+  getHomeAnnouncements: publicProcedure.query(async () => {
+    const latestNews = await prisma.news.findFirst({
+      orderBy: { created_at: 'desc' }
     })
-  })
-
-
+    const latestAchievement = await prisma.achievementItem.findFirst({
+      orderBy: { created_at: 'desc' }
+    })
+    const latestQuality = await prisma.certifications.findFirst({
+      orderBy: { created_at: 'desc' }
+    })
+    return {
+      news: latestNews,
+      achievement: latestAchievement,
+      quality: latestQuality
+    }
+  }),
+  getTop4Gallery: publicProcedure.query(async () => {
+    return prisma.achievementGallery.findMany({ orderBy: { created_at: 'desc' }, include: { images: true }, take: 4 })
+  }),
+  getGalleryByYear: publicProcedure.input(z.number()).query(async (opt) => {
+    const year = await prisma.achievementGalleryYear.findFirst({ where: { year: opt.input } })
+    return prisma.achievementGallery.findMany({ where: { fk_year_id: year?.id }, include: { images: true } })
+  }),
+  getAchievementsByYear: publicProcedure.input(z.number()).query(async (opt) => {
+    const year = await prisma.achievementYear.findFirst({ where: { year: opt.input } })
+    return prisma.achievementItem.findMany({ where: { fk_year_id: year?.id } })
+  }),
+  getAllAchievementYears: publicProcedure.query(async () => {
+    const galleryYears = await prisma.achievementGalleryYear.findMany()
+    const achievementYears = await prisma.achievementYear.findMany()
+    const years = new Set([...galleryYears, ...achievementYears].map(y => y.year))
+    return Array.from(years).sort((a, b) => a - b)
+  }),
+  getGalleryById: publicProcedure.input(z.number()).query(async (opt) => {
+    return prisma.achievementGallery.findFirst({ where: { id: opt.input }, include: { images: true } })
+  }),
+  getJobs: publicProcedure.query(async () => {
+    return prisma.jobs.findMany()
+  }),
+  manager: managerRoute
 });
 
 export type AppRouter = typeof appRouter;

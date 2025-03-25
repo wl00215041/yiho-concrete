@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageBanner image="/images/6.jpeg" title="關於我們" sub-title="About Us" sub-title-color="#E8382F"></PageBanner>
+    <PageBanner image="/images/about-banner.png" title="關於我們" sub-title="About Us" sub-title-color="#E8382F"></PageBanner>
     <PageSection title="從柑仔店來的混凝土專家" icon-color="#E8382F">
       <div class="flex flex-col gap-6 max-w-[777px] text-[#585858] mb-14">
         <p>柑仔店是台灣早期重要的生活中心之一，在沒有便利商店的年代，人民大小生活物品的採購，都在這樣傳統小店完成。隨著時代更迭，充滿人情味的柑仔店漸漸地黯淡在台灣的大街小巷之中。</p>

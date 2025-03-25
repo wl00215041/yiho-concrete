@@ -27,7 +27,7 @@ export interface TabItem {
 
 const props = defineProps({
   tabs: {
-    type: Array as () => TabItem[],
+    type: Array as PropType<TabItem[]>,
     required: true
   }
 })
@@ -37,6 +37,22 @@ const activeTabIndex = ref(0)
 const setActiveTab = (index: number) => {
   activeTabIndex.value = index
 }
+
+const value = defineModel('value')
+
+watch(value, (newValue) => {
+  const index = props.tabs.findIndex((tab) => tab.value === newValue)
+  if (index !== -1) {
+    activeTabIndex.value = index
+  }
+})
+
+watch(activeTabIndex, (newIndex) => {
+  const tab = props.tabs[newIndex]
+  if (tab) {
+    value.value = tab.value
+  }
+})
 
 provide('tabsState', {
   activeTabIndex,

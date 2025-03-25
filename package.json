@@ -40,8 +40,5 @@
     "nuxt-svgo": "^4.0.14",
     "prisma": "6.5.0",
     "sass-embedded": "^1.85.0"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
   }
 }

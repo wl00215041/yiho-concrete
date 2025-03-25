@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageBanner image="/images/6.jpeg" title="工程實績" sub-title="Achievements" sub-title-color="#E8382F"></PageBanner>
+    <PageBanner image="/images/achievement-banner.png" title="工程實績" sub-title="Achievements" sub-title-color="#E8382F"></PageBanner>
     <PageSection title="全方位建築最佳選擇" icon-color="#E8382F">
       <div class="flex flex-col gap-6 max-w-[777px] text-[#585858] mb-14">
         <p>
@@ -8,7 +8,7 @@
         </p>
       </div>
 
-      <TimeMenu :tabs="years" class="flex-[0.6]">
+      <TimeMenu v-model:value="selectedYear" :tabs="years" class="flex-[0.6]">
         <div class="desktop:hidden flex gap-2 mb-6">
           <button class="p-[10px] bg-[#D9D9D9] rounded-[5px]" @click="isListMode = false"
             :class="{ 'is-tab-active': !isListMode }">
@@ -20,42 +20,14 @@
           </button>
         </div>
         <div class="flex flex-col pad:flex-row gap-8">
-          <div v-if="lg || !isListMode" class="pad:flex-[0.6] grid grid-cols-1 pad:grid-cols-2 gap-8">
-            <AchievementShowCase class="" @click="$router.push({ name: 'achievements-id', params: {id: 1} })" image="/images/7.jpeg" title="實績 #1"></AchievementShowCase>
-            <AchievementShowCase class="" @click="$router.push({ name: 'achievements-id', params: {id: 1} })" image="/images/7.jpeg" title="實績 #1"></AchievementShowCase>
-            <AchievementShowCase class="" @click="$router.push({ name: 'achievements-id', params: {id: 1} })" image="/images/7.jpeg" title="實績 #1"></AchievementShowCase>
-            <AchievementShowCase class="" @click="$router.push({ name: 'achievements-id', params: {id: 1} })" image="/images/7.jpeg" title="實績 #1"></AchievementShowCase>
-            <AchievementShowCase class="" @click="$router.push({ name: 'achievements-id', params: {id: 1} })" image="/images/7.jpeg" title="實績 #1"></AchievementShowCase>
-            <AchievementShowCase class="" @click="$router.push({ name: 'achievements-id', params: {id: 1} })" image="/images/7.jpeg" title="實績 #1"></AchievementShowCase>
+          <div v-if="lg || !isListMode" class="relative pad:flex-[0.6] grid grid-cols-1 pad:grid-cols-2 gap-8">
+            <AchievementShowCase v-if="galleryList.data.value?.length" v-for="gallery in galleryList.data.value" class="" @click="$router.push({ name: 'achievements-id', params: {id: gallery.id} })" :image="`/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`" :title="gallery.name"></AchievementShowCase>
+            <NoData v-else></NoData>
           </div>
-          <div v-if="lg || isListMode" class="flex-[0.4] pad:pt-20">
+          <div v-if="lg || isListMode" class="flex-[0.4]">
             <AchievementTotalContract :total="88"></AchievementTotalContract>
             <ul>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
-              <AchievementContract unit="嘉鑫營造有限公司" location="苗栗縣頭份巿六合國小(後棟教室)"></AchievementContract>
+              <AchievementContract v-for="item in list.data.value" :unit="item.manufacturer" :location="item.name"></AchievementContract>
             </ul>
           </div>
         </div>
@@ -80,14 +52,28 @@ const { breakpoint } = useApp()
 const { lg } = breakpoint
 
 const isListMode = ref(false)
+const { $trpcClient } = useNuxtApp()
 
-const years = ref([
-  { title: '2025', value: 2025 },
-  { title: '2024', value: 2024 },
-  { title: '2023', value: 2023 },
-  { title: '2022', value: 2022 },
-  { title: '2021', value: 2021 }
-])
+const { data: allYears, execute, refresh } = await $trpcClient.getAllAchievementYears.useQuery()
+
+const selectedYear = ref(allYears.value?.[0] || 0)
+
+const list = await $trpcClient.getAchievementsByYear.useQuery(selectedYear)
+const galleryList = await $trpcClient.getGalleryByYear.useQuery(selectedYear)
+
+interface TabItem {
+  title: string;
+  value: number;
+}
+
+const years = computed<TabItem[]>(() => {
+  return allYears.value?.map((year) => {
+    return {
+      title: year.toString(),
+      value: year
+    }
+  }) || []
+})
 
 </script>
 

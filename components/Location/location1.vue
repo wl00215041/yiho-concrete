@@ -1,0 +1,35 @@
+<template>
+  <TabsTab title="大厝廠" name="harbor">
+    <div class="p-4">
+      <p>位於竹南工業區內，屬全高塔式規劃，占地小，效率高，全密閉式倉儲，斥資8000萬於2001年啟用，並於2025年，全廠再次更新，持續扮演毅和最佳應援團隊。
+        毅和港墘廠位於竹南交流道旁約3公里處，我們的預拌混凝土供應，可以快速地送達新竹以及苗栗地區。
+      </p>
+    </div>
+    <div class=" border border-dashed border-[#BABABA] my-5"></div>
+    <div class="flex items-center px-6">
+      <SvgoCapacity filled class="text-2xl mr-3"></SvgoCapacity>
+      <span class="font-bold mr-4 text-[#333333]">產能</span>
+      <span class="text-[#585858]">每小時180米 (180 m3/hr)</span>
+    </div>
+    <div class=" border border-dashed border-[#BABABA] my-5"></div>
+    <div class="flex items-center px-6 mb-6">
+      <SvgoCapacity filled class="text-2xl mr-3"></SvgoCapacity>
+      <span class="font-bold mr-4 text-[#333333]">地址</span>
+      <span class="text-[#585858]">苗栗縣竹南鎮大厝里一三鄰真如路二五三巷二六號</span>
+    </div>
+    <img src="/images/location.png" alt="location" class="w-full h-[25rem]">
+    <div class=" border border-dashed border-[#BABABA] my-5"></div>
+    <div class="flex items-center px-6 mb-6">
+      <SvgoCapacity filled class="text-2xl mr-3"></SvgoCapacity>
+      <span class="font-bold mr-4 text-[#333333]">廠房照片</span>
+    </div>
+    <div class="grid grid-cols-1 pad:grid-cols-3 gap-6">
+      <img class="rounded-[10px] aspect-video object-cover" src="/images/1.jpeg" alt="1" />
+      <img class="rounded-[10px] aspect-video object-cover" src="/images/2.jpeg" alt="1" />
+      <img class="rounded-[10px] aspect-video object-cover" src="/images/3.jpeg" alt="1" />
+      <img class="rounded-[10px] aspect-video object-cover" src="/images/4.jpeg" alt="1" />
+      <img class="rounded-[10px] aspect-video object-cover" src="/images/5.jpeg" alt="1" />
+      <img class="rounded-[10px] aspect-video object-cover" src="/images/6.jpeg" alt="1" />
+    </div>
+  </TabsTab>
+</template>

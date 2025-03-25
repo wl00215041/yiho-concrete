@@ -1,5 +1,5 @@
 <template>
-  <div class="flex ">
+  <div class="flex cursor-pointer">
     <img :src="image" class="object-cover w-[180px] h-[180px]" alt="product">
     <div class="pl-6 pad:pt-4">
       <div class="text-lg desktop:text-2xl font-bold text-[#333333] mb-2">{{ title }}</div>

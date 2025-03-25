@@ -4,6 +4,7 @@ import { envConfig } from "./envConfig"
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-09',
+  ssr: false,
   devServer: {
     port: 3500,
   },
@@ -69,7 +70,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
   },
   fileStorage: {
-    mount: './storage'
+    mount: './public/files'
   },
   vueuse: {
     autoImports: true,

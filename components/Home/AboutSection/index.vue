@@ -66,11 +66,11 @@
   &::before,
   &::after {
     content: '';
-    @apply absolute w-[23.625rem] h-[23.625rem] bg-[url(~/assets/icons/bg-circle.svg)];
+    @apply absolute w-[23.625rem] h-[23.625rem] bg-[url(~/assets/icons/bg-circle.svg)] bg-cover;
     @screen pad {
       @apply w-[37.6875rem] h-[37.6875rem];
     }
-    @screen pad {
+    @screen desktop {
       @apply w-[53rem] h-[53rem];
     }
   }

@@ -1,8 +1,11 @@
 <template>
   <table class="technique-spec w-full border border-[#BABABA]">
     <thead class="bg-[#777777] text-white text-left">
-      <th class="p-4">項目</th>
-      <th class="p-4">規格</th>
+      <tr>
+        <th class="p-4">項目</th>
+        <th class="p-4">規格</th>
+      </tr>
+
     </thead>
     <tbody>
       <tr v-for="item in items" :key="item.name">

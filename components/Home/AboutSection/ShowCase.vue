@@ -1,7 +1,7 @@
 <template>
   <div class="showcase">
     <div class="circle"></div>
-    <div class="flex justify-center pad:pt-[106px] left-0 top-0 bottom-0 right-0 m-auto relative">
+    <div class="flex justify-start pad:justify-center pl-[55px] pad:pt-[106px] left-0 top-0 bottom-0 right-0 m-auto relative">
       <img src="/images/about.png" alt="first-image" class="first-image" />
       <SvgoDottedTexture class="dotted-texture-top" filled>
       </SvgoDottedTexture>
@@ -16,7 +16,7 @@
 
 <style lang="scss" scoped>
 .showcase {
-  @apply relative w-full aspect-square pad:overflow-hidden;
+  @apply relative w-full pad:aspect-square pad:overflow-hidden;
 }
 
 .first-image {
