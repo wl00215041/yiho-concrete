@@ -88,6 +88,5 @@ model News {
   id          Int    @id @default(autoincrement())
   title       String
   link        String
-  description String
   created_at  String
 }

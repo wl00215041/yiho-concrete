@@ -14,7 +14,8 @@
       !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start',
     ]">
       <router-link to="/">
-        <SvgoPageLogo v-if="isExpanded || isHovered || isMobileOpen" class="dark:hidden w-[177px]" filled :fontControlled="false"></SvgoPageLogo>
+        <SvgoPageLogo v-if="isExpanded || isHovered || isMobileOpen" class="dark:hidden w-[177px]" filled
+          :fontControlled="false"></SvgoPageLogo>
       </router-link>
     </div>
     <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
@@ -173,6 +174,11 @@ const menuGroups = [
   {
     items: [
       {
+        name: "最新消息",
+        path: "/k-manager/news",
+        icon: SvgoInvoice
+      },
+      {
         name: "工程實績",
         icon: SvgoListAlt,
         subItems: [
@@ -255,5 +261,4 @@ const endTransition = (el) => {
 .menu-dropdown-item-active {
   @apply text-white
 }
-
 </style>

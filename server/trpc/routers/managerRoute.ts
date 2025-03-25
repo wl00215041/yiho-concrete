@@ -94,5 +94,23 @@ export default router({
     }),
     getCertificationsByType: adminProcedure.input(z.string()).query(async (opts) => {
       return prisma.certifications.findMany({ where: { type: opts.input } })
-    })
+    }),
+    batchDeleteCertification: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
+      return prisma.certifications.deleteMany({ where: { id: { in: opts.input } } })
+    }),
+    getNews: adminProcedure.query(async () => {
+      return prisma.news.findMany()
+    }),
+    addNews: adminProcedure.input(z.object({ title: z.string(), link: z.string() })).mutation(async (opts) => {
+      return prisma.news.create({
+        data: {
+          title: opts.input.title,
+          link: opts.input.link,
+          created_at: (new Date()).toISOString()
+        }
+      })
+    }),
+    batchDeleteNews: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
+      return prisma.news.deleteMany({ where: { id: { in: opts.input } } })
+    }),
   })

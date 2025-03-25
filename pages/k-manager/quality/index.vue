@@ -17,10 +17,10 @@
                 <button @click="open" class="min-w-[110px] py-3 rounded bg-[#0075C2] text-white">新增</button>
               </template>
             </ManagerCertificationsAddCertificationModel>
-            <button class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
+            <button @click="onDeleteJobs" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
           </div>
         </div>
-        <ManagerTable :columns="columns" :records="certifications" :selectable="true" @selectionChange="onSelectionChange">
+        <ManagerTable :columns="columns" :records="certifications || []" :selectable="true" @selectionChange="onSelectionChange">
           <template #col-file>
             <SvgoDocument class="cursor-pointer" filled></SvgoDocument>
           </template>
@@ -50,7 +50,7 @@ const columns = [
   { title: '檔案', key: 'file', width: 'w-2/11' },
   { title: '編輯', key: 'edit', width: 'w-2/11' },
 ];
-
+const selectedCertification = ref<number[]>([])
 const isAddModelOpened = ref(false)
 
 const { data: certifications, refresh: galleryRefresh } = await $trpcClient.manager.getCertificationsByType.useQuery(selectedType)
@@ -77,8 +77,15 @@ const users = ref([
   // 其他用戶資料...
 ]);
 
+const onDeleteJobs = async () => {
+  const confirmDelete = confirm('確定要刪除嗎？')
+  if (!confirmDelete) return
+  await $trpcClient.manager.batchDeleteCertification.mutate(selectedCertification.value)
+  galleryRefresh()
+}
+
 const onSelectionChange = (selectedIds: number[]) => {
-  console.log('Selected rows:', selectedIds);
+  selectedCertification.value = selectedIds
 };
 
 </script>

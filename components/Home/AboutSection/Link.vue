@@ -1,5 +1,5 @@
 <template>
-  <div class="link">
+  <div class="link" @click="$router.push({ path })">
     <slot><span>{{ title }}</span></slot>
     <SvgoArrowRight class="link-icon"></SvgoArrowRight>
   </div>
@@ -9,6 +9,7 @@
 
 defineProps({
   title: String,
+  path: String,
 })
 
 </script>
