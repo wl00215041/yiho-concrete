@@ -19,75 +19,75 @@ const links = computed(() => {
       items: [
         {
           title: '公司簡介',
-          url: '/'
+          url: '/about'
         },
         {
           title: '大事紀',
-          url: '/'
+          url: '/about'
         }
       ]
     },
     {
       title: '營業據點',
-      url: '/',
+      url: '/location',
       items: [
         {
           title: '港墘廠',
-          url: '/'
+          url: '/location'
         },
         {
           title: '大厝廠',
-          url: '/'
+          url: '/location'
         },
         {
           title: '寶山科技園區',
-          url: '/'
+          url: '/location'
         }
       ]
     },
     {
       title: '工程實績',
-      url: '/',
+      url: '/achievements',
       items: [
         {
           title: '工程實績',
-          url: '/'
+          url: '/achievements'
         }
       ]
     },
     ...(breakpoint.desktop.value ? [{
       title: '產品資訊',
-      url: '/',
+      url: '/products',
       items: [
         {
           title: '預伴混泥土',
-          url: '/'
+          url: '/products'
         },
         {
           title: '品質認證',
-          url: '/'
+          url: '/products'
         },
         {
           title: '產品炭足跡',
-          url: '/'
+          url: '/products'
         }
       ]
     },
     {
       title: '精英招募',
-      url: '/',
+      url: '/recruit',
       items: [
         {
           title: '經營理念',
-          url: '/'
+          url: '/recruit'
         },
         {
           title: '職缺資訊',
-          url: '/'
+          url: '/recruit'
         },
         {
           title: '聯絡窗口',
-          url: '/'
+          url: '/recruit'
         }
       ]
     }] : [])

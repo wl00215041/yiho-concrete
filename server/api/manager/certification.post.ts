@@ -4,41 +4,24 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
     const { files } = await readBody<{ files: ServerFile[] }>(event)
     const prisma = new PrismaClient()
-    const year = await prisma.achievementGalleryYear.findFirst({ where: { year: body.year } });
-    if (!year) {
-      throw createError({status: 400, message: 'Year not found'})
+    if (!files || files.length === 0) {
+      throw createError({status: 400, message: 'No files found'})
     }
+
+    const filename = await storeFileLocally(
+      files[0],         // the file object
+      8,            // you can add a name for the file or length of Unique ID that will be automatically generated!
+      '/certifications'  // the folder the file will be stored in
+  )
     const gallery = await prisma.certifications.create({
       data: {
         name: body.name,
         type: body.type,
         created_at: (new Date()).toISOString(),
-        file: body.file,
+        file: filename,
       }
     })
 
-    for ( const file of files ) {
-        const filename = await storeFileLocally(
-            file,         // the file object
-            8,            // you can add a name for the file or length of Unique ID that will be automatically generated!
-            '/achievements'  // the folder the file will be stored in
-        )
-
-        await prisma.achievementGalleryImages.create({
-            data: {
-                fk_gallery_id: gallery.id,
-                file: filename,
-                is_cover: body.defaultName === file.name,
-                created_at: (new Date()).toISOString()
-            }
-        })
-
-
-        // {OR}
-
-        // // Parses a data URL and returns an object with the binary data and the file extension.
-        // const { binaryString, ext } = parseDataUrl(file.content)
-    }
 
     // // Deleting Files
     // await deleteFile('requiredFile.txt', '/userFiles')

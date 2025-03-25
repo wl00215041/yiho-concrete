@@ -5,7 +5,7 @@
     </slot>
     <ul class="text-sm text-white text-opacity-70 flex flex-col gap-4">
       <slot name="items" :items="items">
-        <li v-for="(item, index) in items" :key="index">
+        <li class="cursor-pointer" v-for="(item, index) in items" :key="index" @click="$router.push({ path: item.url })">
           <NuxtLink :to="item.url">{{ item.title }}</NuxtLink>
         </li>
       </slot>

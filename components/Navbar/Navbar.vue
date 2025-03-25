@@ -7,23 +7,23 @@
     <div class="nav-links" :class="{ open: isOpen }">
       <NuxtLink class="nav-link flex items-center justify-between" to="/about">
         <span>關於我們</span>
-        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+        <SvgoLinkIcon filled class="text-base desktop:hidden"></SvgoLinkIcon>
       </NuxtLink>
       <NuxtLink class="nav-link flex items-center justify-between" to="/location">
         <span>營業據點</span>
-        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+        <SvgoLinkIcon filled class="text-base desktop:hidden"></SvgoLinkIcon>
       </NuxtLink>
       <NuxtLink class="nav-link flex items-center justify-between" to="/achievements">
         <span>工程實績</span>
-        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+        <SvgoLinkIcon filled class="text-base desktop:hidden"></SvgoLinkIcon>
       </NuxtLink>
       <NuxtLink class="nav-link flex items-center justify-between" to="/products">
         <span>產品資訊</span>
-        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+        <SvgoLinkIcon filled class="text-base desktop:hidden"></SvgoLinkIcon>
       </NuxtLink>
       <NuxtLink class="nav-link flex items-center justify-between" to="/recruit">
         <span>精英招募</span>
-        <SvgoLinkIcon filled class="text-base"></SvgoLinkIcon>
+        <SvgoLinkIcon filled class="text-base desktop:hidden"></SvgoLinkIcon>
       </NuxtLink>
       <div class="socials">
         <svgo-social-facebook class="social-icon" filled></svgo-social-facebook>
@@ -48,7 +48,7 @@ const isOpen = ref(false);
 
 .nav-links {
   @apply fixed desktop:relative top-20 desktop:top-0 left-0 right-0 lg:left-auto;
-  @apply flex lg:inline-flex flex-col desktop:flex-row lg:w-[18.75rem] desktop:w-auto;
+  @apply flex desktop:gap-8 lg:inline-flex flex-col desktop:flex-row lg:w-[18.75rem] desktop:w-auto;
   @apply invisible desktop:visible bottom-0 bg-[#333333] desktop:bg-transparent bg-opacity-90 z-40 ;
 }
 

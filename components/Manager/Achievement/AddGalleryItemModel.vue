@@ -16,7 +16,7 @@
           <FormInput type="date" id="finishedDate" v-model="finishedDate" placeholder="請輸入完工日期"></FormInput>
         </FormField>
         <FormField forId="file" title="檔案上傳" required>
-          <FileUpload @onSelect="handleImageSelect" multiple></FileUpload>
+          <FileUpload @onSelect="handleImageSelect" multiple description="圖片最多可上傳10張，檔案格式限定為 .jpg, .png"></FileUpload>
           <div class="flex gap-6 flex-wrap">
             <ManagerAchievementSelectableImage v-for="file in files" @click="defaultName=file.name" :selected="file.name === defaultName"  :src="(file as any).content"></ManagerAchievementSelectableImage>
             <!-- <img v-for="file in files" :src="(file as any).content" class="w-[100px] h-[100px] object-cover" /> -->

@@ -92,4 +92,7 @@ export default router({
     batchDeleteJobs: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
       return prisma.jobs.deleteMany({ where: { id: { in: opts.input } } })
     }),
+    getCertificationsByType: adminProcedure.input(z.string()).query(async (opts) => {
+      return prisma.certifications.findMany({ where: { type: opts.input } })
+    })
   })
