@@ -36,7 +36,7 @@
         </div>
       </div>
     </PageSection>
-    <PageSection title="炭足跡" icon-color="#0075C2">
+    <!-- <PageSection title="炭足跡" icon-color="#0075C2">
         <div class="relative flex flex-col justify-center items-center ">
           <img src="/images/carbon-footprint-bg.svg" alt="carbon-footprint" class="w-full pad:max-w-[624px] -my-24 desktop:max-w-[793px] object-cover rounded-[20px] mb-[20px]">
           <div class="text-center font-medium absolute pad:relative flex items-center">
@@ -44,7 +44,7 @@
             <span class="text-[2.5rem]">減少 25% CO₂ 排放</span>
           </div>
         </div>
-    </PageSection>
+    </PageSection> -->
   </div>
 </template>
 <script setup lang="ts">
