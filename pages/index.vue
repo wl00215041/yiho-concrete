@@ -18,7 +18,7 @@
 <style lang="scss" scoped>
 
 .slogan-placement {
-  @apply absolute pad:top-36 desktop:top-auto desktop:bottom-32 left-10;
+  @apply absolute pad:top-40 desktop:top-auto desktop:bottom-32 left-10;
 }
 
 

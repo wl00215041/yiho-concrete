@@ -33,7 +33,7 @@ const config = ref({
   itemsToShow: 1,
   gap: 24,
   // snapAlign: 'center-even',
-  // autoplay: 4000,
+  autoplay: 4000,
   // wrapAround: true,
   pauseAutoplayOnHover: true,
   breakpoints: {
