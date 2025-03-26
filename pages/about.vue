@@ -7,9 +7,9 @@
         <p>毅和實業成立於1993年9月26日，本公司目前設有竹南港墘廠、大厝廠以及新竹寶山科園廠，持續以先進的設備，專業的技術，產製預拌混凝土，為客戶提供優質的服務。</p>
       </div>
       <div class="grid grid-cols-1 pad:grid-cols-3 gap-8 mb-14">
-        <img src="/images/7.jpeg" alt="about-us" class="w-full rounded-[10px] h-[240px]" />
-        <img src="/images/2.jpeg" alt="about-us" class="w-full rounded-[10px] h-[240px] object-cover" />
-        <img src="/images/3.jpeg" alt="about-us" class="w-full rounded-[10px] h-[240px]" />
+        <img src="/images/7.jpeg" alt="about-us" class="w-full rounded-[10px] pad:h-[240px] object-cover" />
+        <img src="/images/2.jpeg" alt="about-us" class="w-full rounded-[10px] pad:h-[240px] object-cover" />
+        <img src="/images/3.jpeg" alt="about-us" class="w-full rounded-[10px] pad:h-[240px] object-cover" />
       </div>
       <div class="flex flex-col items-center pad:text-center self-center gap-6 max-w-[745px] text-[#585858] mb-14">
         <p>
