@@ -9,14 +9,14 @@
       </div>
 
       <TimeMenu v-model:value="selectedYear" :tabs="years" class="flex-[0.6]">
-        <div class="desktop:hidden flex gap-2 mb-6">
-          <button class="p-[10px] bg-[#D9D9D9] rounded-[5px]" @click="isListMode = false"
+        <div class="desktop:hidden flex gap-2 mb-6 text-[#585858]">
+          <button class="p-[10px] bg-[#D9D9D9] rounded-[5px] outline-0" @click="isListMode = false"
             :class="{ 'is-tab-active': !isListMode }">
-            <SvgoPictureMode filled></SvgoPictureMode>
+            <SvgoPictureMode></SvgoPictureMode>
           </button>
-          <button class="p-[10px] bg-[#D9D9D9] rounded-[5px]" @click="isListMode = true"
+          <button class="p-[10px] bg-[#D9D9D9] rounded-[5px] outline-0" @click="isListMode = true"
             :class="{ 'is-tab-active': isListMode }">
-            <SvgoListMode filled></SvgoListMode>
+            <SvgoListMode ></SvgoListMode>
           </button>
         </div>
         <div class="flex flex-col pad:flex-row gap-8">
@@ -25,7 +25,7 @@
             <NoData v-else></NoData>
           </div>
           <div v-if="lg || isListMode" class="flex-[0.4]">
-            <AchievementTotalContract :total="list.data.value.length"></AchievementTotalContract>
+            <AchievementTotalContract :total="list.data.value?.length || 0"></AchievementTotalContract>
             <ul>
               <AchievementContract v-for="item in list.data.value" :unit="item.manufacturer" :location="item.name"></AchievementContract>
             </ul>
@@ -79,6 +79,6 @@ const years = computed<TabItem[]>(() => {
 
 <style lang="scss" scoped>
 .is-tab-active {
-  @apply bg-[#E8382F];
+  @apply bg-[#E8382F] text-white;
 }
 </style>
