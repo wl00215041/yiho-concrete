@@ -1,8 +1,8 @@
 <template>
-  <div class="annuncement">
+  <div class="annuncement" :class="{ 'hidden': displayNews.length === 0 }">
     <div class="title font-[NTR]">What New's</div>
     <div class="list">
-      <div class="item" v-for="item in news" :key="item.id">
+      <div class="item" v-for="item in displayNews" :key="item.id">
         <div class="date hidden pad:inline-block">{{ item.date }}</div>
         <div class="tag" :class="item.class">{{ item.tag }}</div>
         <div>
@@ -50,6 +50,10 @@ const news = computed(() => {
       link: data.value?.news?.link
     },
   ]
+})
+
+const displayNews = computed(() => {
+  return news.value?.filter(item => item.content) || []
 })
 
 </script>
