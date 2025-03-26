@@ -25,7 +25,7 @@
             <NoData v-else></NoData>
           </div>
           <div v-if="lg || isListMode" class="flex-[0.4]">
-            <AchievementTotalContract :total="88"></AchievementTotalContract>
+            <AchievementTotalContract :total="list.data.value.length"></AchievementTotalContract>
             <ul>
               <AchievementContract v-for="item in list.data.value" :unit="item.manufacturer" :location="item.name"></AchievementContract>
             </ul>
