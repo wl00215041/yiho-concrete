@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between">
+  <div class="flex justify-between flex-wrap">
     <ClientOnly>
       <FooterNavCategory v-for="link in links" :title="link.title" :items="link.items"></FooterNavCategory>
     </ClientOnly>
@@ -55,7 +55,7 @@ const links = computed(() => {
         }
       ]
     },
-    ...(breakpoint.desktop.value ? [{
+    {
       title: '產品資訊',
       url: '/products',
       items: [
@@ -90,7 +90,7 @@ const links = computed(() => {
           url: '/recruit'
         }
       ]
-    }] : [])
+    }
   ]
 
 })
