@@ -3,7 +3,7 @@
     <div>
       <div
         class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
-        <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text" placeholder="承包廠商、工程實績">
+        <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text" placeholder="職缺名稱">
         <div class="flex gap-4">
           <ManagerJobsAddJobModel v-model:isOpen="isAddModalOpened" @onAdd="onAdd">
               <template #default="{ open }">

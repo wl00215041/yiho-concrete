@@ -3,7 +3,7 @@
     <div>
       <div
         class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
-        <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text" placeholder="承包廠商、工程實績">
+        <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text" placeholder="標題名稱">
         <div class="flex gap-4">
           <ManagerNewsAddNewsModel v-model:isOpen="isAddModalOpened" @onAdd="onAdd">
               <template #default="{ open }">
@@ -25,7 +25,7 @@ definePageMeta({
 })
 
 const columns = [
-  { title: '名稱', key: 'title', width: 'w-3/11' },
+  { title: '標題', key: 'title', width: 'w-3/11' },
   { title: '連結', key: 'link', width: 'w-2/11' },
   { title: '發布時間', key: 'created_at', width: 'w-2/11' },
 ];

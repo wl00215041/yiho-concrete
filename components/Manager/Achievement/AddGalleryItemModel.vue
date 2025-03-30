@@ -4,13 +4,13 @@
     <div class="flex flex-col gap-4">
       <form @submit.prevent="add">
         <FormField forId="name" title="工程實績" required>
-          <FormInput type="text" id="name" v-model="name" placeholder="請輸入承包廠商名稱"></FormInput>
+          <FormInput type="text" id="name" v-model="name" placeholder="請輸入工程實績名稱"></FormInput>
         </FormField>
         <FormField forId="location" title="基地位置">
-          <FormInput type="text" id="location" v-model="location" placeholder="請輸入承包廠商名稱"></FormInput>
+          <FormInput type="text" id="location" v-model="location" placeholder="請輸入此工程實績的基地位置"></FormInput>
         </FormField>
         <FormField forId="product" title="使用產品">
-          <FormInput type="text" id="product" v-model="product" placeholder="請輸入承包廠商名稱"></FormInput>
+          <FormInput type="text" id="product" v-model="product" placeholder="請輸入此工程實績的使用的產品"></FormInput>
         </FormField>
         <FormField forId="finishedDate" title="完工日期">
           <FormInput type="date" id="finishedDate" v-model="finishedDate" placeholder="請輸入完工日期"></FormInput>

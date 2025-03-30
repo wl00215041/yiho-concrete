@@ -19,12 +19,14 @@
           <p>我們的第一個十年用心摸索、理解如何產製符合客戶期待的優良混凝土。</p>
           <p>第二個十年，我們穩定自己的步伐持續成長茁壯。</p>
           <p>第三個十年，我們用過去二十年的經驗，在新竹寶山，親自設計、建造屬於混凝土的旗艦廠房。</p>
+          <p>第四個十年，永續建材已成為我們產品線的主軸精神，並持續導入優質混凝土、綠建材、碳足跡等相關認證。</p>
+          <p>我們持續的進步，並期許能有更加完善的能力，<br>我們承諾每一米都是我們的責任。</p>
         </div>
 
       </div>
     </PageSection>
     <div class="bg-[url(/images/8.jpeg)] bg-cover flex flex-col items-center h-[350px] rounded-t-[30px] pad:rounded-t-[60px] desktop:rounded-t-[80px] pt-12 mb-[82px]">
-      <div class="text-white text-2xl text-center mb-[42px] max-w-[345px] pad:max-w-none">我們持續的進步以期讓自己有更加完善的能力，為您灌溉夢想</div>
+      <div class="text-white text-2xl text-center mb-[42px] max-w-[345px] pad:max-w-none">如果你有一個夢想，需要混凝土將其構築起來，<br>請給我們一個機會，為您灌溉每一個夢想家園。</div>
       <div class="flex justify-center gap-[2.625rem]">
         <div class="inline-flex justify-center items-center p-6 pad:p-[38px] w-24 h-24 pad:w-40 pad:h-40 desktop:w-40 desktop:h-40 rounded-full bg-[#E8382F] bg-opacity-70">
           <SvgoBusinessGrowth filled class="!w-full !h-full desktop:text-[5.25rem]"></SvgoBusinessGrowth>
