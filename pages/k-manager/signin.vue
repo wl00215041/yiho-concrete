@@ -54,14 +54,16 @@ const login = async () => {
   const res = await signIn('credentials', {
     username: username.value,
     password: password.value,
+    callbackUrl: '/api/auth',
     redirect: false,
   })
+  console.log('res', res?.error)
 
   if (res?.error) {
     isLoginFailed.value = true
     return
   }
-  router.push('/k-manager/achievement/list')
+  router.push('/k-manager/news')
 }
 
 
