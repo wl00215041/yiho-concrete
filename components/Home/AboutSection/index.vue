@@ -38,19 +38,17 @@
 }
 
 .section-content-left, .section-content-right {
-  @apply flex-1;
+  @apply pad:w-1/2;
 }
 
 .section-content-left {
-  @apply flex-1 px-[2.8125rem] py-8 pad:py-[5rem];
+  @apply px-[2.8125rem] py-8 pad:py-[60px] desktop:py-20;
 }
 
 .section-content-right {
-  @apply flex-1 pl-6 pb-10;
+  @apply pad:w-1/2;
+  // @apply flex justify-center items-center;
 
-  @screen pad {
-    @apply pl-0 pb-0;
-  }
 }
 
 .section-desc {

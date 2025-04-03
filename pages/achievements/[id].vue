@@ -3,7 +3,7 @@
     <PageBanner image="/images/achievement-banner.png" title="工程實績" sub-title="Achievements" sub-title-color="#E8382F"></PageBanner>
     <PageSection :title="data?.name" icon-color="#E8382F">
       <AchievementContractInfo class="inline-block w-full pad:max-w-[579px] rounded-2xl mb-7" :location="data?.location"
-        :product="data?.product" finished-date="xxxx"></AchievementContractInfo>
+        :product="data?.product" :finished-date="data?.finishedDate"></AchievementContractInfo>
       <yiho-carousel v-bind="config"  v-model="currentSlide">
         <yiho-slide v-for="image in images" :key="image.id">
           <template #default="{ currentIndex, isActive }">

@@ -1,7 +1,7 @@
 <template>
   <div class="showcase">
     <div class="circle"></div>
-    <div class="flex justify-start pad:justify-center pl-[55px] pad:pt-[106px] left-0 top-0 bottom-0 right-0 m-auto relative">
+    <div class="">
       <img src="/images/about.png" alt="first-image" class="first-image" />
       <SvgoDottedTexture class="dotted-texture-top" filled>
       </SvgoDottedTexture>
@@ -16,11 +16,12 @@
 
 <style lang="scss" scoped>
 .showcase {
-  @apply relative w-full pad:aspect-square pad:overflow-hidden;
+  @apply max-w-[27.25rem] pad:max-w-none relative w-full flex justify-center items-center h-full pad:overflow-hidden;
+  @apply py-8 pad:py-[60px] desktop:py-20;
 }
 
 .first-image {
-  @apply w-[290px] object-fill rounded-2xl;
+  @apply relative z-10 w-[290px] object-fill rounded-2xl;
   @screen pad {
     @apply w-[500px];
   }
@@ -38,8 +39,9 @@
 }
 
 .circle {
+  @apply absolute right-0 top-0 w-[6.75rem] h-[6.75rem] bg-cover bg-[url(~/assets/icons/red-circle.svg)] -translate-y-1/4 pad:translate-x-1/3 pad:-translate-y-1/3;
   // @apply absolute right-0 w-[38%] h-[38%] border-[#E8382F] border-[30px] rounded-full;
-  @apply absolute transition-all w-[6.75rem] h-[6.75rem] right-0 -top-[80px] z-0 pad:overflow-hidden bg-[url(~/assets/icons/half-circle.svg)] bg-no-repeat;
+  // @apply absolute transition-all w-[6.75rem] translate-x-1/3 -translate-y-1/3 h-[6.75rem] right-0 -top-[80px] z-0 pad:overflow-hidden bg-[url(~/assets/icons/red-circle.svg)] bg-no-repeat;
   
   @screen pad {
     @apply w-[29.5625rem] h-[29.5625rem];

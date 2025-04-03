@@ -2,20 +2,20 @@
   <aside :class="[
     'fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-[#1C2434] text-[#DEE4EE] h-screen transition-all duration-300 ease-in-out z-99999 border-r border-gray-200',
     {
-      'lg:w-[290px]': isExpanded || isMobileOpen || isHovered,
+      'pad:w-[280px]': isExpanded || isMobileOpen || isHovered,
       'lg:w-[90px]': !isExpanded && !isHovered,
-      'translate-x-0 w-[290px]': isMobileOpen,
+      'translate-x-0 w-[280px]': isMobileOpen,
       '-translate-x-full': !isMobileOpen,
       'lg:translate-x-0': true,
     },
   ]" @mouseenter="!isExpanded && (isHovered = true)" @mouseleave="isHovered = false">
     <div :class="[
       'py-8 flex',
-      !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start',
+      !isExpanded && !isHovered ? 'pad:justify-center' : 'justify-start',
     ]">
       <router-link to="/">
-        <SvgoPageLogo v-if="isExpanded || isHovered || isMobileOpen" class="dark:hidden w-[177px]" filled
-          :fontControlled="false"></SvgoPageLogo>
+        <SvgoAdminPageLogo v-if="isExpanded || isHovered || isMobileOpen" class="dark:hidden w-[177px]" filled
+          :fontControlled="false"></SvgoAdminPageLogo>
       </router-link>
     </div>
     <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">

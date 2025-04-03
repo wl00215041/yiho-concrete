@@ -1,7 +1,9 @@
 <template>
   <div>
     <PageHeader />
-    <slot />
+    <div>
+      <slot />
+    </div>
     <AppFooter class="" />
   </div>
 </template>

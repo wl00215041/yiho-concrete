@@ -21,14 +21,18 @@
           </div>
         </div>
         <ManagerTable :columns="columns" :records="certifications || []" :selectable="true" @selectionChange="onSelectionChange">
-          <template #col-file>
-            <SvgoDocument class="cursor-pointer" filled></SvgoDocument>
+          <template #col-file="{ record }">
+            <a v-if="record.file" :href="`/files/certifications/${record.file}`" target="_blank">
+              <SvgoDocument class="cursor-pointer" filled></SvgoDocument>
+            </a>
+            
           </template>
-          <template #col-edit="record">
-            <SvgoEdit class="cursor-pointer" filled></SvgoEdit>
+          <template #col-edit="{ record }">
+            <SvgoEdit class="cursor-pointer" @click="onEdit(record?.id)" filled></SvgoEdit>
           </template>
         </ManagerTable>
       </div>
+      <ManagerCertificationsModifyCertificationModel v-if="editingId" v-model:isOpen="isModifyModelOpened" :selectedId="editingId || 0" @onUpdate="onUpdate"></ManagerCertificationsModifyCertificationModel>
     </ManagerRecordPage>
   </ManagerPage>
 </template>
@@ -52,8 +56,15 @@ const columns = [
 ];
 const selectedCertification = ref<number[]>([])
 const isAddModelOpened = ref(false)
+const isModifyModelOpened = ref(false)
+const editingId = ref<number | null>(null)
 
 const { data: certifications, refresh: galleryRefresh } = await $trpcClient.manager.getCertificationsByType.useQuery(selectedType)
+
+const onEdit = async (id: number) => {
+  isModifyModelOpened.value = true
+  editingId.value = id
+}
 
 const onAdd = async (data: any) => {
   await $fetch('/api/manager/certification', {
@@ -65,6 +76,17 @@ const onAdd = async (data: any) => {
   })
   await galleryRefresh()
   isAddModelOpened.value = false
+}
+
+const onUpdate = async (data: any) => {
+  await $fetch('/api/manager/certification', {
+    method: 'PUT',
+    body: {
+      ...data
+    }
+  })
+  await galleryRefresh()
+  isModifyModelOpened.value = false
 }
 
 const users = ref([

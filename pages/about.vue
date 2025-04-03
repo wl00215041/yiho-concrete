@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="target">
     <PageBanner image="/images/about-banner.png" title="關於我們" sub-title="About Us" sub-title-color="#E8382F"></PageBanner>
     <PageSection title="從柑仔店來的混凝土專家" icon-color="#E8382F">
       <div class="flex flex-col gap-6 max-w-[777px] text-[#585858] mb-14">
@@ -25,9 +25,10 @@
 
       </div>
     </PageSection>
-    <div class="bg-[url(/images/8.jpeg)] bg-cover flex flex-col items-center h-[350px] rounded-t-[30px] pad:rounded-t-[60px] desktop:rounded-t-[80px] pt-12 mb-[82px]">
-      <div class="text-white text-2xl text-center mb-[42px] max-w-[345px] pad:max-w-none">如果你有一個夢想，需要混凝土將其構築起來，<br>請給我們一個機會，為您灌溉每一個夢想家園。</div>
-      <div class="flex justify-center gap-[2.625rem]">
+    <div class="relative bg-[url(/images/8.jpeg)] bg-cover flex flex-col items-center h-[350px] rounded-t-[30px] pad:rounded-t-[60px] desktop:rounded-t-[80px] pt-12 mb-[82px]" :style="{ backgroundPositionY: `${parallaxX * 10}px` }">
+      <div class="absolute top-0 bottom-0 left-0 right-0 m-auto bg-black bg-opacity-50 rounded-t-[30px] pad:rounded-t-[60px] desktop:rounded-t-[80px]" ></div>
+      <div class="z-10 text-white text-2xl text-center mb-[42px] max-w-[345px] pad:max-w-none">如果你有一個夢想，需要混凝土將其構築起來，<br>請給我們一個機會，為您灌溉每一個夢想家園。</div>
+      <div class="z-10 flex justify-center gap-[2.625rem]">
         <div class="inline-flex justify-center items-center p-6 pad:p-[38px] w-24 h-24 pad:w-40 pad:h-40 desktop:w-40 desktop:h-40 rounded-full bg-[#E8382F] bg-opacity-70">
           <SvgoBusinessGrowth filled class="!w-full !h-full desktop:text-[5.25rem]"></SvgoBusinessGrowth>
         </div>
@@ -39,7 +40,7 @@
         </div>
       </div>
     </div>
-    <Timeline class="overflow-hidden" v-drag-scroller>
+    <Timeline class="overflow-hidden">
       <TimelineItem year="1993" title="公司草創">
         <p class="text-sm text-[#585858]">民國82年 籌備創立
           專營預拌混凝土產品</p>
@@ -84,6 +85,19 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'page'
+})
+const bodyHeight = ref(0)
+const target = useTemplateRef<HTMLElement>('target')
+const parallax = reactive(useParallax(target))
+const { x, y } = useWindowScroll()
+
+onMounted(() => {
+  bodyHeight.value = document.body.scrollHeight
+  console.log(bodyHeight.value)
+})
+
+const parallaxX = computed(() => {
+  return (y.value / bodyHeight.value) * 100
 })
 
 </script>

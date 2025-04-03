@@ -8,11 +8,11 @@
 .slogon {
   // @apply hidden
   // @apply absolute bottom-32 left-10;
-  @apply  pointer-events-none z-10 ;
+  @apply  pointer-events-none z-20 ;
   @apply hidden lg:block text-6xl text-white;
 
   >h2 {
-    @apply flex font-normal text-6xl items-center gap-5 z-20;
+    @apply flex font-normal text-6xl items-center gap-5 z-30;
     font-family: "Outfit";
     letter-spacing: 8px;
 

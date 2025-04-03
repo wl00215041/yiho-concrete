@@ -5,7 +5,14 @@ export default defineEventHandler(async (event) => {
     const { files } = await readBody<{ files: ServerFile[] }>(event)
     const prisma = new PrismaClient()
     let filename = undefined
+    const existedCertification = await prisma.certifications.findFirst({ where: { id: body.id } });
+    if (!existedCertification) {
+      throw createError({status: 400, message: 'Certification already exists'})
+    }
     if (files && files.length > 0) {
+      if (existedCertification.file) {
+        await deleteFile(existedCertification.file, '/certifications')
+      }
       filename = await storeFileLocally(
         files[0],         // the file object
         8,            // you can add a name for the file or length of Unique ID that will be automatically generated!
@@ -13,17 +20,14 @@ export default defineEventHandler(async (event) => {
     )
     }
 
-
-    return await prisma.certifications.create({
-      data: {
-        name: body.name,
-        type: body.type,
-        created_at: (new Date()).toISOString(),
-        updated_at: (new Date()).toISOString(),
-        ...(filename ? { file: filename } : {}),
-      }
+    return await prisma.certifications.update({
+        where: { id: body.id },
+        data: {
+            name: body.name,
+            ...(filename ? { file: filename } : {}),
+            updated_at: (new Date()).toISOString(),
+        }
     })
-
 
     // // Deleting Files
     // await deleteFile('requiredFile.txt', '/userFiles')

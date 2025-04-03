@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center h-screen bg-[#1C2434]">
-    <div class="flex flex-col pad:flex-row w-[1125px] h-[660px] bg-white ">
-      <div class="flex flex-col items-center justify-center gap-16 h-24 pad:h-full pad:w-1/2 border-r-2 border-r-[#E2E8F0]">
+    <div class="flex flex-col pad:flex-row pad:w-3/4 desktop:w-[1125px] desktop:h-[660px] bg-white ">
+      <div class="flex flex-col items-center justify-center gap-16 h-24 p-8 desktop:p-0 pad:h-full pad:w-1/2 border-r-2 border-r-[#E2E8F0]">
         <SvgoPageLogo filled :fontControlled="false" class="w-[177px]"></SvgoPageLogo>
         <SvgoAccessAccount filled :fontControlled="false" class="w-[349px] hidden pad:block"></SvgoAccessAccount>
       </div>

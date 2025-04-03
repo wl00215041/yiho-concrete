@@ -25,16 +25,19 @@ export default NuxtAuthHandler({
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
-        const user = prisma.user.findFirst({
+        const user = await prisma.user.findFirst({
           where: {
             email: credentials?.username,
-            password: credentials?.password
           }
         })
-
+        
         // If no error and we have user data, return it
         if (user) {
-          return user
+
+          if (await verifyPassword(user.password, credentials?.password || '')) {
+            return { ...user, id: user.id.toString() }
+          }
+          return null
         }
         // Return null if user data could not be retrieved
         return null

@@ -23,7 +23,7 @@
                 <button @click="open" class="min-w-[110px] py-3 rounded bg-[#0075C2] text-white">新增</button>
               </template>
             </ManagerAchievementAddListItemModel>
-            <button @click="onDeleteAchievement" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
+            <button @click="open" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
             <button class="min-w-[110px] py-3 rounded bg-[#585858] text-white">上傳</button>
           </div>
         </div>
@@ -32,13 +32,23 @@
         <ManagerNoData v-else></ManagerNoData>
       </div>
     </ManagerRecordPage>
+    <ManagerConfirmDialog v-model="opened" @confirm="onConfirm"></ManagerConfirmDialog>
   </ManagerPage>
 </template>
 <script setup lang="ts">
+import { useConfirm } from '~/hooks/useConfirm';
+
 definePageMeta({
   layout: 'manager',
 })
 const { $trpcClient } = useNuxtApp()
+
+const { opened, open, onConfirm } = useConfirm({
+  confirm: async () => {
+    await $trpcClient.manager.batchDeleteAchievements.mutate(selectedAchievement.value)
+    achievementsRefresh()
+  }
+})
 
 const { data: years, execute, refresh } = await $trpcClient.manager.getAchievementYears.useQuery()
 const selectedYear = ref(years.value?.length ? years.value[0].year : 0)
@@ -87,9 +97,9 @@ const onAddAchievement = async (achievement: {manufacturer: string, name: string
   isAchievementModalOpened.value = false
 } 
 
-const onDeleteAchievement = async () => {
-  await $trpcClient.manager.batchDeleteAchievements.mutate(selectedAchievement.value)
-  achievementsRefresh()
-}
+// const onDeleteAchievement = async () => {
+//   await $trpcClient.manager.batchDeleteAchievements.mutate(selectedAchievement.value)
+//   achievementsRefresh()
+// }
 
 </script>

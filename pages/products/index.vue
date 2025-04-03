@@ -15,22 +15,26 @@
       icon-color="#0075C2">
       <SvgoQualityIcon filled class="absolute !w-[100px] !h-[60px] desktop:!w-[186px] desktop:!h-[107px] right-[24px] desktop:right-[30px] top-0 z-10 -translate-y-1/2"></SvgoQualityIcon>
       <SvgoQualityIcon filled class="absolute !w-[100px] !h-[60px] desktop:!w-[186px] desktop:!h-[107px] left-[24px] desktop:left-[30px] bottom-0 z-10 translate-y-1/2 rotate-180"></SvgoQualityIcon>
-      <div class="flex flex-col pad:justify-center pad:flex-row gap-6 pb-10">
-        <div class="w-full max-w-[446px]">
+      <div class="flex flex-col pad:justify-center pad:flex-row gap-6 desktop:gap-[60px] pb-10">
+        <div class="w-full max-w-[446px]" v-if="displayCertifications.standard.length">
           <div class=" text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國家標準與法規</div>
-          <ul>
-            <li class="flex justify-between items-center py-[22px] border-b border-dashed border-[#0075C2]">
-              <span>CNS 3090 預拌混凝土國家標準</span>
-              <SvgoDocument filled></SvgoDocument>
+          <ul class="list-disc ">
+            <li v-for="standard in displayCertifications.standard" class="flex justify-between items-center px-[30px] py-[22px] border-b border-dashed border-[#0075C2]">
+              <span>{{ standard.name }}</span>
+              <a v-if="standard.file" :href="`/files/certifications/${standard.file}`" target="_blank">
+                <SvgoDocument filled></SvgoDocument>
+              </a>
             </li>
           </ul>
         </div>
-        <div class="w-full  max-w-[446px]">
-          <div class="w-full text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國家標準與法規</div>
-          <ul>
-            <li class="flex justify-between items-center py-[22px] border-b border-dashed border-[#0075C2]">
-              <span>CNS 3090 預拌混凝土國家標準</span>
-              <SvgoDocument filled></SvgoDocument>
+        <div class="w-full  max-w-[446px]" v-if="displayCertifications.certification.length">
+          <div class="w-full text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國際認證</div>
+          <ul class="list-disc">
+            <li v-for="certification in displayCertifications.certification" class="flex justify-between px-[30px] items-center py-[22px] border-b border-dashed border-[#0075C2]">
+              <span>{{ certification.name }}</span>
+              <a v-if="certification.file" :href="`/files/certifications/${certification.file}`" target="_blank">
+                <SvgoDocument filled></SvgoDocument>
+              </a>
             </li>
           </ul>
         </div>
@@ -75,6 +79,15 @@ interface Product {
 
 const { data: products, execute, refresh } = await $trpcClient.productList.useQuery()
 
+const { data: certifications } = await $trpcClient.getCertifications.useQuery()
+
+const displayCertifications = computed(() => {
+  const list = {
+    standard: certifications.value?.filter((certification) => certification.type === 'standard') || [],
+    certification: certifications.value?.filter((certification) => certification.type === 'certification') || [],
+  }
+  return list 
+})
 
 
 </script>

@@ -1,13 +1,16 @@
 <template>
-  <div class="annuncement" :class="{ 'hidden': displayNews.length === 0 }">
-    <div class="title font-[NTR]">What New's</div>
+  <div class="announcement" :class="{ 'hidden': displayNews.length === 0 }">
+    <div class="title font-[NTR,Noto_Sans_TC]">What’s News</div>
     <div class="list">
       <div class="item" v-for="item in displayNews" :key="item.id">
         <div class="date hidden pad:inline-block">{{ item.date }}</div>
         <div class="tag" :class="item.class">{{ item.tag }}</div>
         <div>
           <div class="date lg:hidden">{{ item.date }}</div>
-          <div class="content">{{ item.content }}</div>
+          <div class="content">
+            <a v-if="item.link" :href="item.link" :target="item.linkTarget">{{ item.content }}</a>
+            <span v-else>{{ item.content }}</span>
+          </div>
         </div>
 
       </div>
@@ -20,9 +23,9 @@ const { $trpcClient } = useNuxtApp()
 
 const { data, execute, refresh } = await $trpcClient.getHomeAnnouncements.useQuery()
 
-const achievementDate = useDateFormat(data.value?.achievement?.created_at, 'YYYY/MM/DD, HH:mm:ss')
-const qualityDate = useDateFormat(data.value?.quality?.created_at, 'YYYY/MM/DD, HH:mm:ss')
-const newsDate = useDateFormat(data.value?.news?.created_at, 'YYYY/MM/DD, HH:mm:ss')
+const achievementDate = useDateFormat(data.value?.achievement?.created_at, 'YYYY/MM/DD')
+const qualityDate = useDateFormat(data.value?.quality?.created_at, 'YYYY/MM/DD')
+const newsDate = useDateFormat(data.value?.news?.created_at, 'YYYY/MM/DD')
 
 const news = computed(() => {
   return [
@@ -31,7 +34,8 @@ const news = computed(() => {
       date: achievementDate.value,
       tag: '工程實績',
       content: data.value?.achievement?.name,
-      class: 'bg-[#0075C2]'
+      class: 'bg-[#0075C2]',
+      linkTarget: '_self',
     },
     {
       id: 2,
@@ -39,7 +43,8 @@ const news = computed(() => {
       tag: '品質認證',
       content: data.value?.quality?.name,
       class: 'bg-[#E8382F]',
-      link: '/quality'
+      link: '/quality',
+      linkTarget: '_self',
     },
     {
       id: 3,
@@ -47,7 +52,8 @@ const news = computed(() => {
       tag: '最新消息',
       content: data.value?.news?.title,
       class: 'bg-[#585858]',
-      link: data.value?.news?.link
+      link: data.value?.news?.link,
+      linkTarget: '_blank',
     },
   ]
 })
@@ -59,9 +65,11 @@ const displayNews = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.annuncement {
+.announcement {
   @apply p-6 rounded-2xl relative;
-
+  .date {
+    @apply text-xl pad:text-2xl font-[NTR];
+  }
   @screen pad {
     @apply bg-[#BABABA] bg-opacity-20 mb-14 mx-[1.875rem]
   }
@@ -76,18 +84,9 @@ const displayNews = computed(() => {
     }
   }
 
-  // position: absolute;
-  // right: -20px;
-  // bottom: -2px;
-  // width: 720px;
-  // height: 190px;
-  // background-color: white;
-  // z-index: 10;
-  // border-top-left-radius: 1.875rem;
-  // padding: .9375rem 2.5rem;
 
   >.title {
-    @apply text-3xl mb-2 lg:mb-6 text-[#0075C2];
+    @apply text-3xl font-[NTR] pad:text-3xl mb-2 lg:mb-6 text-[#0075C2];
 
     @screen desktop {
       @apply text-[2rem] h-[4.25rem] mb-0 leading-[68px];
@@ -95,10 +94,7 @@ const displayNews = computed(() => {
   }
 
   &-radius {
-    // position: absolute;
-    // bottom: 0px;
     left: -60px;
-    // transform: rotate(0deg);
   }
 }
 
@@ -107,11 +103,7 @@ const displayNews = computed(() => {
 }
 
 .item>.tag {
-  @apply w-[50px] h-[50px] lg:w-auto lg:h-auto text-white rounded-lg py-2 px-[10px] text-sm flex items-center;
-  // background: #0075C2;
-  // color: white;
-  // padding: .25rem .75rem;
-  // border-radius: .5rem;
+  @apply w-[50px] h-[50px] pad:min-w-24 pad:w-auto pad:h-8 text-white text-center rounded-lg py-2 px-[10px] text-sm flex items-center justify-center;
 
 }
 </style>

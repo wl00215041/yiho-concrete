@@ -16,10 +16,22 @@ export default defineNuxtConfig({
     }
   },
   devtools: { enabled: true },
-  // app: {
-  //   pageTransition: { name: 'page', mode: 'out-in' },
-  //   layoutTransition: { name: 'layout', mode: 'out-in' }
-  // },
+  app: {
+    head: {
+      title: 'Yiho Concrete',
+      titleTemplate: '%s - Yiho Concrete',
+      meta: [
+        { name: 'description', content: 'Yiho Concrete' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'theme-color', content: '#ffffff' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    },
+    pageTransition: { name: 'page', mode: 'out-in' },
+    layoutTransition: { name: 'page', mode: 'out-in' }
+  },
   vite: {
     resolve: {
       alias: {
@@ -51,6 +63,7 @@ export default defineNuxtConfig({
     '@prisma/nuxt',
     'nuxt-file-storage',
     '@sidebase/nuxt-auth',
+    'nuxt-auth-utils'
   ],
   fonts: {
     families: [
@@ -76,7 +89,7 @@ export default defineNuxtConfig({
     autoImports: true,
   },
   auth: {
-    baseURL: '/api/auth',
+    baseURL: 'http://localhost:3000/api/auth',
     // isEnabled: true,
     disableServerSideAuth: true,
     globalAppMiddleware: false,

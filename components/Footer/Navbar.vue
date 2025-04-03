@@ -1,8 +1,6 @@
 <template>
   <div class="flex justify-between flex-wrap">
-    <ClientOnly>
-      <FooterNavCategory v-for="link in links" :title="link.title" :items="link.items"></FooterNavCategory>
-    </ClientOnly>
+    <FooterNavCategory v-for="link in links" :title="link.title" :items="link.items"></FooterNavCategory>
   </div>
 </template>
 

@@ -2,7 +2,7 @@ import { TRPCError } from '@trpc/server';
 import { publicProcedure, router } from '../trpc';
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod';
-
+import { ServerFile } from "nuxt-file-storage";
 const prisma = new PrismaClient()
 
 export const adminProcedure = publicProcedure.use(async (opts) => {
@@ -48,6 +48,30 @@ export default router({
           year: opts.input.year
         }
       })
+    }),
+    getGalleryById: adminProcedure.input(z.number()).query(async (opts) => {
+      const gallery = await prisma.achievementGallery.findFirst({ where: { id: opts.input }, include: { images: true } });
+      if (!gallery) {
+        throw new TRPCError({ code: 'BAD_REQUEST', message: 'Gallery not found' });
+      }
+      return gallery
+    }),
+    batchDeleteGalleries: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
+      const galleries = await prisma.achievementGallery.findMany({ where: { id: { in: opts.input } }, include: { images: true } });
+      if (galleries.length === 0) {
+        throw new TRPCError({ code: 'BAD_REQUEST', message: 'No galleries found' });
+      }
+      for (const gallery of galleries) {
+        const images = gallery.images;
+        for (const image of images) {
+          try {
+            await deleteFile(image.file, '/achievements')
+          } catch (e) {
+            console.error(e)
+          }
+        }
+      }
+      return prisma.achievementGallery.deleteMany({ where: { id: { in: opts.input } } })
     }),
     getAchievementYears: adminProcedure.query(async () => {
       return prisma.achievementYear.findMany()
@@ -96,10 +120,34 @@ export default router({
       return prisma.certifications.findMany({ where: { type: opts.input } })
     }),
     batchDeleteCertification: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
+      const certifications = await prisma.certifications.findMany({ where: { id: { in: opts.input } } });
+      if (certifications.length === 0) {
+        throw new TRPCError({ code: 'BAD_REQUEST', message: 'No certifications found' });
+      }
+      for (const certification of certifications) {
+        if (!certification.file) {
+          continue
+        }
+        try {
+          await deleteFile(certification.file, '/certifications')
+        } catch (e) {
+          console.error(e)
+        }
+      }
+
       return prisma.certifications.deleteMany({ where: { id: { in: opts.input } } })
     }),
+    getCertificationById: adminProcedure.input(z.number()).query(async (opts) => {
+      const certification = await prisma.certifications.findFirst({ where: { id: opts.input } });
+      if (!certification) {
+        throw new TRPCError({ code: 'BAD_REQUEST', message: 'Certification not found' });
+      }
+      return certification
+    }),
     getNews: adminProcedure.query(async () => {
-      return prisma.news.findMany()
+      return prisma.news.findMany({
+        orderBy: { created_at: 'desc' }
+      })
     }),
     addNews: adminProcedure.input(z.object({ title: z.string(), link: z.string() })).mutation(async (opts) => {
       return prisma.news.create({

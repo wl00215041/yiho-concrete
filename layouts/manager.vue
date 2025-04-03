@@ -3,7 +3,7 @@
     <ManagerSidebar />
     <ManagerBackdrop />
     <div class="flex-1 transition-all duration-300 ease-in-out h-screen bg-[#F1F5F9]"
-      :class="[context.isExpanded || context.isHovered ? 'lg:ml-[290px]' : 'lg:ml-[90px]']">
+      :class="[context.isExpanded || context.isHovered ? 'lg:ml-[280px]' : 'lg:ml-[90px]']">
       <!-- <app-header /> -->
       <div class="p-10  h-full">
         <slot></slot>
