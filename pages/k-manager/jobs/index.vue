@@ -13,16 +13,20 @@
           <button @click="onDeleteJobs" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
         </div>
       </div>
-      <ManagerTable :columns="columns" :records="jobs || []" :selectable="true" @selectionChange="onSelectionChange">
+      <ManagerTable :columns="columns" :records="jobList || []" :selectable="true" @selectionChange="onSelectionChange">
 
       </ManagerTable>
     </div>
   </ManagerPage>
 </template>
 <script setup lang="ts">
+import { useDayjs } from '#dayjs'
+
 definePageMeta({
   layout: 'manager',
 })
+
+const dayjs = useDayjs()
 
 const columns = [
   { title: '職缺名稱', key: 'name', width: 'w-3/11' },
@@ -40,6 +44,15 @@ const selectedJob = ref<number[]>([])
 const { $trpcClient } = useNuxtApp()
 
 const { data: jobs, execute, refresh } = await $trpcClient.manager.getJobs.useQuery()
+
+const jobList = computed(() => {
+  return jobs.value?.map((job) => {
+    return {
+      ...job,
+      created_at: dayjs(job.created_at).format('YYYY/MM/DD, HH:mm:ss'),
+    }
+  })
+})
 
 const onAdd = async (job: any) => {
   await $trpcClient.manager.addJob.mutate(job)

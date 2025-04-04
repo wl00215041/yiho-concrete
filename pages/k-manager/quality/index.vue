@@ -20,7 +20,7 @@
             <button @click="onDeleteJobs" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
           </div>
         </div>
-        <ManagerTable :columns="columns" :records="certifications || []" :selectable="true" @selectionChange="onSelectionChange">
+        <ManagerTable :columns="columns" :records="certificationList || []" :selectable="true" @selectionChange="onSelectionChange">
           <template #col-file="{ record }">
             <a v-if="record.file" :href="`/files/certifications/${record.file}`" target="_blank">
               <SvgoDocument class="cursor-pointer" filled></SvgoDocument>
@@ -37,9 +37,12 @@
   </ManagerPage>
 </template>
 <script setup lang="ts">
+import { useDayjs } from '#dayjs'
 definePageMeta({
   layout: 'manager',
 })
+
+const dayjs = useDayjs()
 const { $trpcClient } = useNuxtApp()
 const selectedType = ref('standard')
 
@@ -60,6 +63,15 @@ const isModifyModelOpened = ref(false)
 const editingId = ref<number | null>(null)
 
 const { data: certifications, refresh: galleryRefresh } = await $trpcClient.manager.getCertificationsByType.useQuery(selectedType)
+
+const certificationList = computed(() => {
+  return certifications.value?.map((certification) => {
+    return {
+      ...certification,
+      created_at: dayjs(certification.created_at).format('YYYY/MM/DD, HH:mm:ss'),
+    }
+  })
+})
 
 const onEdit = async (id: number) => {
   isModifyModelOpened.value = true
@@ -88,16 +100,6 @@ const onUpdate = async (data: any) => {
   await galleryRefresh()
   isModifyModelOpened.value = false
 }
-
-const users = ref([
-  {
-    id: 1,
-    company: 'Lindsey Curtis',
-    project: 'Agency Website',
-    date: '2023/02/02, 10:00:00',
-  },
-  // 其他用戶資料...
-]);
 
 const onDeleteJobs = async () => {
   const confirmDelete = confirm('確定要刪除嗎？')

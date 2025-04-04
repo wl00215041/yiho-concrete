@@ -27,7 +27,7 @@
             <button class="min-w-[110px] py-3 rounded bg-[#585858] text-white">上傳</button>
           </div>
         </div>
-        <ManagerTable v-if="years?.length" :columns="columns" :records="achievements || []" :selectable="true" @selectionChange="onSelectionChange">
+        <ManagerTable v-if="years?.length" :columns="columns" :records="achievementList || []" :selectable="true" @selectionChange="onSelectionChange">
         </ManagerTable>
         <ManagerNoData v-else></ManagerNoData>
       </div>
@@ -37,6 +37,8 @@
 </template>
 <script setup lang="ts">
 import { useConfirm } from '~/hooks/useConfirm';
+import { useDayjs } from '#dayjs'
+const dayjs = useDayjs()
 
 definePageMeta({
   layout: 'manager',
@@ -55,6 +57,14 @@ const selectedYear = ref(years.value?.length ? years.value[0].year : 0)
 
 const { data: achievements, refresh: achievementsRefresh } = await $trpcClient.manager.getAchievements.useQuery(selectedYear)
 
+const achievementList = computed(() => {
+  return achievements.value?.map((achievement) => {
+    return {
+      ...achievement,
+      created_at: dayjs(achievement.created_at).format('YYYY/MM/DD, HH:mm:ss'),
+    }
+  })
+})
 
 const isYearModalOpened = ref(false)
 const isAchievementModalOpened = ref(false)

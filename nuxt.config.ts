@@ -64,7 +64,8 @@ export default defineNuxtConfig({
     'nuxt-file-storage',
     '@sidebase/nuxt-auth',
     'nuxt-auth-utils',
-    'nuxt-aos'
+    'nuxt-aos',
+    'dayjs-nuxt'
   ],
   fonts: {
     families: [
