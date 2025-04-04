@@ -12,19 +12,19 @@
         <ProductDetailInfo class="flex-[0.3]" :image-url="product?.imageUrl"></ProductDetailInfo>
         <div class="flex-[0.7]">
           <div class="flex flex-col gap-8 desktop:flex-row desktop:gap-11">
-            <ProductDetail class="w-1/2" title="產品特性" :items="product?.features">
+            <ProductDetail class="desktop:w-1/2" title="產品特性" :items="product?.features">
               <template #icon>
                 <SvgoGlyph filled class="text-2xl"></SvgoGlyph>
               </template>
             </ProductDetail>
-            <ProductDetail class="w-1/2" title="適用範圍" :items="product?.applications">
+            <ProductDetail class="desktop:w-1/2" title="適用範圍" :items="product?.applications">
               <template #icon>
                 <SvgoTarget filled class="text-2xl"></SvgoTarget>
               </template>
             </ProductDetail>
           </div>
           <template v-if="displayTechniqueSpec.length > 0">
-            <div class="h-[1px] border border-dashed border-[#BABABA] mb-6 pad:my-6"></div>
+            <div class="h-[1px] border border-dashed border-[#BABABA] my-6"></div>
             <div>
               <ProductDetail title="技術規格" :with-padding="false">
                 <template #icon>

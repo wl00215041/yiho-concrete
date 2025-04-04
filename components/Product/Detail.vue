@@ -4,7 +4,7 @@
       <slot name="icon"></slot>
       <slot name="title"><span class="text-lg font-bold">{{ title }}</span></slot>
     </div>
-    <div :class="{ 'p-6': withPadding }" class="pad:py-0">
+    <div :class="{ 'px-6 pad:p-6': withPadding }" class="pad:py-0">
       <slot>
         <ul class="list-disc list">
           <ProductDetailItem v-for="item in items">{{ item }}</ProductDetailItem>
