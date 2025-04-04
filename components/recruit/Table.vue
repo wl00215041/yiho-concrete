@@ -13,7 +13,7 @@
       <tr v-if="!jobs || jobs?.length === 0">
         <td class="text-center" colspan="5">目前尚無職缺</td>
       </tr>
-      <tr v-for="item in jobs" :key="item.name">
+      <tr v-for="item in jobList" :key="item.name">
         <td>{{ item.name }}</td>
         <td>{{ item.experience }}</td>
         <td>{{ item.education }}</td>
@@ -26,11 +26,20 @@
   </table>
 </template>
 <script setup lang="ts">
-
+import { useDayjs } from '#dayjs'
+const dayjs = useDayjs()
 const { $trpcClient } = useNuxtApp()
 
 const { data: jobs, execute, refresh } = await $trpcClient.getJobs.useQuery()
 
+const jobList = computed(() => {
+  return jobs.value?.map((job) => {
+    return {
+      ...job,
+      updated_at: dayjs(job.updated_at).format('YYYY/MM/DD, HH:mm:ss'),
+    }
+  })
+})
 
 </script>
 
