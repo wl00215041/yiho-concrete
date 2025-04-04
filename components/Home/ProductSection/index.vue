@@ -4,12 +4,12 @@
     <div class="section-content">
       <SectionSubtitle title="產品資訊"></SectionSubtitle>
       <div class="showcases">
-        <HomeProductSectionCard title="預拌混凝土">
+        <HomeProductSectionCard @click="$router.push('/products')" title="預拌混凝土">
           <template #icon>
             <SvgoConcrete class="w-[65px] pad:w-[92px]" :fontControlled="false" filled />
           </template>
         </HomeProductSectionCard>
-        <HomeProductSectionCard title="品質認證">
+        <HomeProductSectionCard @click="$router.push('/products#certification')" title="品質認證">
           <template #icon>
             <SvgoCertification class="w-[50px] pad:w-[70px]" :fontControlled="false" filled />
           </template>
