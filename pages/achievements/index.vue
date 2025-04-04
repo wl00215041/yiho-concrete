@@ -9,7 +9,7 @@
       </div>
 
       <TimeMenu v-model:value="selectedYear" :tabs="years" class="flex-[0.6]">
-        <div class="desktop:hidden flex gap-2 mb-6 text-[#585858]">
+        <div class="pad:hidden flex gap-2 mb-6 text-[#585858]">
           <button class="p-[10px] bg-[#D9D9D9] rounded-[5px] outline-0" @click="isListMode = false"
             :class="{ 'is-tab-active': !isListMode }">
             <SvgoPictureMode></SvgoPictureMode>
