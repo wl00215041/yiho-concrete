@@ -9,7 +9,7 @@
         <div class="circle-bg flex justify-center items-center">
           <CircleAnimation v-if="breakpoint.lg.value"></CircleAnimation>
         </div>
-        <HomeAchievementSectionShowCase v-for="item in galleryList" :title="item.name"
+        <HomeAchievementSectionShowCase v-for="item in galleryList" :title="item.name" :id="item.id" :key="item.id"
           :image="`/files/achievements/${item.image}`"></HomeAchievementSectionShowCase>
       </div>
     </div>
@@ -30,7 +30,8 @@ const galleryList = computed(() => {
   return data.value?.map((item) => {
     return {
       name: item.name,
-      image: item.images.find(image => image.is_cover)?.file
+      image: item.images.find(image => image.is_cover)?.file,
+      id: item.id
     }
   })
 })

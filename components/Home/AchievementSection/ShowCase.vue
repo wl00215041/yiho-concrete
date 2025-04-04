@@ -1,10 +1,10 @@
 <template>
-  <div class="showcase" :style="{ '--image': `url(${image})` }">
+  <div class="showcase" :style="{ '--image': `url(${image})` }" @click="$router.push(`/achievements/${id}`)">
     <div class="showcase-wrapper">
       <SpecialRadius></SpecialRadius>
       <div class="showcase-image" />
     </div>
-    <div class="showcase-title">
+    <div class="showcase-title" >
       <svgo-arrow-right class="showcase-arrow"></svgo-arrow-right>
       <span>{{ title }}</span>
     </div>
@@ -14,7 +14,8 @@
 
 defineProps({
   title: String,
-  image: String
+  image: String,
+  id: Number
 })
 
 </script>
@@ -22,11 +23,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .showcase {
-  display: flex;
-  @apply basis-[18.75rem] pad:basis-[29.375rem] desktop:basis-[655px] shrink-0;
-  flex-direction: column;
-  overflow: hidden;
-
+  @apply flex flex-col overflow-hidden cursor-pointer basis-[18.75rem] pad:basis-[29.375rem] desktop:basis-[655px] shrink-0;
   &-title {
     @apply flex items-center;
     font-size: 1.5rem;
@@ -34,9 +31,8 @@ defineProps({
   }
 
   &-wrapper {
-    position: relative;
+    @apply relative overflow-hidden;
     border-radius: 15px;
-    overflow: hidden;
     // aspect-ratio: 660 / 300;
     margin-bottom: 1.5rem;
   }
