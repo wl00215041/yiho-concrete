@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between pad:grid desktop:flex pad:grid-cols-3 pad:gap-8 flex-wrap">
+  <div class="relative z-10 flex justify-between pad:grid desktop:flex pad:grid-cols-3 pad:gap-8 flex-wrap">
     <FooterNavCategory v-for="link in links" :title="link.title" :items="link.items"></FooterNavCategory>
   </div>
 </template>
