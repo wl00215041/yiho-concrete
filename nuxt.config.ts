@@ -70,6 +70,7 @@ export default defineNuxtConfig({
   fonts: {
     families: [
       // only resolve this font with the `google` provider
+      { name: 'NTR', provider: 'google' },
       { name: 'Noto Sans TC', provider: 'google' },
       { name: 'Outfit', provider: 'google' },
     ]

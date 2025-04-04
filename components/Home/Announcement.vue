@@ -1,6 +1,6 @@
 <template>
   <div class="announcement" :class="{ 'hidden': displayNews.length === 0 }">
-    <div class="title font-[NTR,Noto_Sans_TC]">What’s News</div>
+    <div class="title">What’s News</div>
     <div class="list">
       <div class="item" v-for="item in displayNews" :key="item.id">
         <div class="date hidden pad:inline-block">{{ item.date }}</div>
@@ -68,7 +68,7 @@ const displayNews = computed(() => {
 .announcement {
   @apply p-6 rounded-2xl relative;
   .date {
-    @apply text-xl pad:text-2xl font-[NTR];
+    @apply text-xl pad:text-2xl;
   }
   @screen pad {
     @apply bg-[#BABABA] bg-opacity-20 mb-14 mx-[1.875rem]
@@ -86,7 +86,7 @@ const displayNews = computed(() => {
 
 
   >.title {
-    @apply text-3xl font-[NTR] pad:text-3xl mb-2 lg:mb-6 text-[#0075C2];
+    @apply text-3xl pad:text-3xl mb-2 lg:mb-6 text-[#0075C2];
 
     @screen desktop {
       @apply text-[2rem] h-[4.25rem] mb-0 leading-[68px];
