@@ -1,28 +1,26 @@
 import { TRPCError } from '@trpc/server';
-import { protectedProcedure, publicProcedure, router } from '../trpc';
+import { publicProcedure, router } from '../trpc';
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod';
 import { ServerFile } from "nuxt-file-storage";
 const prisma = new PrismaClient()
 
-export const adminProcedure = protectedProcedure
-// publicProcedure.use(async (opts) => {
-//   const { ctx } = opts;
-//   console.log('ctx', opts)
-//   if (!ctx.session.user?.email) {
-//     throw new TRPCError({ code: 'UNAUTHORIZED' });
-//   }
-//   return opts.next({
-//     ctx: {
-//       user: ctx.session.user,
-//     },
-//   });
-//   // return opts.next({
-//   //   ctx: {
-//   //     user: { isAdmin: true },
-//   //   },
-//   // });
-// });
+export const adminProcedure = publicProcedure.use(async (opts) => {
+  const { ctx } = opts;
+  // if (!ctx.user?.isAdmin) {
+  //   throw new TRPCError({ code: 'UNAUTHORIZED' });
+  // }
+  // return opts.next({
+  //   ctx: {
+  //     user: ctx.user,
+  //   },
+  // });
+  return opts.next({
+    ctx: {
+      user: { isAdmin: true },
+    },
+  });
+});
 
 
 export default router({
