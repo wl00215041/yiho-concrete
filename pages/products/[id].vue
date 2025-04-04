@@ -9,7 +9,7 @@
         </div>
       </template>
       <div class="flex flex-col gap-6 pad:gap-8 pad:flex-row mb-16">
-        <ProductDetailInfo class="flex-[0.3]" image-url="/images/5.jpeg"></ProductDetailInfo>
+        <ProductDetailInfo class="flex-[0.3]" :image-url="product?.imageUrl"></ProductDetailInfo>
         <div class="flex-[0.7]">
           <div class="flex flex-col gap-8 desktop:flex-row desktop:gap-11">
             <ProductDetail class="w-1/2" title="產品特性" :items="product?.features">
