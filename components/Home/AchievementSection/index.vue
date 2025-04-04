@@ -3,7 +3,7 @@
     <h2 class="section-title">工程實績</h2>
     <div class="section-content">
       <SectionSubtitle title="全方位建築最佳選擇"></SectionSubtitle>
-      <div class="showcases relative" v-drag-scroller>
+      <div class="showcases relative" data-aos="fade-up" v-drag-scroller>
         <div class="circle-bg flex justify-center items-center">
           <CircleAnimation v-if="breakpoint.lg.value" ></CircleAnimation>
         </div>

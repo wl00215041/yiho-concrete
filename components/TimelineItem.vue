@@ -5,11 +5,7 @@
       <div class="circle absolute bottom-[123px] m-auto w-4 h-4 inline-block rounded-full bg-[#BABABA]"></div>
       <div class="absolute top-0 bottom-0 m-auto translate-x-1/2 ml-10">
          <div class="text-nowrap flex gap-2 items-center font-bold mb-2">
-          <span class="year text-nowrap text-2xl " v-motion     :initial="{
-        y: -400,
-    }"     :enter="{
-        y: 0,
-    }">{{ year }}</span>
+          <span class="year text-nowrap text-2xl ">{{ year }}</span>
           <span class="item-title">{{ title }}</span>
          </div>
          <div>

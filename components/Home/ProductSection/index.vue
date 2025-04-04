@@ -3,7 +3,7 @@
     <SvgoHomeProductLeftCorner class="text-[100px] absolute left-0 top-0" filled></SvgoHomeProductLeftCorner>
     <div class="section-content">
       <SectionSubtitle title="產品資訊"></SectionSubtitle>
-      <div class="showcases" v-motion-fade-visible>
+      <div class="showcases">
         <HomeProductSectionCard title="預拌混凝土">
           <template #icon>
             <SvgoConcrete class="w-[65px] pad:w-[92px]" :fontControlled="false" filled />

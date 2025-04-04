@@ -35,6 +35,18 @@
 
 <script lang="ts" setup>
 const isOpen = ref(false);
+const route = useRoute();
+
+watch(
+  () => route.path,
+  (newPath) => {
+    if (isOpen.value) {
+      isOpen.value = false;
+    }
+  },
+  { immediate: true }
+);
+
 </script>
 
 <style lang="scss" scoped>

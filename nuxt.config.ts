@@ -63,7 +63,8 @@ export default defineNuxtConfig({
     '@prisma/nuxt',
     'nuxt-file-storage',
     '@sidebase/nuxt-auth',
-    'nuxt-auth-utils'
+    'nuxt-auth-utils',
+    'nuxt-aos'
   ],
   fonts: {
     families: [
@@ -89,20 +90,27 @@ export default defineNuxtConfig({
     autoImports: true,
   },
   auth: {
-    baseURL: 'http://localhost:3000/api/auth',
+    isEnabled: true,
+    // baseURL: '/api/auth',
     // isEnabled: true,
     disableServerSideAuth: true,
     globalAppMiddleware: false,
     // originEnvKey: 'AUTH_ORIGIN',
-    // baseURL: 'http://localhost:3000/api/auth',
+    // baseURL: '/api/auth',
+    baseURL: 'http://localhost:3500/api/auth',
     provider: {
       type: 'authjs',
       defaultProvider: 'credentials',
+      trustHost: false,
+      addDefaultCallbackUrl: true
     },
     
     sessionRefresh: {
       enablePeriodically: true,
       enableOnWindowFocus: true,
     },
+  },
+  aos: {
+    offset: 200
   }
 })
