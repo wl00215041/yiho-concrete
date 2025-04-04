@@ -74,10 +74,10 @@ export default router({
       return prisma.achievementGallery.deleteMany({ where: { id: { in: opts.input } } })
     }),
     getAchievementYears: adminProcedure.query(async () => {
-      return prisma.achievementYear.findMany()
+      return prisma.achievementYear.findMany({orderBy: { year: 'desc' }})
     }),
     getAchievementGalleryYears: adminProcedure.query(async () => {
-      return prisma.achievementGalleryYear.findMany()
+      return prisma.achievementGalleryYear.findMany({orderBy: { year: 'desc' }})
     }),
     addAchievement: adminProcedure.input(z.object({ year: z.number(), name: z.string(), manufacturer: z.string() })).mutation(async (opts) => {
       const year = await prisma.achievementYear.findFirst({ where: { year: opts.input.year } });
