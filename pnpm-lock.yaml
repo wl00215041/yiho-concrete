@@ -50,9 +50,6 @@ importers:
       vue:
         specifier: latest
         version: 3.5.13(typescript@5.8.2)
-      vue-drag-scroller:
-        specifier: ^1.8.6
-        version: 1.8.6(typescript@5.8.2)
       vue-router:
         specifier: latest
         version: 4.5.0(vue@3.5.13(typescript@5.8.2))
@@ -4702,9 +4699,6 @@ packages:
 
   vue-devtools-stub@0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
-
-  vue-drag-scroller@1.8.6:
-    resolution: {integrity: sha512-RtfvpwzGXBugha1//niX/LzhAezSvhmLbosTfsusiWsQL9e+v+KCjE5AmH5Ln3T3u2S3rm4OTQHFi+9cOpfwhg==}
 
   vue-i18n@10.0.6:
     resolution: {integrity: sha512-pQPspK5H4srzlu+47+HEY2tmiY3GyYIvSPgSBdQaYVWv7t1zj1t9p1FvHlxBXyJ17t9stG/Vxj+pykrvPWBLeQ==}
@@ -9971,12 +9965,6 @@ snapshots:
       vue: 3.5.13(typescript@5.8.2)
 
   vue-devtools-stub@0.1.0: {}
-
-  vue-drag-scroller@1.8.6(typescript@5.8.2):
-    dependencies:
-      vue: 3.5.13(typescript@5.8.2)
-    transitivePeerDependencies:
-      - typescript
 
   vue-i18n@10.0.6(vue@3.5.13(typescript@5.8.2)):
     dependencies:

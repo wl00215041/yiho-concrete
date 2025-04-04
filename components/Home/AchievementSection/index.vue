@@ -3,22 +3,28 @@
     <h2 class="section-title">工程實績</h2>
     <div class="section-content">
       <SectionSubtitle title="全方位建築最佳選擇"></SectionSubtitle>
-      <div class="showcases relative" data-aos="fade-up" v-drag-scroller>
+      <div class="showcases relative" data-aos="fade-up" ref="draggable" @mousedown="startDragHandler"
+        @touchstart="startDragHandler" @mousemove="moveHandler" @touchmove="moveHandler" @mouseup="endDragHandler"
+        @mouseleave="endDragHandler" @touchend="endDragHandler" @touchcancel="endDragHandler">
         <div class="circle-bg flex justify-center items-center">
-          <CircleAnimation v-if="breakpoint.lg.value" ></CircleAnimation>
+          <CircleAnimation v-if="breakpoint.lg.value"></CircleAnimation>
         </div>
-        <HomeAchievementSectionShowCase v-for="item in galleryList" :title="item.name" :image="`/files/achievements/${item.image}`"></HomeAchievementSectionShowCase>
+        <HomeAchievementSectionShowCase v-for="item in galleryList" :title="item.name"
+          :image="`/files/achievements/${item.image}`"></HomeAchievementSectionShowCase>
       </div>
     </div>
   </section>
 </template>
 <script setup lang="ts">
 import useApp from '~/hooks/useApp';
+import useScrollDrag from '~/hooks/useScrollDrag';
 
 const { breakpoint } = useApp();
 const { $trpcClient } = useNuxtApp()
-
+const draggableRef = templateRef('draggable')
 const { data, execute, refresh } = await $trpcClient.getTop4Gallery.useQuery()
+const { startDragHandler, moveHandler, endDragHandler, isPressed } = useScrollDrag(draggableRef)
+
 
 const galleryList = computed(() => {
   return data.value?.map((item) => {
@@ -31,20 +37,21 @@ const galleryList = computed(() => {
 
 </script>
 <style lang="scss" scoped>
-
 .section {
   @apply px-6;
-  
+
   @screen pad {
     @apply px-[1.875rem];
   }
+
   @screen desktop {
     @apply px-[2.8125rem];
   }
 }
 
 .section-title {
-  font-size: 1.5rem;;
+  font-size: 1.5rem;
+  ;
   margin-bottom: .75rem
 }
 
@@ -83,5 +90,4 @@ const galleryList = computed(() => {
   height: 80%;
   z-index: -1;
 }
-
 </style>
