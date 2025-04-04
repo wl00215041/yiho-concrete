@@ -11,7 +11,7 @@
       </div>
       <div></div>
     </PageSection>
-    <PageSection title="產品類別" class="py-7 bg-[#0075C2] bg-opacity-10 pad:mx-[30px] pad:rounded-[30px] relative mb-[60px]"
+    <PageSection title="品質認證" class="py-7 bg-[#0075C2] bg-opacity-10 pad:mx-[30px] pad:rounded-[30px] relative mb-[60px]"
       icon-color="#0075C2">
       <SvgoQualityIcon filled class="absolute !w-[100px] !h-[60px] desktop:!w-[186px] desktop:!h-[107px] right-[24px] desktop:right-[30px] top-0 z-10 -translate-y-1/2"></SvgoQualityIcon>
       <SvgoQualityIcon filled class="absolute !w-[100px] !h-[60px] desktop:!w-[186px] desktop:!h-[107px] left-[24px] desktop:left-[30px] bottom-0 z-10 translate-y-1/2 rotate-180"></SvgoQualityIcon>
