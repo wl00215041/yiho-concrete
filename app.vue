@@ -7,9 +7,6 @@
 </template>
 <script setup lang="ts">
   import 'vue3-carousel/carousel.css';
-  import VueDragScroller from  "vue-drag-scroller"
-  const nuxtApp = useNuxtApp()
-  nuxtApp.vueApp.use(VueDragScroller)
 </script>
 
 <style>
