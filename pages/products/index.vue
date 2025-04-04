@@ -18,7 +18,7 @@
       <div class="flex flex-col items-center pad:justify-center pad:flex-row gap-6 desktop:gap-[60px] pb-10">
         <div class="w-full max-w-[446px]" :class="{ 'pad:!max-w-3xl': isOnlyStandard }" v-if="displayCertifications.standard.length">
           <div class=" text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國家標準與法規</div>
-          <ul class="list-disc" :class="{ 'pad:!grid pad:!grid-cols-2 pad:!gap-10': isOnlyStandard }">
+          <ul class="list-disc" :class="{ 'pad:!grid pad:!grid-cols-2 pad:!gap-x-10': isOnlyStandard }">
             <li v-for="standard in displayCertifications.standard" class="flex justify-between items-center px-[30px] py-[22px] border-b border-dashed border-[#0075C2]">
               <span>{{ standard.name }}</span>
               <a v-if="standard.file" :href="`/files/certifications/${standard.file}`" target="_blank">
@@ -29,7 +29,7 @@
         </div>
         <div class="w-full  max-w-[446px]" :class="{ 'pad:!max-w-3xl': isOnlyCertification }" v-if="displayCertifications.certification.length">
           <div class="w-full text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國際認證</div>
-          <ul class="list-disc" :class="{ 'pad:!grid pad:!grid-cols-2 pad:!gap-10': isOnlyCertification }">
+          <ul class="list-disc" :class="{ 'pad:!grid pad:!grid-cols-2 pad:!gap-x-10': isOnlyCertification }">
             <li v-for="certification in displayCertifications.certification" class="flex justify-between px-[30px] items-center py-[22px] border-b border-dashed border-[#0075C2]">
               <span>{{ certification.name }}</span>
               <a v-if="certification.file" :href="`/files/certifications/${certification.file}`" target="_blank">
