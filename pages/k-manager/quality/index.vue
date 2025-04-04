@@ -1,5 +1,5 @@
 <template>
-  <ManagerPage title="工程實績">
+  <ManagerPage title="品質認證">
     <ManagerRecordPage>
       <template #sidebar>
         <ManagerRecordSidebar v-model:selected="selectedType" :items="items">
@@ -10,7 +10,7 @@
         <div
           class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
           <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text"
-            placeholder="承包廠商、工程實績">
+            placeholder="認證名稱">
           <div class="flex gap-4">
             <ManagerCertificationsAddCertificationModel v-model:isOpen="isAddModelOpened" @onAdd="onAdd">
               <template #default="{ open }">
