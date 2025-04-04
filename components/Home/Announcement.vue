@@ -43,7 +43,7 @@ const news = computed(() => {
       tag: '品質認證',
       content: data.value?.quality?.name,
       class: 'bg-[#E8382F]',
-      link: '/quality',
+      link: data.value?.quality?.file ? `/files/certifications/${data.value?.quality?.file}` : '',
       linkTarget: '_self',
     },
     {
