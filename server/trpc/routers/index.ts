@@ -48,7 +48,7 @@ export const appRouter = router({
     const galleryYears = await prisma.achievementGalleryYear.findMany({ orderBy: { year: 'desc' } })
     const achievementYears = await prisma.achievementYear.findMany({ orderBy: { year: 'desc' } })
     const years = new Set([...galleryYears, ...achievementYears].map(y => y.year))
-    return Array.from(years).sort((a, b) => a - b)
+    return Array.from(years).sort((a, b) => b - a)
   }),
   getGalleryById: publicProcedure.input(z.number()).query(async (opt) => {
     return prisma.achievementGallery.findFirst({ where: { id: opt.input }, include: { images: true } })
