@@ -45,8 +45,8 @@ export const appRouter = router({
     return prisma.achievementItem.findMany({ where: { fk_year_id: year?.id } })
   }),
   getAllAchievementYears: publicProcedure.query(async () => {
-    const galleryYears = await prisma.achievementGalleryYear.findMany()
-    const achievementYears = await prisma.achievementYear.findMany()
+    const galleryYears = await prisma.achievementGalleryYear.findMany({ orderBy: { year: 'desc' } })
+    const achievementYears = await prisma.achievementYear.findMany({ orderBy: { year: 'desc' } })
     const years = new Set([...galleryYears, ...achievementYears].map(y => y.year))
     return Array.from(years).sort((a, b) => a - b)
   }),
