@@ -14,12 +14,15 @@ const emit = defineEmits(['onSelect'])
 
 const props = defineProps({
   multiple: Boolean,
-  accept: String,
+  accept: {
+    type: String,
+    default: 'image/*',
+  },
   description: String,
 })
 
 const { open, onChange } = useFileDialog({
-  accept: 'image/*', // Set to accept only image files
+  accept: props.accept, // Set to accept only image files
   multiple: props.multiple,
   directory: false, // Select directories instead of files if set true
 })

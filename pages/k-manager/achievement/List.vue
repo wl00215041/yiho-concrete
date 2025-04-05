@@ -24,7 +24,11 @@
               </template>
             </ManagerAchievementAddListItemModel>
             <button @click="open" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
-            <button class="min-w-[110px] py-3 rounded bg-[#585858] text-white">上傳</button>
+            <ManagerAchievementUploadList v-model:is-open="isUploadModelOpened" @onAdd="onUploadList">
+              <template #default="{ open }">
+                <button @click="open" class="min-w-[110px] py-3 rounded bg-[#585858] text-white">上傳</button>
+              </template>
+            </ManagerAchievementUploadList>
           </div>
         </div>
         <ManagerTable v-if="years?.length" :columns="columns" :records="achievementList || []" :selectable="true" @selectionChange="onSelectionChange">
@@ -38,6 +42,7 @@
 <script setup lang="ts">
 import { useConfirm } from '~/hooks/useConfirm';
 import { useDayjs } from '#dayjs'
+import type { ClientFile } from 'nuxt-file-storage';
 const dayjs = useDayjs()
 
 definePageMeta({
@@ -68,6 +73,7 @@ const achievementList = computed(() => {
 
 const isYearModalOpened = ref(false)
 const isAchievementModalOpened = ref(false)
+const isUploadModelOpened = ref(false)
 const selectedAchievement = ref<number[]>([])
 
 const yearList = computed(() => {
@@ -106,6 +112,18 @@ const onAddAchievement = async (achievement: {manufacturer: string, name: string
   achievementsRefresh()
   isAchievementModalOpened.value = false
 } 
+
+const onUploadList = async (payload: any) => {
+  await $fetch('/api/manager/list', {
+    method: 'POST',
+    body: {
+      year: selectedYear.value,
+      ...payload
+    }
+  })
+  await achievementsRefresh()
+  isUploadModelOpened.value = false
+}
 
 // const onDeleteAchievement = async () => {
 //   await $trpcClient.manager.batchDeleteAchievements.mutate(selectedAchievement.value)
