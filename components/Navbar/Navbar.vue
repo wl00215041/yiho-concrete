@@ -25,6 +25,10 @@
         <span>精英招募</span>
         <SvgoLinkIcon filled class="text-base desktop:hidden"></SvgoLinkIcon>
       </NuxtLink>
+      <NuxtLink class="nav-link flex items-center justify-between" to="/esg">
+        <span>環境永續</span>
+        <SvgoLinkIcon filled class="text-base desktop:hidden"></SvgoLinkIcon>
+      </NuxtLink>
       <div class="socials">
         <a href="https://www.facebook.com/p/%E6%AF%85%E5%92%8C%E5%AF%A6%E6%A5%AD-%E9%A0%90%E6%8B%8C%E6%B7%B7%E5%87%9D%E5%9C%9F%E5%B0%88%E5%AE%B6-100063971286601/?locale=zh_TW" target="_blank">
           <svgo-social-facebook class="social-icon" filled></svgo-social-facebook>

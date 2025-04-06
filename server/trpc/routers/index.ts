@@ -78,6 +78,12 @@ export const appRouter = router({
   getCertifications: publicProcedure.query(async () => {
     return prisma.certifications.findMany()
   }),
+  getEsgDocuments: publicProcedure.query(async () => {
+    return prisma.certifications.findMany({
+      where: { type: 'esg' },
+      orderBy: { created_at: 'desc' }
+    })
+  }),
   manager: managerRoute
 });
 

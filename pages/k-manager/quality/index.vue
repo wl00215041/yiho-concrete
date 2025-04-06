@@ -49,6 +49,7 @@ const selectedType = ref('standard')
 const items = ref([
   { name: '國家標準與法規', value: 'standard' },
   { name: '國際認證', value: 'certification' },
+  { name: '碳足跡認證標準', value: 'esg' },
 ])
 
 const columns = [

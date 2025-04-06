@@ -8,7 +8,7 @@
           <input id="name" class="py-3 px-6" type="text" v-model="payload.name" placeholder="請輸入認證名稱" />
         </div>
         <FormField forId="file" title="選擇檔案" required>
-          <FileUpload @onSelect="handleFileSelect" description="檔案最多可上傳 1 個，檔案格式限定為 .pdf, .jpg, .png"></FileUpload>
+          <FileUpload @onSelect="handleFileSelect" :accept="accepts" description="檔案最多可上傳 1 個，檔案格式限定為 .docx, .doc, .xls, .xlsx, .pdf"></FileUpload>
         </FormField>
         <button class="bg-[#3C50E0] py-3 text-[#EFF4FB] font-medium w-full rounded disabled:bg-slate-400" type="submit">新增</Button>
       </form>
@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import type { ClientFile } from 'nuxt-file-storage';
+const accepts = '.docx,.doc,.xls,.xlsx,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/pdf'
 
 type Certification = {
   id: number;
