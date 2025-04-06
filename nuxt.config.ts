@@ -15,7 +15,7 @@ export default defineNuxtConfig({
       // client-side
     }
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   app: {
     head: {
       title: 'Yiho Concrete',
