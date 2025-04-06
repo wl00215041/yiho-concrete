@@ -35,12 +35,11 @@ export default defineNuxtConfig({
   vite: {
     resolve: {
       alias: {
-          ".prisma/client/index-browser":
-          "./node_modules/@prisma/client/index-browser.js",
+          ".prisma/client/index-browser": "./node_modules/@prisma/client/index-browser.js",
         },
     },
     server: {
-      allowedHosts: ['yiho-concrete.cloudeasy.net']
+      allowedHosts: ['yiho-concrete.cloudeasy.net', 'yiho-concrete.com.tw', 'yiho-concrete.com.tw']
     }
   },
   vue: {
