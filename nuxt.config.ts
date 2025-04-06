@@ -39,7 +39,7 @@ export default defineNuxtConfig({
         },
     },
     server: {
-      allowedHosts: ['yiho-concrete.cloudeasy.net', 'yiho-concrete.com.tw', 'yiho-concrete.com.tw']
+      allowedHosts: ['yiho-concrete.cloudeasy.net', 'yiho-concrete.com.tw', 'www.yiho-concrete.com.tw']
     }
   },
   vue: {
