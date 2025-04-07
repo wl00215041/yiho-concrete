@@ -26,7 +26,7 @@
           class="flex flex-col pad:justify-center w-[calc(70%+220px)] pad:flex-row gap-[60px] desktop:gap-[60px] pb-10"
           :class="{ 'items-center': isOnlyStandard || isOnlyCertification }">
           <div class="flex-1" v-if="displayCertifications.standard.length">
-            <div class=" text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國家標準與法規</div>
+            <div class=" text-white text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">國家標準與證照</div>
             <ul class="list-disc" :class="{ 'pad:!grid pad:!grid-cols-2 pad:!gap-x-10': isOnlyStandard }">
               <li v-for="standard in displayCertifications.standard"
                 class="flex justify-between items-center px-[30px] py-[22px] border-b border-dashed border-[#0075C2]">
