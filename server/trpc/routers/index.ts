@@ -21,7 +21,7 @@ export const appRouter = router({
     const latestNews = await prisma.news.findFirst({
       orderBy: { created_at: 'desc' }
     })
-    const latestAchievement = await prisma.achievementItem.findFirst({
+    const latestAchievement = await prisma.achievementGallery.findFirst({
       orderBy: { created_at: 'desc' }
     })
     const latestQuality = await prisma.certifications.findFirst({
@@ -41,6 +41,9 @@ export const appRouter = router({
     return prisma.achievementGallery.findMany({ where: { fk_year_id: year?.id }, include: { images: true } })
   }),
   getAchievementsByYear: publicProcedure.input(z.number()).query(async (opt) => {
+    if (opt.input < 0) {
+      return prisma.achievementItem.findMany()
+    }
     const year = await prisma.achievementYear.findFirst({ where: { year: opt.input } })
     return prisma.achievementItem.findMany({ where: { fk_year_id: year?.id } })
   }),

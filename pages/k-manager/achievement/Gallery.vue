@@ -12,7 +12,7 @@
           </template>
         </ManagerRecordSidebar>
       </template>
-      <div>
+      <div class="flex flex-col h-full">
         <div
           class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
           <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text" placeholder="工程實績">
@@ -25,7 +25,9 @@
             <button @click="open" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
           </div>
         </div>
-        <ManagerGallery v-model:selected-galleries="selectedGalleries" @onEdit="onEdit" v-if="years?.length" class="p-6 " :gallery-list="galleryList || []"></ManagerGallery>
+        <div class="flex-1 overflow-y-auto" v-if="years?.length">
+          <ManagerGallery v-model:selected-galleries="selectedGalleries" @onEdit="onEdit" class="p-6 " :gallery-list="galleryList || []"></ManagerGallery>
+        </div>
         <ManagerNoData v-else></ManagerNoData>
       </div>
     </ManagerRecordPage>

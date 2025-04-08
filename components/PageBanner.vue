@@ -5,7 +5,7 @@
       <!-- <img src="/images/5.jpeg" alt="section-two-bg" class="h-full w-full rounded-2xl" /> -->
       <div
         class="hidden relative ml-16 w-[220px] h-[220px] pad:inline-flex flex-col justify-center items-center bg-white bg-opacity-90">
-        <h2 class="text-2xl mb-4" :style="{ color: subTitleColor }">{{ subTitle }}</h2>
+        <h2 class="text-2xl mb-4 font-NTR" :style="{ color: subTitleColor }">{{ subTitle }}</h2>
         <h1 class="text-4xl" :class="titleClass">{{ title }}</h1>
         <SvgoSquareDottedTexture
           class="absolute translate-x-[calc(100%+72px/4)] translate-y-[calc(100%+72px/3)] text-[4.5rem]"

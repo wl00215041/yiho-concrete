@@ -1,18 +1,18 @@
 <template>
-  <div class="slogon">
+  <div class="slogan">
     <h2>YIHO <span class="font-['Noto_Sans_TC']">先進設備 x 專業技術</span></h2>
     <h1>預拌混凝土專家</h1>
   </div>
 </template>
 <style lang="scss" scoped>
-.slogon {
+.slogan {
   // @apply hidden
   // @apply absolute bottom-32 left-10;
   @apply  pointer-events-none z-20 ;
   @apply hidden lg:block text-6xl text-white;
 
   >h2 {
-    @apply inline-flex font-normal text-6xl items-center gap-5 z-30 mb-8;
+    @apply inline-flex font-normal text-6xl items-center gap-5 z-30 mb-8 font-Outfit;
     font-family: "Outfit";
     letter-spacing: 8px;
 

@@ -1,21 +1,25 @@
 <template>
   <ManagerPage title="職缺資訊">
-    <div>
+    <div class="flex flex-col h-full">
       <div
         class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
         <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text" placeholder="職缺名稱">
         <div class="flex gap-4">
           <ManagerJobsAddJobModel v-model:isOpen="isAddModalOpened" @onAdd="onAdd">
-              <template #default="{ open }">
-                <button @click="open" class="min-w-[110px] py-3 rounded bg-[#0075C2] text-white">新增</button>
-              </template>
-            </ManagerJobsAddJobModel>
+            <template #default="{ open }">
+              <button @click="open" class="min-w-[110px] py-3 rounded bg-[#0075C2] text-white">新增</button>
+            </template>
+          </ManagerJobsAddJobModel>
           <button @click="open" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
         </div>
       </div>
-      <ManagerTable :columns="columns" :records="jobList || []" :selectable="true" @selectionChange="onSelectionChange">
+      <div class="flex-1">
+        <ManagerTable :columns="columns" :records="jobList || []" :selectable="true"
+          @selectionChange="onSelectionChange">
 
-      </ManagerTable>
+        </ManagerTable>
+      </div>
+
       <ManagerConfirmDialog v-model="opened" @confirm="onConfirm"></ManagerConfirmDialog>
     </div>
   </ManagerPage>

@@ -3,7 +3,7 @@
     class="relative overflow-hidden pt-16 pad:pt-0 flex flex-col pad:flex-row items-center justify-center pad:justify-between footer h-[278px] pad:h-[407px] desktop:h-[299px] px-[50px] mt-12 bg-[#333333] rounded-tl-[60px]">
     <div class="flex flex-col items-center">
       <SvgoFullLogo filled class="text-[221px] !h-[45px]"></SvgoFullLogo>
-      <div class="text-xl text-white text-opacity-80">© 2025 YIHO Ltd. All rights reserved.</div>
+      <div class="font-NTR text-xl text-white text-opacity-80">© 2025 YIHO Ltd. All rights reserved.</div>
     </div>
     <div class="hidden pad:block pad:flex-[0.6]">
       <FooterNavbar></FooterNavbar>

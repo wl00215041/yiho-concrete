@@ -6,11 +6,10 @@
 
         </ManagerRecordSidebar>
       </template>
-      <div>
+      <div class="flex flex-col h-full">
         <div
           class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
-          <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text"
-            placeholder="認證名稱">
+          <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text" placeholder="認證名稱">
           <div class="flex gap-4">
             <ManagerCertificationsAddCertificationModel v-model:isOpen="isAddModelOpened" @onAdd="onAdd">
               <template #default="{ open }">
@@ -20,19 +19,24 @@
             <button @click="onDeleteJobs" class="min-w-[110px] py-3 rounded bg-[#E8382F] text-white">刪除</button>
           </div>
         </div>
-        <ManagerTable :columns="columns" :records="certificationList || []" :selectable="true" @selectionChange="onSelectionChange">
-          <template #col-file="{ record }">
-            <a v-if="record.file" :href="`/files/certifications/${record.file}`" target="_blank">
-              <SvgoDocument class="cursor-pointer" filled></SvgoDocument>
-            </a>
-            
-          </template>
-          <template #col-edit="{ record }">
-            <SvgoEdit class="cursor-pointer" @click="onEdit(record?.id)" filled></SvgoEdit>
-          </template>
-        </ManagerTable>
+        <div class="flex-1">
+          <ManagerTable :columns="columns" :records="certificationList || []" :selectable="true"
+            @selectionChange="onSelectionChange">
+            <template #col-file="{ record }">
+              <a v-if="record.file" :href="`/files/certifications/${record.file}`" target="_blank">
+                <SvgoDocument class="cursor-pointer" filled></SvgoDocument>
+              </a>
+
+            </template>
+            <template #col-edit="{ record }">
+              <SvgoEdit class="cursor-pointer" @click="onEdit(record?.id)" filled></SvgoEdit>
+            </template>
+          </ManagerTable>
+        </div>
+
       </div>
-      <ManagerCertificationsModifyCertificationModel v-if="editingId" v-model:isOpen="isModifyModelOpened" :selectedId="editingId || 0" @onUpdate="onUpdate"></ManagerCertificationsModifyCertificationModel>
+      <ManagerCertificationsModifyCertificationModel v-if="editingId" v-model:isOpen="isModifyModelOpened"
+        :selectedId="editingId || 0" @onUpdate="onUpdate"></ManagerCertificationsModifyCertificationModel>
     </ManagerRecordPage>
   </ManagerPage>
 </template>
@@ -47,7 +51,7 @@ const { $trpcClient } = useNuxtApp()
 const selectedType = ref('standard')
 
 const items = ref([
-  { name: '國家標準與法規', value: 'standard' },
+  { name: '國家標準與證照', value: 'standard' },
   { name: '國際認證', value: 'certification' },
   { name: '碳足跡認證標準', value: 'esg' },
 ])

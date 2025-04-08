@@ -21,7 +21,7 @@
         </div>
         <div class="flex flex-col pad:flex-row gap-8">
           <div v-if="lg || !isListMode" class="relative pad:flex-[0.6] grid grid-cols-1 pad:grid-cols-2 gap-8">
-            <AchievementShowCase v-if="galleryList.data.value?.length" v-for="gallery in galleryList.data.value" class="" @click="$router.push({ name: 'achievements-id', params: {id: gallery.id} })" :image="`/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`" :title="gallery.name"></AchievementShowCase>
+            <AchievementShowCase v-if="galleryList.data.value?.length" v-for="gallery in galleryList.data.value" class="cursor-pointer" @click="$router.push({ name: 'achievements-id', params: {id: gallery.id} })" :image="`/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`" :title="gallery.name"></AchievementShowCase>
             <NoData v-else></NoData>
           </div>
           <div v-if="lg || isListMode" class="flex-[0.4]">
@@ -32,9 +32,6 @@
           </div>
         </div>
       </TimeMenu>
-
-
-
     </PageSection>
 
   </div>
@@ -67,12 +64,16 @@ interface TabItem {
 }
 
 const years = computed<TabItem[]>(() => {
-  return allYears.value?.map((year) => {
+  if (!allYears.value) {
+    return []
+  }
+  const years = [{ title: 'All', value: -1 }, ...allYears.value?.map((year) => {
     return {
       title: year.toString(),
       value: year
     }
-  }) || []
+  })]
+  return years || []
 })
 
 </script>

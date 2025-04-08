@@ -34,6 +34,7 @@ const news = computed(() => {
       date: achievementDate.value,
       tag: '工程實績',
       content: data.value?.achievement?.name,
+      link: `/achievements/${data.value?.achievement?.id}`,
       class: 'bg-[#0075C2]',
       linkTarget: '_self',
     },
@@ -68,7 +69,7 @@ const displayNews = computed(() => {
 .announcement {
   @apply p-6 rounded-2xl relative;
   .date {
-    @apply text-xl pad:text-2xl;
+    @apply font-NTR leading-8 text-xl pad:text-2xl;
   }
   @screen pad {
     @apply bg-[#BABABA] bg-opacity-20 mb-14 mx-[1.875rem]
@@ -86,7 +87,7 @@ const displayNews = computed(() => {
 
 
   >.title {
-    @apply text-3xl pad:text-3xl mb-2 lg:mb-6 text-[#0075C2];
+    @apply font-NTR text-3xl pad:text-3xl mb-2 lg:mb-6 text-[#0075C2];
 
     @screen desktop {
       @apply text-[2rem] h-[4.25rem] mb-0 leading-[68px];

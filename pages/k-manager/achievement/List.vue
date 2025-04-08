@@ -12,7 +12,7 @@
           </template>
         </ManagerRecordSidebar>
       </template>
-      <div>
+      <div class="flex flex-col h-full">
         <div
           class="py-[15px] px-[22px] flex flex-col pad:flex-row gap-4 justify-between flex-wrap border-b border-[#E2E8F0]">
           <input class="border border-[#E2E8F0] py-3 px-[18px] rounded-lg w-[300px]" type="text"
@@ -31,8 +31,10 @@
             </ManagerAchievementUploadList>
           </div>
         </div>
-        <ManagerTable v-if="years?.length" :columns="columns" :records="achievementList || []" :selectable="true" @selectionChange="onSelectionChange">
-        </ManagerTable>
+        <div class="flex-1" v-if="years?.length">
+          <ManagerTable  :columns="columns" :records="achievementList || []" :selectable="true" @selectionChange="onSelectionChange">
+          </ManagerTable>
+          </div>
         <ManagerNoData v-else></ManagerNoData>
       </div>
     </ManagerRecordPage>

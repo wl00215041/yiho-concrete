@@ -66,7 +66,6 @@
   </div>
 </template>
 <script setup lang="ts">
-// const prisma = usePrismaClient()
 const { $trpcClient } = useNuxtApp()
 const route = useRoute()
 

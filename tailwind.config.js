@@ -16,6 +16,10 @@ module.exports = {
       pad: '1024px',
       desktop: '1440px'
     },
+    fontFamily: {
+      NTR: ['NTR', 'Noto Sans TC'],
+      Outfit : ['Outfit', 'Noto Sans TC'],
+    },
     extend: {
 
     },
