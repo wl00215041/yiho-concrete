@@ -56,7 +56,9 @@ const news = computed(() => {
       link: data.value?.news?.link,
       linkTarget: '_blank',
     },
-  ]
+  ].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
 })
 
 const displayNews = computed(() => {
