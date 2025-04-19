@@ -54,7 +54,7 @@
     <PageSection title="產品碳足跡" icon-color="#0075C2">
       <div class="relative flex flex-col justify-center items-center mb-[60px]">
         <img src="/images/carbon-footprint-bg.svg" alt="carbon-footprint"
-          class="w-full pad:max-w-[624px] pad:-my-24 desktop:max-w-[793px] object-cover rounded-[20px] mb-[20px]">
+          class="w-full pad:max-w-[624px] pad:-mt-24 desktop:max-w-[793px] object-cover rounded-[20px] mb-[20px]">
       </div>
       <div class="flex flex-col pad:flex-row justify-center gap-16">
         <EsgStepper />
