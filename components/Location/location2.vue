@@ -23,12 +23,8 @@
       <span class="font-bold mr-4 text-[#333333]">廠房照片</span>
     </div>
     <div class="grid grid-cols-1 pad:grid-cols-3 gap-6">
-      <img class="rounded-[10px] aspect-video object-cover" src="/images/1.jpeg" alt="1" />
-      <img class="rounded-[10px] aspect-video object-cover" src="/images/2.jpeg" alt="1" />
-      <img class="rounded-[10px] aspect-video object-cover" src="/images/3.jpeg" alt="1" />
-      <img class="rounded-[10px] aspect-video object-cover" src="/images/4.jpeg" alt="1" />
-      <img class="rounded-[10px] aspect-video object-cover" src="/images/5.jpeg" alt="1" />
-      <img class="rounded-[10px] aspect-video object-cover" src="/images/6.jpeg" alt="1" />
+      <img class="rounded-[10px] aspect-[375/266] object-cover object-bottom" src="/images/factory/A7400688.jpg" alt="1" />
+      <img class="rounded-[10px] aspect-[375/266] object-cover object-bottom" src="/images/factory/A7400690.jpg" alt="1" />
     </div>
   </TabsTab>
 </template>

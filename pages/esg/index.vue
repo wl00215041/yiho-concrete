@@ -1,13 +1,13 @@
 <template>
   <div>
-    <PageBanner image="/images/product-banner.png" title="環境永續" sub-title="Sustainability" sub-title-color="#0075C2">
+    <PageBanner image="/images/esg-banner.png" banner-class="bg-center" title="環境永續" sub-title="Sustainability" sub-title-color="#0075C2">
     </PageBanner>
     <PageSection class="mb-14" title="毅和淨零減碳策略起步及精進" icon-color="#0075C2">
       <div class="mb-12 max-w-[777px]">
         毅和為生產混凝土及銷售，混凝土為公共基礎建設不可或缺、不可替代且用量最大的資源，且符合國家重點六大核心中民生重要工業物資供應及完備關鍵基礎設施重要產業，近年來陸續修繕三廠，並有效發揮國內產業優勢透過智慧化落實原料品管流程及檢驗，促進產銷資訊透明公開、品質流向管理，建構優良混凝土產品履歷。
       </div>
       <div class="flex flex-col pad:flex-row justify-between gap-8">
-        <EsgColumnWithTitle title="製程餘料回收再利用">
+        <EsgColumnWithTitle title="經濟循環零廢棄">
           <template #icon>
             <SvgoEsg1 filled class="w-[250px]" :fontControlled="false">
             </SvgoEsg1>
@@ -15,7 +15,7 @@
           <div>銷貨過程產生餘料皆轉為水泥方塊銷售，可用於零售消費者圍牆建置，且因純混凝土製成無混雜廢棄物，所以品質穩定，且生產及運輸快速，必要時可用於民生及關鍵基礎設施，上述生產銷售過程再利用，打造經濟循環零廢棄。
           </div>
         </EsgColumnWithTitle>
-        <EsgColumnWithTitle title="廠內廢水回收循環">
+        <EsgColumnWithTitle title="永續資源再利用">
           <template #icon>
             <SvgoEsg2 filled class="w-[250px]" :fontControlled="false">
             </SvgoEsg2>
@@ -33,25 +33,20 @@
         <EsgTitleStep color="#0075C2"></EsgTitleStep>
       </div>
     </PageSection>
-    <PageSection class="bg-[#ECECEC] py-[60px]" title="規劃執行" icon-color="#0075C2">
+    <PageSection class="bg-[#ECECEC] py-[60px] mb-14" title="規劃執行" icon-color="#0075C2">
       <div class="flex gap-8 flex-col pad:flex-row">
-        <div class="pad:max-w-[372px] text-[#333333]">
+        <div class="flex-1 text-[#333333]">
           <p class="mb-6">毅和於 2023 年已聘雇專家協助針對廠內進行組織溫室氣體盤查,了解廠內排碳熱點,並陸續執行減碳策略</p>
           <p>毅和預計於 2025
             年與專家共同執行產品碳盤查計算含碳量,了解公司產品碳足跡,公司內部累積優化減碳工作的數據基礎，以及強化內部成員的認同感和凝聚行動共識，另一方面也是向主管單位、客戶、消費者等需求者溝通工作成效回應需求
           </p>
         </div>
         <EsgExecuteMobile></EsgExecuteMobile>
-        <EsgExecutePad></EsgExecutePad>
+        <EsgExecutePad class="flex-[2]"></EsgExecutePad>
       </div>
 
     </PageSection>
-    <PageSection class="mb-14 bg-[#ECECEC] py-[60px] bg-[url(/images/eco-system.jpeg)] bg-cover" titleClass="text-white"
-      :style="{ backgroundPositionY: `${parallaxX * 10}px` }" title="節能優化" icon-color="#fff">
-      <p class="max-w-[372px] text-white">毅和於 2025 年與專家合作，蒐集與分析能源使用數據，改善製程中能源消耗量、優化既有設備運作預計加裝感測設備等，進一步改善企業的碳排放量。</p>
-
-    </PageSection>
-    <PageSection title="產品碳足跡" icon-color="#0075C2">
+    <PageSection class="mb-14" title="產品碳足跡" icon-color="#0075C2">
       <div class="relative flex flex-col justify-center items-center mb-[60px]">
         <img src="/images/carbon-footprint-bg.svg" alt="carbon-footprint"
           class="w-full pad:max-w-[624px] pad:-mt-24 desktop:max-w-[793px] object-cover rounded-[20px] mb-[20px]">
@@ -76,6 +71,21 @@
         </div>
       </div>
     </PageSection>
+    <PageSection 
+    class="bg-[#ECECEC] py-[60px] h-[377px] -mb-[56px] relative overflow-hidden" 
+    titleClass="text-white"
+    title="節能優化" 
+    icon-color="#fff">
+    <!-- 使用絕對定位的背景圖片元素，而不是背景屬性 -->
+    <div 
+      class="absolute inset-0 bg-[url(/images/eco-system.jpeg)] bg-no-repeat bg-cover z-0"
+      :style="{ transform: `translateY(${parallaxY}px)` }">
+    </div>
+    <!-- 內容在絕對定位的背景之上 -->
+    <div class="relative z-10">
+      <p class="max-w-[372px] text-white">毅和於 2025 年與專家合作，蒐集與分析能源使用數據，改善製程中能源消耗量、優化既有設備運作預計加裝感測設備等，進一步改善企業的碳排放量。</p>
+    </div>
+  </PageSection>
   </div>
 </template>
 <script setup lang="ts">
@@ -105,8 +115,17 @@ onMounted(() => {
 })
 
 const parallaxX = computed(() => {
-  return (y.value / bodyHeight.value) * 100
+  const value = (y.value / bodyHeight.value) * 100
+  return Math.min(value, 20) // 限制最大值為20
 })
 
+const parallaxY = computed(() => {
+  // 起始位置為稍微負值，確保圖片一開始就完全覆蓋元素
+  const startPosition = 0;
+  // 滾動時的移動範圍較小，避免過度位移
+  const scrollEffect = (y.value / bodyHeight.value) * 50;
+  // 最終位置限制在一個合理範圍內
+  return startPosition + scrollEffect;
+})
 
 </script>

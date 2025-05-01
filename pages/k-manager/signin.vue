@@ -57,7 +57,6 @@ const login = async () => {
     callbackUrl: '/api/auth',
     redirect: false,
   })
-  console.log('res', res?.error)
 
   if (res?.error) {
     isLoginFailed.value = true

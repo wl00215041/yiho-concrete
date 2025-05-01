@@ -15,6 +15,14 @@
       </div>
       <div class="text-xl font-medium">生產<span class="text-base">（混凝土攪拌過程的能源使用）</span></div>
     </div>
+    <div class="flex items-center gap-2">
+      <div class="flex justify-center items-center w-10 h-10 rounded-full bg-[#0075C2] text-white font-bold text-xl">A4
+      </div>
+      ~
+      <div class="flex justify-center items-center w-10 h-10 rounded-full bg-[#0075C2] text-white font-bold text-xl">A5
+      </div>
+      <div class="text-xl font-medium">施工運輸與現場使用</div>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>

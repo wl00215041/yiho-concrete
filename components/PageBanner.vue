@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-center h-[25rem] relative bg desktop:rounded-[1.875rem] mb-6 pad:mb-20 desktop:mx-[45px]"
-      :style="{ backgroundImage: `url(${image})` }">
+      :style="{ backgroundImage: `url(${image})` }" :class="bannerClass">
       <!-- <img src="/images/5.jpeg" alt="section-two-bg" class="h-full w-full rounded-2xl" /> -->
       <div
         class="hidden relative ml-16 w-[220px] h-[220px] pad:inline-flex flex-col justify-center items-center bg-white bg-opacity-90">
@@ -48,7 +48,10 @@ defineProps({
   },
   subTitleColor: {
     type: String,
-  }
+  },
+  bannerClass: {
+    type: String,
+  },
 })
 
 </script>
