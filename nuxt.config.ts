@@ -1,4 +1,3 @@
-import type { NuxtPage } from "nuxt/schema"
 import { envConfig } from "./envConfig"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -18,10 +17,10 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   app: {
     head: {
-      title: 'Yiho Concrete',
-      titleTemplate: '%s - Yiho Concrete',
+      title: '毅和實業-預拌混凝土專家',
+      titleTemplate: '%s - 毅和實業-預拌混凝土專家',
       meta: [
-        { name: 'description', content: 'Yiho Concrete' },
+        { name: 'description', content: '毅和實業成立於1993年9月26日，本公司目前設有竹南港墘廠、大厝廠以及新竹寶山科園廠，持續以先進的設備，專業的技術，產製預拌混凝土，為客戶提供優質的服務。' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'theme-color', content: '#ffffff' }
       ],
