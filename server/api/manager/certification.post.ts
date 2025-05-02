@@ -1,9 +1,8 @@
 import { ServerFile } from "nuxt-file-storage";
-import { PrismaClient } from '@prisma/client'
+import prisma from "~/lib/prisma";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
     const { files } = await readBody<{ files: ServerFile[] }>(event)
-    const prisma = new PrismaClient()
     let filename = undefined
     if (files && files.length > 0) {
       filename = await storeFileLocally(

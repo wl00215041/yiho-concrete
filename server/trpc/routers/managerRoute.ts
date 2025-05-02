@@ -1,9 +1,8 @@
 import { TRPCError } from '@trpc/server';
 import { publicProcedure, router } from '../trpc';
-import { PrismaClient } from '@prisma/client'
+import prisma from "~/lib/prisma";
 import { z } from 'zod';
 import { ServerFile } from "nuxt-file-storage";
-const prisma = new PrismaClient()
 
 export const adminProcedure = publicProcedure.use(async (opts) => {
   const { ctx } = opts;
