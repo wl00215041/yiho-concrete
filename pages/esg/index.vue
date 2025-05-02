@@ -55,7 +55,7 @@
         <EsgStepper />
         <div>
           <div class="flex-1">
-            <div class="pad:w-[446px] text-white font-bold text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">
+            <div class="w-[446px] text-white font-bold text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">
               碳足跡認證標準
             </div>
             <ul class="list-disc">

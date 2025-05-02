@@ -1,8 +1,9 @@
 import { ServerFile } from "nuxt-file-storage";
-import prisma from "~/lib/prisma";
+import { PrismaClient } from '@prisma/client'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
     const { files } = await readBody<{ files: ServerFile[] }>(event)
+    const prisma = new PrismaClient()
     let filename = undefined
     const existedCertification = await prisma.certifications.findFirst({ where: { id: body.id } });
     if (!existedCertification) {

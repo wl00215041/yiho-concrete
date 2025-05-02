@@ -1,9 +1,10 @@
 import { ServerFile } from "nuxt-file-storage";
-import prisma from "~/lib/prisma";
+import { PrismaClient } from '@prisma/client'
 import Excel, { stream } from 'exceljs'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const { files } = await readBody<{ files: ServerFile[] }>(event)
+  const prisma = new PrismaClient()
   const year = await prisma.achievementGalleryYear.findFirst({ where: { year: body.year } });
   if (!year) {
     throw createError({ status: 400, message: 'Year not found' })

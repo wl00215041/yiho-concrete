@@ -1,8 +1,9 @@
 import { ServerFile } from "nuxt-file-storage";
-import prisma from "~/lib/prisma";
+import { PrismaClient } from '@prisma/client'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
     const { files } = await readBody<{ files: ServerFile[] }>(event)
+    const prisma = new PrismaClient()
     const existedGallery = await prisma.achievementGallery.findFirst({ where: { id: body.id } });
     const toDeleteImages: string[] = body.toDeleteImages
     let isCoverSet = false

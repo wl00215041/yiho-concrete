@@ -6,13 +6,13 @@ module.exports = {
       NODE_ENV: 'development',
       DATABASE_URL: 'file:./dev.db',
       AUTH_NUXT_SECRET: 'yiho-concrete-sam',
-      AUTH_ORIGIN: 'http://localhost:3500'
+      AUTH_ORIGIN: 'http://yiho-convrete.cloudeasy.net:3500'
     },
     env_production: {
       NODE_ENV: 'production',
       DATABASE_URL: 'file:./dev.db',
       AUTH_NUXT_SECRET: 'yiho-concrete-sam',
-      AUTH_ORIGIN: 'http://localhost:3500'
+      AUTH_ORIGIN: 'http://yiho-convrete.cloudeasy.net:3500'
     }
   }],
 

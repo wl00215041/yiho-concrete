@@ -1,9 +1,11 @@
-import prisma from "~/lib/prisma";
+import { PrismaClient } from '@prisma/client'
 import { publicProcedure, router } from '../trpc';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import managerRoute from './managerRoute';
 import products from '~/constants/products';
+
+const prisma = new PrismaClient()
 
 export const appRouter = router({
   productList: publicProcedure.query(async () => {
