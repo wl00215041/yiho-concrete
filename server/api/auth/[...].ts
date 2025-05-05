@@ -1,7 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials"
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NuxtAuthHandler } from '#auth'
-import { prisma } from "~/server/prisma";
+import prisma from "~/server/prisma";
 const Provider = (CredentialsProvider as any).default as typeof CredentialsProvider
 export default NuxtAuthHandler({
   secret: 'yiho-concrete',

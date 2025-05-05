@@ -1,6 +1,7 @@
 <template>
   <div>
-    <PageBanner image="/images/achievement-banner.png" title="工程實績" sub-title="Achievements" sub-title-color="#E8382F"></PageBanner>
+    <PageBanner image="/images/achievement-banner.png" title="工程實績" sub-title="Achievements" sub-title-color="#E8382F">
+    </PageBanner>
     <PageSection title="全方位建築最佳選擇" icon-color="#E8382F">
       <div class="flex flex-col gap-6 max-w-[777px] text-[#585858] mb-14">
         <p>
@@ -8,7 +9,7 @@
         </p>
       </div>
 
-      <TimeMenu v-model:value="selectedYear" :tabs="years" class="flex-[0.6]">
+      <TimeMenu v-model:value="selectedYear" :tabs="years" id="show-case" class="flex-[0.6]">
         <div class="pad:hidden flex gap-2 mb-6 text-[#585858]">
           <button class="p-[10px] bg-[#D9D9D9] rounded-[5px] outline-0" @click="isListMode = false"
             :class="{ 'is-tab-active': !isListMode }">
@@ -16,22 +17,30 @@
           </button>
           <button class="p-[10px] bg-[#D9D9D9] rounded-[5px] outline-0" @click="isListMode = true"
             :class="{ 'is-tab-active': isListMode }">
-            <SvgoListMode ></SvgoListMode>
+            <SvgoListMode></SvgoListMode>
           </button>
         </div>
         <div class="flex flex-col pad:flex-row gap-8">
-          <div v-if="lg || !isListMode" class="relative pad:flex-[0.6] grid grid-cols-1 pad:grid-cols-2 gap-8">
-            <AchievementShowCase v-if="galleryList.data.value?.length" v-for="gallery in galleryList.data.value" class="cursor-pointer" @click="$router.push({ name: 'achievements-id', params: {id: gallery.id} })" :image="`/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`" :title="gallery.name"></AchievementShowCase>
+          <div v-if="lg || !isListMode" class="relative pad:flex-[0.6] flex flex-col pad:grid pad:grid-cols-2 gap-8">
+            <a v-if="galleryList.data.value?.data.length" v-for="gallery in galleryList.data.value.data"
+              :href="`/achievements/${gallery.id}`">
+              <AchievementShowCase class="cursor-pointer"
+                :image="`/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`"
+                :title="gallery.name"></AchievementShowCase>
+            </a>
             <NoData v-else></NoData>
           </div>
           <div v-if="lg || isListMode" class="flex-[0.4]">
             <AchievementTotalContract :total="list.data.value?.length || 0"></AchievementTotalContract>
             <ul>
-              <AchievementContract v-for="item in list.data.value" :unit="item.manufacturer" :location="item.name"></AchievementContract>
+              <AchievementContract v-for="item in list.data.value" :unit="item.manufacturer" :location="item.name">
+              </AchievementContract>
             </ul>
           </div>
         </div>
       </TimeMenu>
+      <Pagination v-if="(galleryList.data.value?.total || 0) > 10" v-model="page" :items-per-page="10"
+        :total-items="galleryList.data.value?.total || 0"></Pagination>
     </PageSection>
 
   </div>
@@ -44,6 +53,10 @@ definePageMeta({
   layout: 'page'
 })
 
+useHead({
+  title: '工程實績'
+})
+
 const { breakpoint } = useApp()
 
 const { lg } = breakpoint
@@ -53,10 +66,24 @@ const { $trpcClient } = useNuxtApp()
 
 const { data: allYears, execute, refresh } = await $trpcClient.getAllAchievementYears.useQuery()
 
-const selectedYear = ref(allYears.value?.[0] || 0)
+const selectedYear = ref(-1)
 
 const list = await $trpcClient.getAchievementsByYear.useQuery(selectedYear)
-const galleryList = await $trpcClient.getGalleryByYear.useQuery(selectedYear)
+const page = ref(1)
+const galleryQuery = computed(() => {
+  return {
+    year: selectedYear.value,
+    page: page.value,
+  }
+})
+
+watch(page, (newPage) => {
+  document.querySelector('#show-case')?.scrollIntoView({ behavior: 'smooth' })
+})
+
+
+
+const galleryList = await $trpcClient.getGalleryByYear.useQuery(galleryQuery)
 
 interface TabItem {
   title: string;

@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <SvgoHomeAboutCorner class="absolute right-0 top-0 text-[100px] -translate-y-[calc(100%-2px)]" filled></SvgoHomeAboutCorner>
+    <SvgoHomeAboutCorner class="absolute right-0 top-0 text-[30px] pad:text-[60px] desktop:text-[80px] -translate-y-[calc(100%-2px)]" filled></SvgoHomeAboutCorner>
     <div class="background"></div>
     <div class="section-content">
       <div class="section-content-left">
@@ -24,7 +24,7 @@
 
 <style lang="scss" scoped>
 .section {
-  @apply relative bg-[#ececec] rounded-tl-[3.75rem] rounded-br-[3.75rem];
+  @apply relative bg-[#ececec] rounded-tl-[1.875rem] rounded-br-[1.875rem] pad:rounded-tl-[3.75rem] pad:rounded-br-[3.75rem];
 }
 
 .section-title {

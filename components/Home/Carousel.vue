@@ -67,10 +67,6 @@ const config = ref({
   }
 }
 
-section.carousel {
-  @apply mb-6 pad:pl-[2.8125rem];
-}
-
 </style>
 
 <style lang="scss" scoped>

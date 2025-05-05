@@ -9,9 +9,11 @@
       <FooterNavbar></FooterNavbar>
     </div>
     <SvgoDottedTexture filled class="pad:absolute pad:left-[40vw] !w-16 !h-36 rotate-90 pad:rotate-0"></SvgoDottedTexture>
-    <SvgoFooterSubtract filled class="hidden pad:inline-block text-[80px] absolute right-0 top-0 -translate-y-full"></SvgoFooterSubtract>
-    <SvgoFooterNavBg class="absolute left-0 top-0 w-[500px] rotate-[165deg] -translate-x-1/4 translate-y-[24px]" filled :fontControlled="false"></SvgoFooterNavBg>
-    <SvgoFooterNavBg class="absolute bottom-0 invisible pad:visible right-0 w-[500px] rotate-[165deg] pad:rotate-0 -translate-x-1/3 pad:translate-x-0 pad:w-[640px]" filled :fontControlled="false"></SvgoFooterNavBg>
+    <SvgoFooterSubtract filled class="hidden pad:inline-block text-[80px] absolute right-0 top-0 -translate-y-[calc(100%-1px)]"></SvgoFooterSubtract>
+    <div class="absolute right-0 top-0 left-0 bottom-0 m-auto overflow-hidden">
+      <SvgoFooterNavBg class="absolute left-0 top-0 w-[500px] rotate-[165deg] -translate-x-1/4 translate-y-[24px]" filled :fontControlled="false"></SvgoFooterNavBg>
+      <SvgoFooterNavBg class="absolute bottom-0 invisible pad:visible right-0 w-[500px] rotate-[165deg] pad:rotate-0 -translate-x-1/3 pad:translate-x-0 pad:w-[640px]" filled :fontControlled="false"></SvgoFooterNavBg>
+    </div>
   </div>
 </template>
 

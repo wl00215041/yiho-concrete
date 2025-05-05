@@ -7,7 +7,7 @@
         :key="index"
         @click="setActiveTab(index)"
         :class="[
-          'px-8 py-4 text-center font-medium transition-colors duration-200 flex-1',
+          'px-8 py-2 pad:py-4 text-center font-medium text-nowrap transition-colors duration-200 flex-1',
           activeTabIndex === index
             ? 'bg-[#0075C2] text-white'
             : 'bg-[#0075C2] bg-opacity-30 text-[#333333] hover:bg-gray-300'

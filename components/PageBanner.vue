@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center h-[25rem] relative bg desktop:rounded-[1.875rem] mb-6 pad:mb-20 desktop:mx-[45px]"
+    <div class="flex items-center h-[12.5rem] pad:h-[25rem] relative bg desktop:rounded-[1.875rem] mb-6 pad:mb-20 desktop:mx-[45px]"
       :style="{ backgroundImage: `url(${image})` }" :class="bannerClass">
       <!-- <img src="/images/5.jpeg" alt="section-two-bg" class="h-full w-full rounded-2xl" /> -->
       <div

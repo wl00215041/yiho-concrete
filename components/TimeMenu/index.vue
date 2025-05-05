@@ -1,7 +1,9 @@
 <!-- Tabs.vue -->
 <template>
   <div class="tabs-container">
-    <div class="tabs-header flex overflow-hidden gap-4 mb-8 desktop:mb-12">
+    <div ref="menu" class="tabs-header flex overflow-hidden gap-4 mb-8 desktop:mb-12" @mousedown="startDragHandler"
+      @touchstart="startDragHandler" @mousemove="moveHandler" @touchmove="moveHandler" @mouseup="endDragHandler"
+      @mouseleave="endDragHandler" @touchend="endDragHandler" @touchcancel="endDragHandler">
       <button v-for="(tab, index) in tabs" :key="index" class="text-2xl" @click="setActiveTab(index)" :class="[
         'px-5 min-w-24 py-[2px] text-center font-Outfit font-bold transition-colors duration-200 rounded-lg',
         activeTabIndex === index
@@ -19,11 +21,16 @@
 
 <script lang="ts" setup>
 import { defineComponent, ref, provide, reactive } from 'vue'
+import useScrollDrag from '~/hooks/useScrollDrag';
 
 export interface TabItem {
   title: string;
   value: string | number;
 }
+
+const menu = templateRef('menu');
+
+const { startDragHandler, moveHandler, endDragHandler, isPressed } = useScrollDrag(menu)
 
 const props = defineProps({
   tabs: {

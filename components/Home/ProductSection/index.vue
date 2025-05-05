@@ -1,6 +1,6 @@
 <template>
   <section class="section relative z-50">
-    <SvgoHomeProductLeftCorner class="text-[100px] absolute left-0 top-0" filled></SvgoHomeProductLeftCorner>
+    <SvgoHomeProductLeftCorner class="text-[30px] pad:text-[60px] desktop:text-[80px] absolute left-0 top-0" filled></SvgoHomeProductLeftCorner>
     <div class="section-content">
       <SectionSubtitle title="產品資訊"></SectionSubtitle>
       <div class="showcases">

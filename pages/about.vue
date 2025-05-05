@@ -86,6 +86,11 @@
 definePageMeta({
   layout: 'page'
 })
+
+useHead({
+  title: '關於我們'
+})
+
 const bodyHeight = ref(0)
 const target = useTemplateRef<HTMLElement>('target')
 const parallax = reactive(useParallax(target))

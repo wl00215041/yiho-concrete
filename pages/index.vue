@@ -1,7 +1,7 @@
 <template>
   <div>
     <HomeHeader></HomeHeader>
-    <div class="carousel relative">
+    <div class="carousel relative mb-8 pad:mb-14 desktop:mb-[76px]">
       <HomeSlogan class="slogan-placement"></HomeSlogan>
       <HomeCarousel></HomeCarousel>
       <HomeAnnouncement></HomeAnnouncement>
@@ -22,7 +22,9 @@
 }
 
 
-
+:deep(section.carousel) {
+  @apply mb-6 pad:pl-[2.8125rem];
+}
 
 
 

@@ -73,6 +73,10 @@ definePageMeta({
   layout: 'page'
 })
 
+useHead({
+  title: '產品資訊'
+})
+
 interface TechniqueItem {
   name: string;
   value: string;

@@ -23,6 +23,11 @@
       </div>
       <div class="text-xl font-medium">施工運輸與現場使用</div>
     </div>
+    <div class="flex items-center gap-2">
+      <div class="flex justify-center ml-16 items-center w-10 h-10 rounded-full bg-[#0075C2] text-white font-bold text-xl">A6
+      </div>
+      <div class="text-xl font-medium">回收階段</div>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -35,6 +40,19 @@
       position: absolute;
       top: 100%;
       left: 20px;
+      width: 2px;
+      height: 100%;
+      background-color: #0075C2;
+      transform: translate(-50%, -50%);
+    }
+  }
+  > div:nth-last-child(2) {
+    @apply relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 84px;
       width: 2px;
       height: 100%;
       background-color: #0075C2;

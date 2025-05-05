@@ -5,7 +5,7 @@
       <div class="item" v-for="item in displayNews" :key="item.id">
         <div class="date hidden pad:inline-block">{{ item.date }}</div>
         <div class="tag" :class="item.class">{{ item.tag }}</div>
-        <div>
+        <div class="flex-1">
           <div class="date lg:hidden">{{ item.date }}</div>
           <div class="content">
             <a v-if="item.link" :href="item.link" :target="item.linkTarget">{{ item.content }}</a>

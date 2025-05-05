@@ -1,15 +1,11 @@
-import { PrismaClient } from "@prisma/client";
-import { envConfig } from "~/envConfig";
+// utils/prisma.ts
+import { PrismaClient } from '@prisma/client'
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
+let prisma: PrismaClient
 
-export const prisma =
-  globalForPrisma.prisma ||
-  new PrismaClient({
-    log:
-      envConfig.NODE_ENV === "development"
-        ? ["query", "error", "warn"]
-        : ["error"]
-  });
+// 確保只在伺服器端執行
+if (process.server) {
+  prisma = new PrismaClient()
+}
 
-if (envConfig.NODE_ENV !== "production") { globalForPrisma.prisma = prisma; }
+export default prisma

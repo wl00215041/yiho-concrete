@@ -17,8 +17,8 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   app: {
     head: {
-      title: '毅和實業',
-      titleTemplate: '%s - 預拌混凝土專家',
+      title: '預拌混凝土專家',
+      titleTemplate: '毅和實業 - %s',
       meta: [
         { name: 'description', content: '毅和實業成立於1993年9月26日，目前設有竹南港墘廠、大厝廠以及新竹寶山科園廠，持續以先進的設備，專業的技術，產製預拌混凝土，為客戶提供優質的服務。' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -58,7 +58,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
-    '@prisma/nuxt',
+    // '@prisma/nuxt',
     'nuxt-file-storage',
     '@sidebase/nuxt-auth',
     'nuxt-auth-utils',
@@ -112,5 +112,8 @@ export default defineNuxtConfig({
   },
   aos: {
     offset: 200
+  },
+  sitemap: {
+    exclude: ['/k-manager/**']
   }
 })

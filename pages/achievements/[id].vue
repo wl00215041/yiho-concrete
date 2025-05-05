@@ -1,5 +1,8 @@
 <template>
   <div>
+    <Head>
+      <Title>{{ data?.name || '' }}</Title>
+    </Head>
     <PageBanner image="/images/achievement-banner.png" title="工程實績" sub-title="Achievements" sub-title-color="#E8382F"></PageBanner>
     <PageSection :title="data?.name" icon-color="#E8382F">
       <AchievementContractInfo class="inline-block w-full pad:max-w-[579px] rounded-2xl mb-7" :location="data?.location"
@@ -11,7 +14,7 @@
           </template>
         </yiho-slide>
       </yiho-carousel>
-      <yiho-carousel v-bind="thumbnailsConfig"  v-model="currentSlide">
+      <yiho-carousel v-if="images.length > 1" v-bind="thumbnailsConfig"  v-model="currentSlide">
         <yiho-slide v-for="image in images" :key="image.id">
           <template #default="{ currentIndex, isActive }">
             <div :class="['thumbnail', { 'is-active': isActive }]" @click="slideTo(currentIndex)">
@@ -88,7 +91,6 @@ const config = {
   slideEffect: 'fade',
   mouseDrag: false,
   touchDrag: false,
-  height: 600,
 };
 
 const thumbnailsConfig = {

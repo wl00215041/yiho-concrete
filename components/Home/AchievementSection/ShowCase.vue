@@ -6,7 +6,7 @@
     </div>
     <div class="showcase-title" >
       <svgo-arrow-right class="showcase-arrow"></svgo-arrow-right>
-      <span>{{ title }}</span>
+      <span class="flex-1">{{ title }}</span>
     </div>
   </div>
 </template>

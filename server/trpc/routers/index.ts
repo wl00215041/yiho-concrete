@@ -1,11 +1,9 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from "~/server/prisma";
 import { publicProcedure, router } from '../trpc';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import managerRoute from './managerRoute';
 import products from '~/constants/products';
-
-const prisma = new PrismaClient()
 
 export const appRouter = router({
   productList: publicProcedure.query(async () => {
@@ -36,9 +34,51 @@ export const appRouter = router({
   getTop4Gallery: publicProcedure.query(async () => {
     return prisma.achievementGallery.findMany({ orderBy: { created_at: 'desc' }, include: { images: true }, take: 4 })
   }),
-  getGalleryByYear: publicProcedure.input(z.number()).query(async (opt) => {
-    const year = await prisma.achievementGalleryYear.findFirst({ where: { year: opt.input } })
-    return prisma.achievementGallery.findMany({ where: { fk_year_id: year?.id }, include: { images: true } })
+  getGalleryByYear: publicProcedure
+  .input(z.object({
+    year: z.number(),
+    page: z.number().default(1)  // 默認為第一頁
+  }))
+  .query(async (opt) => {
+    const page = opt.input.page;
+    const pageSize = 10;  // 每頁 10 筆數據
+    const skip = (page - 1) * pageSize;
+    
+    const year = await prisma.achievementGalleryYear.findFirst({ 
+      where: { year: opt.input.year } 
+    });
+    
+    if (!year && opt.input.year > 0) {
+      return {
+        data: [],
+        total: 0,
+        page: page,
+        pageSize: pageSize,
+        totalPages: 0
+      };
+    }
+    
+    const total = await prisma.achievementGallery.count({
+      where: { fk_year_id: year?.id }
+    });
+    
+    const totalPages = Math.ceil(total / pageSize);
+    
+    const data = await prisma.achievementGallery.findMany({
+      where: { fk_year_id: year?.id },
+      include: { images: true },
+      skip: skip,
+      take: pageSize,
+      orderBy: { created_at: 'desc' }
+    });
+    
+    return {
+      data: data,
+      total: total,
+      page: page,
+      pageSize: pageSize,
+      totalPages: totalPages
+    };
   }),
   getAchievementsByYear: publicProcedure.input(z.number()).query(async (opt) => {
     if (opt.input < 0) {

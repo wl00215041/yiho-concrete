@@ -46,14 +46,14 @@
       </div>
 
     </PageSection>
-    <PageSection class="mb-14" title="產品碳足跡" icon-color="#0075C2">
+    <PageSection title="產品碳足跡" icon-color="#0075C2">
       <div class="relative flex flex-col justify-center items-center mb-[60px]">
         <img src="/images/carbon-footprint-bg.svg" alt="carbon-footprint"
           class="w-full pad:max-w-[624px] pad:-mt-24 desktop:max-w-[793px] object-cover rounded-[20px] mb-[20px]">
       </div>
-      <div class="flex flex-col pad:flex-row justify-center gap-16">
+      <div class="flex flex-col pad:flex-row justify-center items-center pad:items-start gap-16">
         <EsgStepper />
-        <div>
+        <div class="w-full pad:w-auto">
           <div class="flex-1">
             <div class="pad:w-[446px] text-white font-bold text-center bg-[#0075C2] text-lg rounded-[20px] py-[10px]">
               碳足跡認證標準
@@ -72,15 +72,16 @@
       </div>
     </PageSection>
     <PageSection 
-    class="bg-[#ECECEC] py-[60px] h-[377px] -mb-[56px] relative overflow-hidden" 
+    class="pt-[60px] h-[377px] translate-y-[56px] relative overflow-hidden" 
     titleClass="text-white"
     title="節能優化" 
     icon-color="#fff">
     <!-- 使用絕對定位的背景圖片元素，而不是背景屬性 -->
-    <div 
-      class="absolute inset-0 bg-[url(/images/eco-system.jpeg)] bg-no-repeat bg-cover z-0"
-      :style="{ transform: `translateY(${parallaxY}px)` }">
-    </div>
+     <img src="/images/eco-system.jpeg" alt="eco-system" class="absolute rounded-t-[60px] inset-0 w-full h-full object-cover z-0 bg">
+    <!-- <div 
+      class="absolute rounded-t-[60px] inset-0 bg-[url(/images/eco-system.jpeg)] bg-no-repeat z-0"
+      >
+    </div> -->
     <!-- 內容在絕對定位的背景之上 -->
     <div class="relative z-10">
       <p class="max-w-[372px] text-white">毅和於 2025 年與專家合作，蒐集與分析能源使用數據，改善製程中能源消耗量、優化既有設備運作預計加裝感測設備等，進一步改善企業的碳排放量。</p>

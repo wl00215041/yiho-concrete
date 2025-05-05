@@ -1,5 +1,6 @@
 <template>
   <div class="relative pl-12 py-6 bg-[#E8382F] bg-opacity-10 text-[#333333] leading-[30px]">
+    <SvgoTwoDotted filled :fontControlled="false" class="absolute w-[16px] h-[66px] left-[22px] top-[-7px]"></SvgoTwoDotted>
     <div>基地位置： {{ location }}</div>
     <div v-if="product">使用產品： {{ product }}</div>
     <div>完工日期： {{ finishedDate }}</div>
