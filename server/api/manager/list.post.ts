@@ -21,13 +21,13 @@ export default defineEventHandler(async (event) => {
       const rows = worksheet?.getRows(2, worksheet.rowCount);
       const data = rows?.map((row) => {
         return {
-          name: row.getCell(1).value?.toString() || '',
-          manufacturer: row.getCell(2).value?.toString() || '',
+          name: row.getCell(1).value?.toString().trim() || '',
+          manufacturer: row.getCell(2).value?.toString().trim() || '',
           created_at: new Date().toISOString(),
           fk_year_id: year.id
   
         }
-      }) || []
+      }).filter((item) => item.name && item.manufacturer) || []
       await prisma.achievementItem.deleteMany()
       await prisma.achievementItem.createMany({
         data: data

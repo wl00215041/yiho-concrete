@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col items-center w-full" :style="{ '--bg-color': color }">
-    <div class="title after:hidden pad:after:inline-block relative h-16 mb-6 leading-[64px] text-3xl font-bold text-white text-center w-full bg-[var(--bg-color)]" :class="{ 'with-arrow': showArrow }">
-      減少污染</div>
+    <div class="title relative h-16 mb-6 leading-[64px] text-3xl font-bold text-white text-center w-full bg-[var(--bg-color)]" :class="{ 'with-arrow': showArrow }">
+      {{ title }}</div>
     <div class="max-w-[320px]">
-      毅和以減少空氣污染，率續更換六期排放標準的混凝土車，六期排放標準對柴油車的氮氧化物、懸浮微粒等污染物排放有更嚴格的限制，在污染排放方面更為環保。
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ defineProps({
 .title.with-arrow::after {
   content: '';
   position: absolute;
-  left: 100%;
+  left: calc(100%);
   width: 0;
   height: 0;
   border-style: solid;

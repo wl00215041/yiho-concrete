@@ -29,7 +29,7 @@ import { useDayjs } from '#dayjs'
 import { useConfirm } from '~/hooks/useConfirm';
 
 definePageMeta({
-  layout: 'manager',
+  layout: 'manager'
 })
 
 const dayjs = useDayjs()

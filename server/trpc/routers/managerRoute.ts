@@ -1,22 +1,19 @@
 import { TRPCError } from '@trpc/server';
-import { publicProcedure, router } from '../trpc';
+import { protectedProcedure, publicProcedure, router } from '../trpc';
 import prisma from "~/server/prisma";
 import { z } from 'zod';
 import { ServerFile } from "nuxt-file-storage";
 
-export const adminProcedure = publicProcedure.use(async (opts) => {
+export const adminProcedure = protectedProcedure.use(async (opts) => {
   const { ctx } = opts;
-  // if (!ctx.user?.isAdmin) {
-  //   throw new TRPCError({ code: 'UNAUTHORIZED' });
-  // }
-  // return opts.next({
-  //   ctx: {
-  //     user: ctx.user,
-  //   },
-  // });
+  
+  if (!ctx.session?.user?.email) {
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
+  }
+  
   return opts.next({
     ctx: {
-      user: { isAdmin: true },
+      user: ctx.session.user,
     },
   });
 });
@@ -94,8 +91,34 @@ export default router({
       return prisma.achievementItem.findMany({ where: { fk_year_id: year?.id } })
     }),
     getAchievementGalleryList: adminProcedure.input(Number).query(async (opts) => {
+      if (opts.input < 0) {
+        return prisma.achievementGallery.findMany({ where: { pinned_at: {
+          not: '',
+        } }, include: { images: true } })
+      }
+
       const year = await prisma.achievementGalleryYear.findFirst({ where: { year: opts.input } });
       return prisma.achievementGallery.findMany({ where: { fk_year_id: year?.id }, include: { images: true } })
+    }),
+    pinAchievementGallery: adminProcedure.input(z.object({ id: z.number() })).mutation(async (opts) => {
+      const gallery = await prisma.achievementGallery.findFirst({ where: { id: opts.input.id } });
+      if (!gallery) {
+        throw new TRPCError({ code: 'BAD_REQUEST', message: 'Gallery not found' });
+      }
+
+      if (!gallery.pinned_at) {
+        const count_of_pinned = await prisma.achievementGallery.count({ where: { pinned_at: { not: null } } });
+        if (count_of_pinned >= 4) {
+          throw new TRPCError({ code: 'BAD_REQUEST', message: 'You can only pin 4 galleries' });
+        }
+      }
+      
+      return prisma.achievementGallery.update({
+        where: { id: opts.input.id },
+        data: {
+          pinned_at: gallery.pinned_at ? null : new Date().toISOString()
+        }
+      })
     }),
     batchDeleteAchievements: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
       return prisma.achievementItem.deleteMany({ where: { id: { in: opts.input } } })

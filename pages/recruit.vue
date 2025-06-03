@@ -34,13 +34,17 @@
         </RecruitCard>
       </div>
     </PageSection>
-    <PageSection title="職缺資訊" icon-color="#E8382F">
+    <PageSection class="" title="職缺資訊" icon-color="#E8382F">
       <template #title>
         <div class="flex justify-between items-center">
           <span>職缺資訊</span>
-          <ContactButton type="mail" href="mailto:yiho470208@gmail.com">聯繫負責窗口</ContactButton>
+          <ContactButton class="hidden pad:inline-block" type="mail" href="mailto:yiho470208@gmail.com">聯繫負責窗口</ContactButton>
         </div>
       </template>
+      <div class="pad:hidden mb-8 text-center" >
+        <ContactButton class="inline-block" type="mail" href="mailto:yiho470208@gmail.com">聯繫負責窗口</ContactButton>
+      </div>
+
       <RecruitTable class="hidden pad:table"></RecruitTable>
       <RecruitList class="pad:hidden"></RecruitList>
     </PageSection>
@@ -54,7 +58,11 @@ definePageMeta({
 })
 
 useHead({
-  title: '精英招募'
+  title: '精英招募',
+  meta: [
+    { name: 'description', content: '混凝土產業徵才, 混凝土工程職缺, 預拌混凝土公司工作機會, 建材公司職涯發展, 混凝土公司人力招募, 台灣混凝土產業就業機會, 混凝土工廠徵人, 新竹混凝土公司職缺, 工程職缺｜混凝土廠' },
+    { name: 'keywords', content: '混凝土產業徵才, 混凝土工程職缺, 預拌混凝土公司工作機會, 建材公司職涯發展, 混凝土公司人力招募, 台灣混凝土產業就業機會, 混凝土工廠徵人, 新竹混凝土公司職缺, 工程職缺｜混凝土廠' }
+  ]
 })
 
 </script>

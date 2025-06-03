@@ -21,14 +21,18 @@
           </button>
         </div>
         <div class="flex flex-col pad:flex-row gap-8">
-          <div v-if="lg || !isListMode" class="relative pad:flex-[0.6] flex flex-col pad:grid pad:grid-cols-2 gap-8">
-            <a v-if="galleryList.data.value?.data.length" v-for="gallery in galleryList.data.value.data"
-              :href="`/achievements/${gallery.id}`">
-              <AchievementShowCase class="cursor-pointer"
-                :image="`/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`"
-                :title="gallery.name"></AchievementShowCase>
-            </a>
-            <NoData v-else></NoData>
+          <div v-if="lg || !isListMode" class="relative pad:flex-[0.6] flex flex-col">
+            <div class="pad:grid pad:grid-cols-2 gap-8  mb-9">
+              <a v-if="galleryList.data.value?.data.length" v-for="gallery in galleryList.data.value.data"
+                :href="`/achievements/${gallery.id}`">
+                <AchievementShowCase class="cursor-pointer"
+                  :image="`/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`"
+                  :title="gallery.name"></AchievementShowCase>
+              </a>
+              <NoData v-else></NoData>
+            </div>
+            <Pagination v-if="(galleryList.data.value?.total || 0) > 10" v-model="page" :items-per-page="10"
+              :total-items="galleryList.data.value?.total || 0"></Pagination>
           </div>
           <div v-if="lg || isListMode" class="flex-[0.4]">
             <AchievementTotalContract :total="list.data.value?.length || 0"></AchievementTotalContract>
@@ -39,8 +43,7 @@
           </div>
         </div>
       </TimeMenu>
-      <Pagination v-if="(galleryList.data.value?.total || 0) > 10" v-model="page" :items-per-page="10"
-        :total-items="galleryList.data.value?.total || 0"></Pagination>
+
     </PageSection>
 
   </div>

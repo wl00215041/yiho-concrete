@@ -14,9 +14,9 @@
             <SvgoCertification class="w-[50px] pad:w-[70px]" :fontControlled="false" filled />
           </template>
         </HomeProductSectionCard>
-        <HomeProductSectionCard @click="$router.push('/esg')" title="產品碳足跡">
+        <HomeProductSectionCard @click="$router.push('/esg')" title="環境永續">
           <template #icon>
-            <SvgoCo2FootPrint class="w-[37px] pad:w-[52px]" :fontControlled="false" filled />
+            <SvgoSustainability class="w-[37px] pad:w-[68px]" :fontControlled="false" filled />
           </template>
         </HomeProductSectionCard>
       </div>

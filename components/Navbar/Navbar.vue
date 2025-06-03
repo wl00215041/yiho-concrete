@@ -33,7 +33,7 @@
         <a href="https://www.facebook.com/p/%E6%AF%85%E5%92%8C%E5%AF%A6%E6%A5%AD-%E9%A0%90%E6%8B%8C%E6%B7%B7%E5%87%9D%E5%9C%9F%E5%B0%88%E5%AE%B6-100063971286601/?locale=zh_TW" target="_blank">
           <svgo-social-facebook class="social-icon" filled></svgo-social-facebook>
         </a>
-        <a href="">
+        <a href="https://line.me/ti/p/~@743uvgzm" target="_blank">
           <svgo-social-line class="social-icon" filled></svgo-social-line>
         </a>
       </div>
@@ -67,13 +67,14 @@ watch(
 }
 
 .nav-links {
-  @apply fixed desktop:relative top-20 desktop:top-0 left-0 right-0 lg:left-auto;
+  @apply fixed desktop:relative top-[93px] pad:top-[109px] desktop:top-0 left-0 right-0 lg:left-auto;
   @apply flex desktop:gap-8 lg:inline-flex flex-col desktop:flex-row lg:w-[18.75rem] desktop:w-auto;
-  @apply invisible desktop:visible bottom-0 bg-[#333333] desktop:bg-transparent bg-opacity-90 z-40 ;
+  @apply opacity-0 desktop:opacity-100 pointer-events-none desktop:pointer-events-auto bottom-0 bg-[#333333] desktop:bg-transparent bg-opacity-90 z-40;
+  @apply transition-all duration-300 ease-in-out;
 }
 
 .nav-links.open {
-  @apply visible;
+  @apply opacity-100 pointer-events-auto;
 }
 
 :deep(.nav-link) {

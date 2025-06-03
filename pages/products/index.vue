@@ -4,7 +4,7 @@
     </PageBanner>
     <PageSection class="mb-[60px]" title="產品類別" icon-color="#0075C2">
       <div class="grid grid-cols-1 pad:grid-cols-2 gap-8">
-        <ProductInfo :title="product.title" @click="$router.push({ name: 'products-id', params: { id: product.id } })"
+        <ProductInfo :href="`products/${product.id}`" :title="product.title" @click.prevent="$router.push({ name: 'products-id', params: { id: product.id } })"
           :image="product.imageUrl" v-for="product in products" :key="product.id">
           <pre class="text-wrap">
 {{ product.description }}
@@ -74,7 +74,11 @@ definePageMeta({
 })
 
 useHead({
-  title: '產品資訊'
+  title: '產品資訊',
+  meta: [
+    { name: 'description', content: '毅和, 毅和實業, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商, 混凝土廠商, 混凝土公司, 混凝土價格, 混凝土施工, 混凝土品質保證, 新竹預拌混凝土' },
+    { name: 'keywords', content: '毅和, 毅和實業, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商, 混凝土廠商, 混凝土公司, 混凝土價格, 混凝土施工, 混凝土品質保證, 新竹預拌混凝土' }
+  ]
 })
 
 interface TechniqueItem {

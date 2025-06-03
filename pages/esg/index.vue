@@ -27,10 +27,10 @@
       </div>
     </PageSection>
     <PageSection class="mb-14" title="設備更新" icon-color="#0075C2">
-      <div class="flex flex-col pad:flex-row gap-5 pad:gap-0">
-        <EsgTitleStep color="#80BAE0" showArrow></EsgTitleStep>
-        <EsgTitleStep color="#4097D1" showArrow></EsgTitleStep>
-        <EsgTitleStep color="#0075C2"></EsgTitleStep>
+      <div class="esg-title-stepper flex flex-col pad:flex-row gap-5 pad:gap-0">
+        <EsgTitleStep color="#80BAE0" title="減少污染" showArrow>毅和以減少空氣污染，率續更換六期排放標準的混凝土車，六期排放標準對柴油車的氮氧化物、懸浮微粒等污染物排放有更嚴格的限制，在污染排放方面更為環保。</EsgTitleStep>
+        <EsgTitleStep color="#4097D1" title="降低能耗" showArrow>老舊設備通常能耗較高，能源轉換效率低下，產生相同效能的情況下，需要消耗更多的能源。毅和三廠於2024 - 2025 陸續更新廠內主要生產機設備，除提高生產效率，並減少老舊設備修繕，並增加設備持續性，合理的廠內設備更新是實現企業永續發展和環境保護的重要途徑。</EsgTitleStep>
+        <EsgTitleStep color="#0075C2" title="優化製程" showArrow>毅和於2024年底規劃寶山科園廠擴廠，預計優化公司製程，邁向砂石不落地願景，減少環境負擔，善盡企業社會責任。</EsgTitleStep>
       </div>
     </PageSection>
     <PageSection class="bg-[#ECECEC] py-[60px] mb-14" title="規劃執行" icon-color="#0075C2">
@@ -91,7 +91,12 @@
 </template>
 <script setup lang="ts">
 import { EsgTitleStep, SvgoArmWrestling, SvgoArrows, SvgoCo2Cloud, SvgoHeart } from '#components';
-
+useHead({
+  meta: [
+    { name: 'description', content: '混凝土產業永續發展, 混凝土環保製程, 建材業碳排放減量, 混凝土再生利用, 預拌混凝土環保方案, 建築產業 ESG 實踐, 綠色混凝土技術, 環保混凝土供應商, 永續建材供應鏈管理, 廢水回收｜混凝土製程' },
+    { name: 'keywords', content: '混凝土產業永續發展, 混凝土環保製程, 建材業碳排放減量, 混凝土再生利用, 預拌混凝土環保方案, 建築產業 ESG 實踐, 綠色混凝土技術, 環保混凝土供應商, 永續建材供應鏈管理, 廢水回收｜混凝土製程' }
+  ]
+})
 
 const { $trpcClient } = useNuxtApp()
 const route = useRoute()
@@ -130,3 +135,18 @@ const parallaxY = computed(() => {
 })
 
 </script>
+<style scoped lang="scss">
+
+:deep(.esg-title-stepper > div) {
+  .title {
+    @apply w-[calc(100%-30px)] pad:w-full;
+  }
+}
+
+:deep(.esg-title-stepper > div:last-child) {
+  .title::after {
+    @apply pad:hidden;
+  }
+}
+
+</style>

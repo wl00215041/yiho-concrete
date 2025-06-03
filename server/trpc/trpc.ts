@@ -10,15 +10,16 @@
 import { TRPCError, initTRPC } from "@trpc/server";
 import { Context } from "~/server/trpc/context";
 
-const t = initTRPC.context<Context>().create({
-  // transformer: superjson,
-});
+const t = initTRPC.context<Context>().create();
 
 /**
  * Authentication middleware
  **/
 const authMiddleware = t.middleware(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) { throw new TRPCError({ code: "UNAUTHORIZED" }); }
+  if (!ctx?.session || !ctx?.session?.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  
   return next({
     ctx: {
       session: { ...ctx.session, user: ctx.session.user }

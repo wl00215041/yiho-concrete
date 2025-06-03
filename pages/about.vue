@@ -52,33 +52,37 @@
       </TimelineItem>
       <TimelineItem year="1999" title="港墘廠損壞">
         <p class="text-sm text-[#585858]">民國88年  921大地震</p>
-        <p class="text-sm text-[#585858] w-[248px]">廠區設備全毀停業半年，全廠重新修復，重新評估廠房合法性</p>
+        <p class="text-sm text-[#585858] w-[280px]">廠區設備全毀停業半年，全廠重新修復，重新評估廠房合法性</p>
       </TimelineItem>
       <TimelineItem year="2001" title="竹南大厝廠啟用">
         <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
-        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+        <p class="text-sm text-[#585858] w-[280px]">標準3米半水平單軸拌合設備一套 (合法工業區佔地400坪)</p>
       </TimelineItem>
       <TimelineItem year="2005" title="新竹寶山科學廠啟用">
-        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
-        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+        <p class="text-sm text-[#585858]">民國104年 廠房3.0</p>
+        <p class="text-sm text-[#585858] w-[280px]">標準3米半水平單軸拌合設備兩套(合法工業區佔地800坪)</p>
       </TimelineItem>
 
 
-      <TimelineItem year="2005" title="新竹寶山科學廠啟用">
-        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
-        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      <TimelineItem year="2023" title="竹南港墘廠重建">
+        <p class="text-sm text-[#585858]">民國112年 創立30年</p>
+        <p class="text-sm text-[#585858] w-[280px]">重新更換標準3米半水平雙軸拌合設備一套</p>
       </TimelineItem>
 
-      <TimelineItem year="2005" title="新竹寶山科學廠啟用">
-        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
-        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      <TimelineItem year="2024" title="寶山廠設備修繕">
+        <p class="text-sm text-[#585858]">民國114年</p>
+        <p class="text-sm text-[#585858] w-[280px]">檢修全廠設備，著手規劃倉儲設備</p>
       </TimelineItem>
 
-      <TimelineItem year="2005" title="新竹寶山科學廠啟用">
-        <p class="text-sm text-[#585858]">民國91年 廠房2.0</p>
-        <p class="text-sm text-[#585858] w-[204px]">標準3米半水平單軸拌合設備一套 (合法工業佔地400坪)</p>
+      <TimelineItem year="2024" title="竹南大厝廠設備修繕">
+        <p class="text-sm text-[#585858]">民國114年</p>
+        <p class="text-sm text-[#585858] w-[280px]">修繕拌合設備</p>
       </TimelineItem>
-
+      <TimelineItem year="2025" title="企業轉型">
+        <p class="text-sm text-[#585858]">民國114年 廠房3.1</p>
+        <p class="text-sm text-[#585858] w-[280px]">製程精進、降低損耗倉儲自動化</p>
+        <p class="text-sm text-[#585858] w-[280px]">陸續申請優質混凝土標章及碳足跡認證標章，提供品質及環保雙標章認證</p>
+      </TimelineItem>
     </Timeline>
   </div>
 </template>
@@ -88,7 +92,11 @@ definePageMeta({
 })
 
 useHead({
-  title: '關於我們'
+  title: '關於我們',
+  meta: [
+    { name: 'description', content: '毅和, 毅和實業, 毅和實業公司簡介, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商' },
+    { name: 'keywords', content: '毅和, 毅和實業, 毅和實業公司簡介, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商' }
+  ]
 })
 
 const bodyHeight = ref(0)

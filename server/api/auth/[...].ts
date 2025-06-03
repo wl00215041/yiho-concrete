@@ -1,9 +1,35 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import { NuxtAuthHandler } from '#auth'
 import prisma from "~/server/prisma";
+
 const Provider = (CredentialsProvider as any).default as typeof CredentialsProvider
+
 export default NuxtAuthHandler({
-  secret: 'yiho-concrete',
+  secret: useRuntimeConfig().authSecret || 'yiho-concrete',
+  debug: process.env.NODE_ENV === 'development',
+  pages: {
+    signIn: '/k-manager/signin',
+    error: '/k-manager/signin',
+  },
+  trustHost: true,
+  callbacks: {
+    async jwt({ token, user }: any) {
+      console.log('[Auth Handler] JWT callback - token:', !!token, 'user:', !!user)
+      if (user) {
+        token.id = user.id
+        token.email = user.email
+      }
+      return token
+    },
+    async session({ session, token }: any) {
+      console.log('[Auth Handler] Session callback - session:', !!session, 'token:', !!token)
+      if (token && session?.user) {
+        session.user.id = token.id as string
+        session.user.email = token.email as string
+      }
+      return session
+    }
+  },
   providers: [
     Provider({
       // adapter: PrismaAdapter(prisma),

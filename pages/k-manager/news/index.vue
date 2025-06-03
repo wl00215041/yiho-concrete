@@ -23,7 +23,7 @@
 import { useDayjs } from '#dayjs'
 
 definePageMeta({
-  layout: 'manager',
+  layout: 'manager'
 })
 
 const dayjs = useDayjs()

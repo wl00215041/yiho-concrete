@@ -46,12 +46,18 @@
 </template>
 
 <script setup lang="ts">
+
 const route = useRoute()
 const { $trpcClient } = useNuxtApp()
 
 const { data: product, execute, refresh } = await $trpcClient.productById.useQuery(Number(route.params.id))
 // execute()
-
+useHead({
+  meta: [
+    { name: 'description', content: `毅和, 毅和實業, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商, 混凝土廠商, 混凝土公司, 混凝土價格, 混凝土施工, 混凝土品質保證, 新竹預拌混凝土 - ${product.value?.title} - ${product.value?.description.replace(' ', '').replace('\n', '').trim()}` },
+    { name: 'keywords', content: `毅和, 毅和實業, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商, 混凝土廠商, 混凝土公司, 混凝土價格, 混凝土施工, 混凝土品質保證, 新竹預拌混凝土` }
+  ]
+})
 const displayTechniqueSpec = computed(() => {
   return product.value?.specifications?.filter((spec) => spec.value !== '') || []
 })

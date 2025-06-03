@@ -48,7 +48,7 @@ import type { ClientFile } from 'nuxt-file-storage';
 const dayjs = useDayjs()
 
 definePageMeta({
-  layout: 'manager',
+  layout: 'manager'
 })
 const { $trpcClient } = useNuxtApp()
 

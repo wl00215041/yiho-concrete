@@ -6,7 +6,7 @@ const envSchema = z.object({
     .default("development"),
   DATABASE_URL: z.string().url().default('file:./dev.db'),
   AUTH_NUXT_SECRET: z.string().nonempty().min(16).default('yiho-concrete-sam'),
-  AUTH_ORIGIN: z.string().url().default("http://localhost:3500"),
+  AUTH_ORIGIN: z.string().url().default(process.env.NODE_ENV === 'production' ? "https://yiho-concrete.com.tw" : "http://localhost:3500"),
 });
 
 const parsedSchema = envSchema.safeParse(process.env);

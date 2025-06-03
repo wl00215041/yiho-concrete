@@ -1,5 +1,6 @@
 <template>
   <ManagerPage title="工程實績">
+    <Toast></Toast>
     <ManagerRecordPage>
       <template #sidebar>
         <ManagerRecordSidebar showAction v-model:selected="selectedYear" :items="yearList">
@@ -26,7 +27,7 @@
           </div>
         </div>
         <div class="flex-1 overflow-y-auto" v-if="years?.length">
-          <ManagerGallery v-model:selected-galleries="selectedGalleries" @onEdit="onEdit" class="p-6 " :gallery-list="galleryList || []"></ManagerGallery>
+          <ManagerGallery v-model:selected-galleries="selectedGalleries" @onEdit="onEdit" @onPin="onPin" class="p-6 " :gallery-list="galleryList || []"></ManagerGallery>
         </div>
         <ManagerNoData v-else></ManagerNoData>
       </div>
@@ -38,11 +39,12 @@
 <script setup lang="ts">
 import type { ClientFile } from 'nuxt-file-storage';
 import { useConfirm } from '~/hooks/useConfirm';
+import { useToast } from '~/hooks/useToast';
 
 const { $trpcClient } = useNuxtApp()
+const toast = useToast();
 definePageMeta({
   layout: 'manager',
-  // middleware: 'sidebase-auth',
   // auth: {
   //   unauthenticatedOnly: false,
   //   navigateUnauthenticatedTo: '/k-manager/signin'
@@ -58,7 +60,8 @@ const { data: years, execute, refresh } = await $trpcClient.manager.getAchieveme
 const selectedYear = ref(years.value?.length ? years.value[0].year : 0)
 const { data: galleryList, refresh: galleryRefresh } = await $trpcClient.manager.getAchievementGalleryList.useQuery(selectedYear)
 const yearList = computed(() => {
-  return years.value?.map((year) => ({ name: year.year.toString(), value: year.year }))
+  const pin = [ { name: '顯示於首頁', value: -1 } ]
+  return pin.concat(years.value?.map((year) => ({ name: year.year.toString(), value: year.year })) || [])
 })
 
 const selectedGalleries = ref<number[]>([])
@@ -70,8 +73,6 @@ const { opened, open, onConfirm } = useConfirm({
   }
 })
 
-
-
 const onAdd = async (data: {location: string; name: string, product: string, files: ClientFile[]}) => {
   await $fetch('/api/manager/gallery', {
     method: 'POST',
@@ -82,6 +83,15 @@ const onAdd = async (data: {location: string; name: string, product: string, fil
   })
   galleryRefresh()
   isAddModelOpened.value = false
+}
+
+const onPin = async (id: number) => {
+  try {
+    await $trpcClient.manager.pinAchievementGallery.mutate({ id: id })
+    galleryRefresh()  
+  } catch (error) {
+    toast.error('釘選不能超過 4 個')
+  }
 }
 
 const onEdit = async (id: number) => {

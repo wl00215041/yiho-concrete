@@ -10,9 +10,9 @@
     </PageSection>
     <PageSection title="廠區資訊" icon-color="#0075C2">
       <Tabs>
-        <LocationLocation1></LocationLocation1>
-        <LocationLocation2></LocationLocation2>
         <LocationLocation3></LocationLocation3>
+        <LocationLocation2></LocationLocation2>
+        <LocationLocation1></LocationLocation1>
       </Tabs>
     </PageSection>
   </div>

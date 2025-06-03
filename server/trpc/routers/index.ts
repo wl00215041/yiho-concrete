@@ -32,7 +32,7 @@ export const appRouter = router({
     }
   }),
   getTop4Gallery: publicProcedure.query(async () => {
-    return prisma.achievementGallery.findMany({ orderBy: { created_at: 'desc' }, include: { images: true }, take: 4 })
+    return prisma.achievementGallery.findMany({ where: { pinned_at: { not: '' } }, orderBy: { pinned_at: 'desc' }, include: { images: true }, take: 4 })
   }),
   getGalleryByYear: publicProcedure
   .input(z.object({
@@ -85,6 +85,9 @@ export const appRouter = router({
       return prisma.achievementItem.findMany()
     }
     const year = await prisma.achievementYear.findFirst({ where: { year: opt.input } })
+    if (!year) {
+      return []
+    }
     return prisma.achievementItem.findMany({ where: { fk_year_id: year?.id } })
   }),
   getAllAchievementYears: publicProcedure.query(async () => {

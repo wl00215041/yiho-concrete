@@ -30,6 +30,10 @@ const links = computed(() => {
       url: '/location',
       items: [
         {
+          title: '寶山科技園區',
+          url: '/location'
+        },
+        {
           title: '港墘廠',
           url: '/location'
         },
@@ -37,10 +41,6 @@ const links = computed(() => {
           title: '大厝廠',
           url: '/location'
         },
-        {
-          title: '寶山科技園區',
-          url: '/location'
-        }
       ]
     },
     {
@@ -58,7 +58,7 @@ const links = computed(() => {
       url: '/products',
       items: [
         {
-          title: '預伴混泥土',
+          title: '預拌混泥土',
           url: '/products'
         },
         {
@@ -66,8 +66,8 @@ const links = computed(() => {
           url: '/products'
         },
         {
-          title: '產品炭足跡',
-          url: '/products'
+          title: '環境永續',
+          url: '/esg'
         }
       ]
     },

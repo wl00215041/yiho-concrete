@@ -22,11 +22,11 @@
       <span class="font-bold mr-4 text-[#333333]">廠房照片</span>
     </div>
     <div class="grid grid-cols-1 pad:grid-cols-3 gap-6">
-      <img class="rounded-[10px] aspect-[375/266] object-cover object-bottom" src="/images/factory/SC005836.jpg" alt="1" />
-      <img class="rounded-[10px] aspect-[375/266] object-cover object-bottom" src="/images/factory/SC005882.jpg" alt="1" />
-      <img class="rounded-[10px] aspect-[375/266] object-cover object-bottom" src="/images/factory/SC005899.jpg" alt="1" />
-      <img class="rounded-[10px] aspect-[375/266] object-cover object-bottom" src="/images/factory/SC005914.jpg" alt="1" />
-      <img class="rounded-[10px] aspect-[375/266] object-cover object-bottom" src="/images/factory/SC005932.jpg" alt="1" />
+      <img class="rounded-[10px] w-full" src="/images/factory/SC005836.jpg" alt="1" />
+      <img class="rounded-[10px] w-full" src="/images/factory/SC005882.jpg" alt="1" />
+      <img class="rounded-[10px] w-full" src="/images/factory/SC005899.jpg" alt="1" />
+      <img class="rounded-[10px] w-full" src="/images/factory/SC005914.jpg" alt="1" />
+      <img class="rounded-[10px] w-full" src="/images/factory/SC005932.jpg" alt="1" />
     </div>
   </TabsTab>
 </template>

@@ -3,12 +3,13 @@ import { envConfig } from "./envConfig"
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-09',
-  ssr: false,
+  ssr: true,
   devServer: {
     port: 3500,
   },
   runtimeConfig: {
     // server-side
+    authSecret: envConfig.AUTH_NUXT_SECRET,
     NUXT_AUTH_ORIGIN: envConfig.AUTH_ORIGIN,
     public: {
       // client-side
@@ -30,6 +31,10 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'page', mode: 'out-in' }
+  },
+  site: {
+    name: '毅和實業',
+    url: 'https://yiho-concrete.com.tw',
   },
   vite: {
     resolve: {
@@ -91,29 +96,28 @@ export default defineNuxtConfig({
   },
   auth: {
     isEnabled: true,
-    // baseURL: '/api/auth',
-    // isEnabled: true,
-    disableServerSideAuth: true,
-    globalAppMiddleware: false,
-    // originEnvKey: 'AUTH_ORIGIN',
-    // baseURL: '/api/auth',
-    baseURL: 'http://localhost:3500/api/auth',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://yiho-concrete.com.tw' : 'http://localhost:3500',
+    disableServerSideAuth: false, // 啟用服務端 auth 以支持 tRPC
+    globalAppMiddleware: {
+      isEnabled: false, // 禁用全域中間件，使用自定義重定向
+    },
     provider: {
       type: 'authjs',
       defaultProvider: 'credentials',
-      trustHost: false,
+      trustHost: true, // 生產環境需要信任 host
       addDefaultCallbackUrl: true
     },
-    
     sessionRefresh: {
-      enablePeriodically: true,
-      enableOnWindowFocus: true,
+      enablePeriodically: false,
+      enableOnWindowFocus: false, // 在 SSR 模式下禁用以避免問題
     },
   },
   aos: {
     offset: 200
   },
   sitemap: {
-    exclude: ['/k-manager/**']
+    exclude: ['/k-manager/**'],
+    sources: ['/api/__sitemap__/urls'],
+    autoLastmod: true,
   }
 })
