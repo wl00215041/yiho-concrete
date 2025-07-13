@@ -5,7 +5,7 @@ import prisma from "~/server/prisma";
 const Provider = (CredentialsProvider as any).default as typeof CredentialsProvider
 
 export default NuxtAuthHandler({
-  secret: useRuntimeConfig().authSecret || 'yiho-concrete',
+  secret: useRuntimeConfig().authSecret || 'yiho-concrete-sam',
   debug: process.env.NODE_ENV === 'development',
   pages: {
     signIn: '/k-manager/signin',
@@ -28,6 +28,32 @@ export default NuxtAuthHandler({
         session.user.email = token.email as string
       }
       return session
+    }
+  },
+  events: {
+    async signOut() {
+      console.log('[Auth Handler] User signed out')
+    },
+    async session({ session }) {
+      console.log('[Auth Handler] Session accessed:', !!session)
+    }
+  },
+  logger: {
+    error(code: string, metadata: any) {
+      // 過濾掉 JWT 解密錯誤，避免污染日誌
+      if (code === 'JWT_SESSION_ERROR') {
+        console.log('[Auth Handler] Blocked malicious JWT attempt')
+        return
+      }
+      console.error('[Auth Handler] Error:', code, metadata)
+    },
+    warn(code: any) {
+      console.warn('[Auth Handler] Warning:', code)
+    },
+    debug(code: any, metadata: any) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[Auth Handler] Debug:', code, metadata)
+      }
     }
   },
   providers: [
