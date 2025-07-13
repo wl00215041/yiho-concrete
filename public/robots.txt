@@ -1,1 +1,35 @@
+User-agent: *
+Allow: /
 
+# 禁止爬取管理後台
+Disallow: /k-manager/
+Disallow: /api/auth/
+Disallow: /api/manager/
+
+# 允許爬取主要頁面
+Allow: /
+Allow: /about
+Allow: /products/
+Allow: /achievements/
+Allow: /location
+Allow: /recruit
+Allow: /esg
+
+# 網站地圖位置
+Sitemap: https://yiho-concrete.com.tw/sitemap.xml
+
+# 爬取延遲 (秒)
+Crawl-delay: 1
+
+# 特定搜尋引擎設定
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2

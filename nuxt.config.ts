@@ -22,11 +22,68 @@ export default defineNuxtConfig({
       titleTemplate: '毅和實業 - %s',
       meta: [
         { name: 'description', content: '毅和實業成立於1993年9月26日，目前設有竹南港墘廠、大厝廠以及新竹寶山科園廠，持續以先進的設備，專業的技術，產製預拌混凝土，為客戶提供優質的服務。' },
+        { name: 'keywords', content: '預拌混凝土,混凝土供應商,竹南混凝土,新竹混凝土,科學園區混凝土,毅和實業,港墘廠,寶山科園廠' },
+        { name: 'author', content: '毅和實業股份有限公司' },
+        { name: 'robots', content: 'index, follow' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'theme-color', content: '#ffffff' }
+        { name: 'theme-color', content: '#ffffff' },
+        { name: 'format-detection', content: 'telephone=no' },
+        // Open Graph Meta Tags
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: '毅和實業' },
+        { property: 'og:title', content: '毅和實業 - 預拌混凝土專家' },
+        { property: 'og:description', content: '毅和實業成立於1993年，專業生產預拌混凝土，服務竹南、新竹地區，設有港墘廠、大厝廠及寶山科園廠，提供優質混凝土產品與服務。' },
+        { property: 'og:url', content: 'https://yiho-concrete.com.tw' },
+        { property: 'og:image', content: 'https://yiho-concrete.com.tw/images/about.png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:locale', content: 'zh_TW' },
+        // Twitter Card Meta Tags
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: '毅和實業 - 預拌混凝土專家' },
+        { name: 'twitter:description', content: '毅和實業成立於1993年，專業生產預拌混凝土，服務竹南、新竹地區，設有港墘廠、大厝廠及寶山科園廠，提供優質混凝土產品與服務。' },
+        { name: 'twitter:image', content: 'https://yiho-concrete.com.tw/images/about.png' },
+        // Business Information
+        { name: 'geo.region', content: 'TW-HSZ' },
+        { name: 'geo.placename', content: '新竹縣竹南鎮' },
+        { name: 'geo.position', content: '24.6838;120.8789' },
+        { name: 'ICBM', content: '24.6838, 120.8789' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'canonical', href: 'https://yiho-concrete.com.tw' },
+        { rel: 'alternate', hreflang: 'zh-tw', href: 'https://yiho-concrete.com.tw' },
+        { rel: 'alternate', hreflang: 'x-default', href: 'https://yiho-concrete.com.tw' }
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "毅和實業股份有限公司",
+            "alternateName": "毅和實業",
+            "url": "https://yiho-concrete.com.tw",
+            "logo": "https://yiho-concrete.com.tw/images/about.png",
+            "description": "毅和實業成立於1993年，專業生產預拌混凝土，服務竹南、新竹地區，設有港墘廠、大厝廠及寶山科園廠，提供優質混凝土產品與服務。",
+            "foundingDate": "1993-09-26",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "TW",
+              "addressRegion": "新竹縣",
+              "addressLocality": "竹南鎮",
+              "streetAddress": "港墘里12鄰港墘路295號"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "areaServed": "TW"
+            },
+            "sameAs": [
+              "https://www.facebook.com/p/%E6%AF%85%E5%92%8C%E5%AF%A6%E6%A5%AD-%E9%A0%90%E6%8B%8C%E6%B7%B7%E5%87%9D%E5%9C%9F%E5%B0%88%E5%AE%B6-100063971286601/?locale=zh_TW",
+            ]
+          })
+        }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -48,6 +105,12 @@ export default defineNuxtConfig({
   },
   vue: {
     propsDestructure: true
+  },
+  nitro: {
+    compressPublicAssets: true,
+  },
+  experimental: {
+    payloadExtraction: false
   },
   build: {
     transpile: ['trpc-nuxt']
@@ -119,5 +182,54 @@ export default defineNuxtConfig({
     exclude: ['/k-manager/**'],
     sources: ['/api/__sitemap__/urls'],
     autoLastmod: true,
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date().toISOString(),
+    },
+    urls: [
+      {
+        loc: '/',
+        changefreq: 'daily',
+        priority: 1.0,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: '/about',
+        changefreq: 'monthly',
+        priority: 0.8,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: '/products',
+        changefreq: 'weekly',
+        priority: 0.9,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: '/achievements',
+        changefreq: 'weekly',
+        priority: 0.8,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: '/location',
+        changefreq: 'monthly',
+        priority: 0.7,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: '/recruit',
+        changefreq: 'weekly',
+        priority: 0.6,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: '/esg',
+        changefreq: 'monthly',
+        priority: 0.7,
+        lastmod: new Date().toISOString()
+      }
+    ]
   }
 })

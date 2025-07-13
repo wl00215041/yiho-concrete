@@ -1,5 +1,13 @@
 <template>
   <div>
+    <SeoHead
+      title="菁英招募"
+      description="毅和實業誠徵優秀人才加入我們的團隊！三十年穩定發展的混凝土專業公司，提供技術創新環境、人情味企業文化，歡迎有志於混凝土產業的專業人士。"
+      keywords="毅和實業招募,混凝土產業徵才,預拌混凝土工作機會,新竹工作職缺,建材公司職涯,混凝土工程師,工廠作業員,品管人員,業務代表,混凝土技術人員"
+      url="https://yiho-concrete.com.tw/recruit"
+      image="https://yiho-concrete.com.tw/images/recruit-banner.png"
+    />
+    
     <PageBanner image="/images/recruit-banner.png" title="菁英招募" sub-title="Recruit" sub-title-color="#E8382F">
     </PageBanner>
     <PageSection class="mb-8" title="經營理念" icon-color="#E8382F">
@@ -57,11 +65,125 @@ definePageMeta({
   layout: 'page'
 })
 
+// 招募頁面結構化資料
 useHead({
-  title: '精英招募',
-  meta: [
-    { name: 'description', content: '混凝土產業徵才, 混凝土工程職缺, 預拌混凝土公司工作機會, 建材公司職涯發展, 混凝土公司人力招募, 台灣混凝土產業就業機會, 混凝土工廠徵人, 新竹混凝土公司職缺, 工程職缺｜混凝土廠' },
-    { name: 'keywords', content: '混凝土產業徵才, 混凝土工程職缺, 預拌混凝土公司工作機會, 建材公司職涯發展, 混凝土公司人力招募, 台灣混凝土產業就業機會, 混凝土工廠徵人, 新竹混凝土公司職缺, 工程職缺｜混凝土廠' }
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "title": "毅和實業菁英招募",
+        "description": "毅和實業誠徵優秀人才加入我們的團隊！三十年穩定發展的混凝土專業公司，提供技術創新環境、人情味企業文化。",
+        "datePosted": new Date().toISOString(),
+        "validThrough": new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(), // 90天後
+        "employmentType": ["FULL_TIME", "PART_TIME"],
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "毅和實業股份有限公司",
+          "sameAs": "https://yiho-concrete.com.tw",
+          "logo": "https://yiho-concrete.com.tw/images/about.png"
+        },
+        "jobLocation": [
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "竹南鎮",
+              "addressRegion": "新竹縣",
+              "addressCountry": "TW",
+              "streetAddress": "港墘里12鄰港墘路295號"
+            }
+          },
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "寶山鄉",
+              "addressRegion": "新竹縣",
+              "addressCountry": "TW",
+              "streetAddress": "山湖村園區二路23號"
+            }
+          }
+        ],
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "TWD",
+          "value": {
+            "@type": "QuantitativeValue",
+            "minValue": 30000,
+            "maxValue": 80000,
+            "unitText": "MONTH"
+          }
+        },
+        "industry": "混凝土製造業",
+        "occupationalCategory": "建築與工程",
+        "qualifications": "歡迎有志於混凝土產業的專業人士",
+        "responsibilities": "參與預拌混凝土生產、品質管控、客戶服務等工作",
+        "benefits": "穩定發展環境、技術創新機會、人情味企業文化、永續成長平台",
+        "workHours": "依職位而定",
+        "url": "https://yiho-concrete.com.tw/recruit"
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "毅和實業股份有限公司",
+        "description": "三十年穩定發展的預拌混凝土專業公司",
+        "url": "https://yiho-concrete.com.tw",
+        "logo": "https://yiho-concrete.com.tw/images/about.png",
+        "foundingDate": "1993-09-26",
+        "numberOfEmployees": "50-100",
+        "industry": "預拌混凝土製造",
+        "organizationCategory": "建材製造業",
+        "knowsAbout": [
+          "預拌混凝土生產",
+          "建築材料供應",
+          "工程技術服務",
+          "品質管控"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "職業發展機會",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "JobPosting",
+                "name": "穩定發展環境",
+                "description": "三十年來從竹南到新竹逐步擴展，技術先進品質可靠"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "JobPosting",
+                "name": "技術創新機會",
+                "description": "不斷精進設備與生產工法，確保最高標準"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "JobPosting",
+                "name": "人情味企業文化",
+                "description": "像家人一樣互相扶持，讓每個人都能發揮所長"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "JobPosting",
+                "name": "永續成長平台",
+                "description": "持續前行，打造更專業更高品質的混凝土品牌"
+              }
+            }
+          ]
+        }
+      })
+    }
   ]
 })
 

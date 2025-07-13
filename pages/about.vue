@@ -1,5 +1,13 @@
 <template>
   <div ref="target">
+    <SeoHead
+      title="關於我們"
+      description="毅和實業成立於1993年，從柑仔店精神出發的混凝土專家。設有竹南港墘廠、大厝廠及新竹寶山科園廠，三十年來專業產製預拌混凝土，承諾每一米都是我們的責任。"
+      keywords="毅和實業,關於毅和,公司簡介,混凝土專家,預拌混凝土廠商,竹南港墘廠,寶山科園廠,大厝廠,混凝土供應商歷史,企業文化"
+      url="https://yiho-concrete.com.tw/about"
+      image="https://yiho-concrete.com.tw/images/about-banner.png"
+    />
+    
     <PageBanner image="/images/about-banner.png" title="關於我們" sub-title="About Us" sub-title-color="#E8382F"></PageBanner>
     <PageSection title="從柑仔店來的混凝土專家" icon-color="#E8382F">
       <div class="flex flex-col gap-6 max-w-[777px] text-[#585858] mb-14">
@@ -91,11 +99,85 @@ definePageMeta({
   layout: 'page'
 })
 
+// 公司歷史結構化資料
 useHead({
-  title: '關於我們',
-  meta: [
-    { name: 'description', content: '毅和, 毅和實業, 毅和實業公司簡介, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商' },
-    { name: 'keywords', content: '毅和, 毅和實業, 毅和實業公司簡介, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商' }
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "關於毅和實業",
+        "description": "毅和實業成立於1993年，從柑仔店精神出發的混凝土專家。設有竹南港墘廠、大厝廠及新竹寶山科園廠，三十年來專業產製預拌混凝土。",
+        "url": "https://yiho-concrete.com.tw/about",
+        "mainEntity": {
+          "@type": "Organization",
+          "name": "毅和實業股份有限公司",
+          "foundingDate": "1993-09-26",
+          "founder": {
+            "@type": "Person",
+            "name": "林慶波"
+          },
+          "description": "從柑仔店精神出發的混凝土專家，承諾每一米都是我們的責任",
+          "numberOfEmployees": "50-100",
+          "industry": "預拌混凝土製造",
+          "location": [
+            {
+              "@type": "Place",
+              "name": "竹南港墘廠",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "TW",
+                "addressRegion": "新竹縣",
+                "addressLocality": "竹南鎮",
+                "streetAddress": "港墘里12鄰港墘路295號"
+              }
+            },
+            {
+              "@type": "Place",
+              "name": "新竹寶山科園廠",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "TW",
+                "addressRegion": "新竹縣",
+                "addressLocality": "寶山鄉",
+                "streetAddress": "山湖村園區二路23號"
+              }
+            }
+          ],
+          "makesOffer": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "priceCurrency": "TWD",
+            "seller": {
+              "@type": "Organization",
+              "name": "毅和實業股份有限公司"
+            },
+            "itemOffered": {
+              "@type": "Product",
+              "name": "預拌混凝土",
+              "description": "高品質預拌混凝土產品，適用於各種建築工程",
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "priceCurrency": "TWD",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "TWD",
+                  "valueAddedTaxIncluded": false
+                },
+                "description": "價格請洽詢業務專員",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "毅和實業股份有限公司"
+                }
+              }
+            }
+          }
+        }
+      })
+    }
   ]
 })
 

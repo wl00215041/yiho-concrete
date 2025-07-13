@@ -1,5 +1,13 @@
 <template>
   <div>
+    <SeoHead
+      title="工程實績"
+      description="毅和實業工程實績展示，參與多項卓越建築工程，從基礎建設到地標建築，提供高品質預拌混凝土，支持各類大型公共建設、商業開發及住宅專案。"
+      keywords="工程實績,建築案例,預拌混凝土工程,毅和實業案例,建築工程,公共建設,商業開發,住宅專案,混凝土供應實績,建築成就"
+      url="https://yiho-concrete.com.tw/achievements"
+      image="https://yiho-concrete.com.tw/images/achievement-banner.png"
+    />
+    
     <PageBanner image="/images/achievement-banner.png" title="工程實績" sub-title="Achievements" sub-title-color="#E8382F">
     </PageBanner>
     <PageSection title="全方位建築最佳選擇" icon-color="#E8382F">
@@ -56,10 +64,6 @@ definePageMeta({
   layout: 'page'
 })
 
-useHead({
-  title: '工程實績'
-})
-
 const { breakpoint } = useApp()
 
 const { lg } = breakpoint
@@ -104,6 +108,93 @@ const years = computed<TabItem[]>(() => {
     }
   })]
   return years || []
+})
+
+// 工程實績結構化資料
+const achievementsStructuredData = computed(() => {
+  if (!galleryList.data.value?.data.length) return null
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "毅和實業工程實績",
+    "description": "毅和實業參與多項卓越建築工程實績展示，從基礎建設到地標建築，提供高品質預拌混凝土服務",
+    "url": "https://yiho-concrete.com.tw/achievements",
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "工程案例",
+      "numberOfItems": galleryList.data.value?.total || 0,
+      "itemListElement": galleryList.data.value.data.map((gallery, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": gallery.name,
+          "description": `毅和實業參與的${gallery.name}工程案例`,
+          "url": `https://yiho-concrete.com.tw/achievements/${gallery.id}`,
+          "image": `https://yiho-concrete.com.tw/files/achievements/${gallery.images.find(image => image.is_cover)?.file}`,
+          "creator": {
+            "@type": "Organization",
+            "name": "毅和實業股份有限公司"
+          },
+          "about": {
+            "@type": "Thing",
+            "name": "預拌混凝土工程"
+          }
+        }
+      }))
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "毅和實業股份有限公司",
+      "description": "專業預拌混凝土供應商"
+    }
+  }
+})
+
+// 工程統計結構化資料
+const projectStatsStructuredData = computed(() => {
+  if (!list.data.value?.length) return null
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "毅和實業股份有限公司",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "工程服務實績",
+      "numberOfItems": list.data.value.length,
+      "itemListElement": list.data.value.map((item, index) => ({
+        "@type": "Offer",
+        "position": index + 1,
+        "itemOffered": {
+          "@type": "Service",
+          "name": `${item.name} 預拌混凝土供應`,
+          "provider": {
+            "@type": "Organization",
+            "name": item.manufacturer || "毅和實業股份有限公司"
+          },
+          "areaServed": {
+            "@type": "Place",
+            "name": item.name
+          }
+        }
+      }))
+    }
+  }
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: computed(() => JSON.stringify(achievementsStructuredData.value))
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: computed(() => JSON.stringify(projectStatsStructuredData.value))
+    }
+  ]
 })
 
 </script>

@@ -1,5 +1,13 @@
 <template>
   <div>
+    <SeoHead
+      title="產品資訊"
+      description="毅和實業專業生產各類預拌混凝土產品，通過國家標準認證與國際品質認證。提供高品質混凝土解決方案，適用於各種建築工程需求。"
+      keywords="預拌混凝土產品,混凝土規格,混凝土品質認證,建築混凝土,工程混凝土,混凝土技術規格,毅和混凝土產品,混凝土應用,混凝土標準"
+      url="https://yiho-concrete.com.tw/products"
+      image="https://yiho-concrete.com.tw/images/product-banner.png"
+    />
+    
     <PageBanner image="/images/product-banner.png" title="產品資訊" sub-title="Products" sub-title-color="#0075C2">
     </PageBanner>
     <PageSection class="mb-[60px]" title="產品類別" icon-color="#0075C2">
@@ -73,11 +81,111 @@ definePageMeta({
   layout: 'page'
 })
 
+const { data: products, execute, refresh } = await $trpcClient.productList.useQuery()
+
+const { data: certifications } = await $trpcClient.getCertifications.useQuery()
+
+const displayCertifications = computed(() => {
+  const list = {
+    standard: certifications.value?.filter((certification) => certification.type === 'standard') || [],
+    certification: certifications.value?.filter((certification) => certification.type === 'certification') || [],
+  }
+  return list
+})
+
+
+// 產品目錄結構化資料
+const productStructuredData = computed(() => {
+  if (!products.value) return null
+  
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "毅和實業預拌混凝土產品",
+    "description": "毅和實業專業生產各類預拌混凝土產品，通過國家標準認證與國際品質認證",
+    "url": "https://yiho-concrete.com.tw/products",
+    "numberOfItems": products.value.length,
+    "itemListElement": products.value.map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.title,
+        "description": product.description,
+        "image": `https://yiho-concrete.com.tw${product.imageUrl}`,
+        "url": `https://yiho-concrete.com.tw/products/${product.id}`,
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "毅和實業股份有限公司"
+        },
+        "category": "預拌混凝土",
+        "brand": {
+          "@type": "Brand",
+          "name": "毅和實業"
+        },
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "TWD",
+          "price": "0",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "0",
+            "priceCurrency": "TWD",
+            "valueAddedTaxIncluded": false
+          },
+          "description": "價格請洽詢業務專員",
+          "seller": {
+            "@type": "Organization",
+            "name": "毅和實業股份有限公司"
+          }
+        }
+      }
+    }))
+  })
+})
+
+// 認證結構化資料
+const certificationStructuredData = computed(() => {
+  if (!certifications.value) return null
+  
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "毅和實業股份有限公司",
+    "hasCredential": [
+      ...displayCertifications.value.standard.map(cert => ({
+        "@type": "EducationalOccupationalCredential",
+        "name": cert.name,
+        "credentialCategory": "國家標準認證",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "中華民國政府"
+        }
+      })),
+      ...displayCertifications.value.certification.map(cert => ({
+        "@type": "EducationalOccupationalCredential",
+        "name": cert.name,
+        "credentialCategory": "國際認證",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "國際認證機構"
+        }
+      }))
+    ]
+  })
+})
+
 useHead({
-  title: '產品資訊',
-  meta: [
-    { name: 'description', content: '毅和, 毅和實業, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商, 混凝土廠商, 混凝土公司, 混凝土價格, 混凝土施工, 混凝土品質保證, 新竹預拌混凝土' },
-    { name: 'keywords', content: '毅和, 毅和實業, 毅和預拌混凝土, 預拌混凝土, 混凝土供應商, 混凝土廠商, 混凝土公司, 混凝土價格, 混凝土施工, 混凝土品質保證, 新竹預拌混凝土' }
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: productStructuredData.value
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: certificationStructuredData.value
+    }
   ]
 })
 
@@ -95,20 +203,6 @@ interface Product {
   applications: string[];
   specifications: TechniqueItem[];
 }
-
-// const products = ref([])
-
-const { data: products, execute, refresh } = await $trpcClient.productList.useQuery()
-
-const { data: certifications } = await $trpcClient.getCertifications.useQuery()
-
-const displayCertifications = computed(() => {
-  const list = {
-    standard: certifications.value?.filter((certification) => certification.type === 'standard') || [],
-    certification: certifications.value?.filter((certification) => certification.type === 'certification') || [],
-  }
-  return list
-})
 
 onMounted(() => {
   if (route.hash) {
