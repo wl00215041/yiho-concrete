@@ -197,6 +197,11 @@ const menuGroups = [
         icon: SvgoUserAlt
       },
       {
+        name: "修改密碼",
+        path: "/k-manager/change-password",
+        icon: SvgoUserAlt
+      },
+      {
         name: "登出",
         path: "/k-manager/signout",
         icon: SvgoEnter

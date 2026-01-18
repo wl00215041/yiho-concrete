@@ -51,21 +51,24 @@ if (status.value === 'authenticated') {
 
 const login = async () => {
   isLoginFailed.value = false
-  
-  const res = await signIn('credentials', {
-    username: username.value,
-    password: password.value,
-    callbackUrl: '/k-manager/news',
-    redirect: false,
-  })
 
+  try {
+    const res = await signIn('credentials', {
+      username: username.value,
+      password: password.value,
+      callbackUrl: '/k-manager/news',
+      redirect: false,
+    })
 
-  if (res?.error) {
+    if (res?.error) {
+      isLoginFailed.value = true
+      return
+    }
+
+    router.push('/k-manager/news')
+  } catch (error) {
     isLoginFailed.value = true
-    return
   }
-  
-  router.push('/k-manager/news')
 }
 
 

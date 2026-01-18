@@ -53,7 +53,13 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'canonical', href: 'https://yiho-concrete.com.tw' },
         { rel: 'alternate', hreflang: 'zh-tw', href: 'https://yiho-concrete.com.tw' },
-        { rel: 'alternate', hreflang: 'x-default', href: 'https://yiho-concrete.com.tw' }
+        { rel: 'alternate', hreflang: 'x-default', href: 'https://yiho-concrete.com.tw' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { 
+          rel: 'stylesheet', 
+          href: 'https://fonts.googleapis.com/css2?family=NTR&family=Outfit:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap' 
+        }
       ],
       script: [
         {
@@ -120,7 +126,7 @@ export default defineNuxtConfig({
     '@formkit/auto-animate',
     '@nuxtjs/sitemap',
     '@nuxtjs/device',
-    '@nuxt/fonts',
+    // '@nuxt/fonts',
     'nuxt-svgo',
     'vue3-carousel-nuxt',
     '@vueuse/nuxt',
@@ -133,14 +139,14 @@ export default defineNuxtConfig({
     'nuxt-aos',
     'dayjs-nuxt'
   ],
-  fonts: {
-    families: [
-      // only resolve this font with the `google` provider
-      { name: 'NTR', provider: 'google' },
-      { name: 'Noto Sans TC', provider: 'google' },
-      { name: 'Outfit', provider: 'google' },
-    ]
-  },
+  // fonts: {
+  //   families: [
+  //     // only resolve this font with the `google` provider
+  //     { name: 'NTR', provider: 'google' },
+  //     { name: 'Noto Sans TC', provider: 'google' },
+  //     { name: 'Outfit', provider: 'google' },
+  //   ]
+  // },
   carousel: {
     prefix: 'yiho'
   },

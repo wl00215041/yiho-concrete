@@ -183,4 +183,32 @@ export default router({
     batchDeleteNews: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
       return prisma.news.deleteMany({ where: { id: { in: opts.input } } })
     }),
+    changePassword: adminProcedure
+      .input(z.object({
+        currentPassword: z.string(),
+        newPassword: z.string().min(6, '密碼至少需要6個字元')
+      }))
+      .mutation(async (opts) => {
+        const user = await prisma.user.findFirst({
+          where: { email: opts.ctx.user.email }
+        });
+
+        if (!user) {
+          throw new TRPCError({ code: 'NOT_FOUND', message: '找不到用戶' });
+        }
+
+        const isCurrentPasswordValid = await verifyPassword(user.password, opts.input.currentPassword);
+        if (!isCurrentPasswordValid) {
+          throw new TRPCError({ code: 'BAD_REQUEST', message: '目前密碼不正確' });
+        }
+
+        const hashedNewPassword = await hashPassword(opts.input.newPassword);
+
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { password: hashedNewPassword }
+        });
+
+        return { success: true };
+      }),
   })
