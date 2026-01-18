@@ -60,7 +60,7 @@ const login = async () => {
       redirect: false,
     })
 
-    if (res?.error) {
+    if (res.error !== null) {
       isLoginFailed.value = true
       return
     }

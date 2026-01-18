@@ -165,7 +165,7 @@ export default defineNuxtConfig({
   },
   auth: {
     isEnabled: true,
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://yiho-concrete.com.tw' : 'http://localhost:3500',
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://yiho-concrete.com.tw/api/auth' : 'http://localhost:3500/api/auth',
     disableServerSideAuth: false, // 啟用服務端 auth 以支持 tRPC
     globalAppMiddleware: {
       isEnabled: false, // 禁用全域中間件，使用自定義重定向
