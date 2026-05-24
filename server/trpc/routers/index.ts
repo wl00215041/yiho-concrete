@@ -130,6 +130,55 @@ export const appRouter = router({
       orderBy: { created_at: 'desc' }
     })
   }),
+  getAnnouncements: publicProcedure
+    .input(z.object({ page: z.number().default(1) }))
+    .query(async (opt) => {
+      const pageSize = 10
+
+      const [newsItems, certifications, galleries] = await Promise.all([
+        prisma.news.findMany(),
+        prisma.certifications.findMany(),
+        prisma.achievementGallery.findMany(),
+      ])
+
+      const items = [
+        ...galleries.map((g) => ({
+          id: `a-${g.id}`,
+          type: 'achievement' as const,
+          title: g.name,
+          date: g.created_at,
+          link: `/achievements/${g.id}`,
+          linkTarget: '_self' as const,
+        })),
+        ...certifications.map((c) => ({
+          id: `q-${c.id}`,
+          type: 'certification' as const,
+          title: c.name,
+          date: c.created_at,
+          link: c.file ? `/files/certifications/${c.file}` : '',
+          linkTarget: '_self' as const,
+        })),
+        ...newsItems.map((n) => ({
+          id: `n-${n.id}`,
+          type: 'news' as const,
+          title: n.title,
+          date: n.created_at,
+          link: n.link,
+          linkTarget: '_blank' as const,
+        })),
+      ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+      const total = items.length
+      const start = (opt.input.page - 1) * pageSize
+
+      return {
+        data: items.slice(start, start + pageSize),
+        total,
+        page: opt.input.page,
+        pageSize,
+        totalPages: Math.ceil(total / pageSize),
+      }
+    }),
   manager: managerRoute
 });
 

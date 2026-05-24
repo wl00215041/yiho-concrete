@@ -1,6 +1,12 @@
 <template>
   <div class="announcement" :class="{ 'hidden': displayNews.length === 0 }">
-    <div class="title">What’s News</div>
+    <div class="title">
+      <span>What’s News</span>
+      <NuxtLink to="/news" class="more">
+        More
+        <SvgoArrowRight class="more-arrow !mb-0"></SvgoArrowRight>
+      </NuxtLink>
+    </div>
     <div class="list">
       <div class="item" v-for="item in displayNews" :key="item.id">
         <div class="date hidden pad:inline-block">{{ item.date }}</div>
@@ -89,10 +95,18 @@ const displayNews = computed(() => {
 
 
   >.title {
-    @apply font-NTR text-3xl pad:text-3xl mb-2 lg:mb-6 text-[#0075C2];
+    @apply font-NTR text-3xl pad:text-3xl mb-2 lg:mb-6 text-[#0075C2] flex items-center justify-between;
 
     @screen desktop {
       @apply text-[2rem] h-[4.25rem] mb-0 leading-[68px];
+    }
+
+    .more {
+      @apply text-lg pad:text-xl flex items-center gap-1 leading-none transition-opacity hover:opacity-70;
+    }
+
+    .more-arrow {
+      @apply text-base;
     }
   }
 
