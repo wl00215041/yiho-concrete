@@ -1,5 +1,5 @@
-import products from '~/constants/products';
-import prisma from "~/server/prisma";
+import products from '~~/constants/products';
+import prisma from "~~/server/prisma";
 
 export default defineSitemapEventHandler(async () => {
   const productUrls = products.map(product => ({

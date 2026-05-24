@@ -1,4 +1,4 @@
-import prisma from "~/server/prisma";
+import prisma from "~~/server/prisma";
 
 // 處理 credentials 登入回調
 export default defineEventHandler(async (event) => {

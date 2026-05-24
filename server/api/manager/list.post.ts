@@ -1,5 +1,5 @@
 import { ServerFile } from "nuxt-file-storage";
-import prisma from "~/server/prisma";
+import prisma from "~~/server/prisma";
 import Excel, { stream } from 'exceljs'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)

@@ -1,6 +1,6 @@
 import { TRPCError } from '@trpc/server';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
-import prisma from "~/server/prisma";
+import prisma from "~~/server/prisma";
 import { z } from 'zod';
 import { ServerFile } from "nuxt-file-storage";
 
@@ -189,8 +189,13 @@ export default router({
         newPassword: z.string().min(6, '密碼至少需要6個字元')
       }))
       .mutation(async (opts) => {
+        const email = opts.ctx.user.email;
+        if (!email) {
+          throw new TRPCError({ code: 'UNAUTHORIZED', message: '無法取得用戶資訊' });
+        }
+
         const user = await prisma.user.findFirst({
-          where: { email: opts.ctx.user.email }
+          where: { email }
         });
 
         if (!user) {

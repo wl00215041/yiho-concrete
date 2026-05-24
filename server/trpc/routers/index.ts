@@ -1,9 +1,9 @@
-import prisma from "~/server/prisma";
+import prisma from "~~/server/prisma";
 import { publicProcedure, router } from '../trpc';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import managerRoute from './managerRoute';
-import products from '~/constants/products';
+import products from '~~/constants/products';
 
 export const appRouter = router({
   productList: publicProcedure.query(async () => {

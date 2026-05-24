@@ -1,4 +1,4 @@
-import prisma from "~/server/prisma";
+import prisma from "~~/server/prisma";
 
 // 處理直接的 /session 請求
 export default defineEventHandler(async (event) => {
