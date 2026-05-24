@@ -2,6 +2,9 @@ import { envConfig } from "./envConfig"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  future: {
+    compatibilityVersion: 4
+  },
   compatibilityDate: '2025-03-09',
   ssr: true,
   devServer: {
@@ -126,19 +129,30 @@ export default defineNuxtConfig({
     '@formkit/auto-animate',
     '@nuxtjs/sitemap',
     '@nuxtjs/device',
-    // '@nuxt/fonts',
+    '@nuxt/image',
     'nuxt-svgo',
     'vue3-carousel-nuxt',
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@nuxtjs/tailwindcss',
-    // '@prisma/nuxt',
     'nuxt-file-storage',
     '@sidebase/nuxt-auth',
     'nuxt-auth-utils',
     'nuxt-aos',
     'dayjs-nuxt'
   ],
+  image: {
+    quality: 80,
+    format: ['webp', 'avif', 'jpeg'],
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+    },
+  },
   // fonts: {
   //   families: [
   //     // only resolve this font with the `google` provider
@@ -147,6 +161,9 @@ export default defineNuxtConfig({
   //     { name: 'Outfit', provider: 'google' },
   //   ]
   // },
+  svgo: {
+    autoImportPath: '~/assets/icons/',
+  },
   carousel: {
     prefix: 'yiho'
   },
@@ -233,6 +250,12 @@ export default defineNuxtConfig({
       {
         loc: '/esg',
         changefreq: 'monthly',
+        priority: 0.7,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: '/news',
+        changefreq: 'weekly',
         priority: 0.7,
         lastmod: new Date().toISOString()
       }
