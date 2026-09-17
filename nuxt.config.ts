@@ -54,9 +54,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'canonical', href: 'https://yiho-concrete.com.tw' },
-        { rel: 'alternate', hreflang: 'zh-tw', href: 'https://yiho-concrete.com.tw' },
-        { rel: 'alternate', hreflang: 'x-default', href: 'https://yiho-concrete.com.tw' },
+        // canonical 依路由在 app.vue 產生，不可在此寫死成首頁
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { 
@@ -183,6 +181,10 @@ export default defineNuxtConfig({
   auth: {
     isEnabled: true,
     baseURL: process.env.NODE_ENV === 'production' ? 'https://yiho-concrete.com.tw/api/auth' : 'http://localhost:3500/api/auth',
+    // nuxt-auth 在 server 端會用這個環境變數「整個取代」baseURL（必須含 /api/auth 路徑）。
+    // 預設 key 是 AUTH_ORIGIN，但本專案的 AUTH_ORIGIN 是純網域（見 ecosystem.config.cjs），
+    // 會讓 SSR 去抓 /session 而整站 404，所以改用不同的 key。
+    originEnvKey: 'AUTH_BASE_URL',
     disableServerSideAuth: false, // 啟用服務端 auth 以支持 tRPC
     globalAppMiddleware: {
       isEnabled: false, // 禁用全域中間件，使用自定義重定向

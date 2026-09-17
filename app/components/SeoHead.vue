@@ -25,7 +25,6 @@ const props = withDefaults(defineProps<SeoProps>(), {
   description: '毅和實業成立於1993年，專業生產預拌混凝土，服務竹南、新竹地區，設有港墘廠、大厝廠及寶山科園廠，提供優質混凝土產品與服務。',
   keywords: '預拌混凝土,混凝土供應商,竹南混凝土,新竹混凝土,科學園區混凝土,毅和實業,港墘廠,寶山科園廠',
   image: 'https://yiho-concrete.com.tw/images/about.png',
-  url: 'https://yiho-concrete.com.tw',
   type: 'website',
   locale: 'zh_TW',
   siteName: '毅和實業',

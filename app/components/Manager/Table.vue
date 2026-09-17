@@ -1,10 +1,11 @@
 <template>
   <div class="overflow-hidden" ref="tableWrapper">
-    <div class="max-w-full overflow-x-auto custom-scrollbar">
+    <!-- 表頭與內容必須在同一個 table 才會對齊；表頭用 sticky 固定，捲動的是整個容器 -->
+    <div class="table-container max-w-full overflow-x-auto custom-scrollbar" :style="{ maxHeight: tableMaxHeight + 'px' }">
       <table class="min-w-full">
         <thead>
-          <tr class="border-b border-gray-200">
-            <th v-if="selectable" class="px-5 py-3 text-left w-1/12 sm:px-6">
+          <tr>
+            <th v-if="selectable" class="sticky-th px-5 py-3 text-left w-1/12 sm:px-6">
               <div class="flex items-center">
                 <input
                   type="checkbox"
@@ -18,53 +19,48 @@
             <th
               v-for="(col, index) in columns"
               :key="index"
-              class="px-5 py-3 text-left sm:px-6"
+              class="sticky-th px-5 py-3 text-left sm:px-6"
               :class="col.width ? col.width : ''"
             >
-              <p class="text-[#64748B] text-theme-xs">{{ col.title }}</p>
+              <p class="text-[#64748B] text-theme-xs whitespace-nowrap">{{ col.title }}</p>
             </th>
           </tr>
         </thead>
-      </table>
-      <!-- 將 tbody 包裝在一個可滾動的容器中 -->
-      <div class="tbody-container" :style="{ maxHeight: tbodyMaxHeight + 'px' }">
-        <table class="min-w-full">
-          <tbody class="divide-y divide-gray-200">
-            <tr
-              v-for="(record, index) in records"
-              :key="index"
-              class="border-t border-gray-100"
+        <tbody class="divide-y divide-gray-200">
+          <tr
+            v-for="(record, index) in records"
+            :key="index"
+            class="border-t border-gray-100"
+          >
+            <td v-if="selectable" class="px-5 py-4 sm:px-6">
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="w-4 h-4 rounded"
+                  :checked="selectedRows.includes(record.id || index)"
+                  @change="toggleSelect(record.id || index)"
+                />
+              </div>
+            </td>
+            <td
+              v-for="(col, colIndex) in columns"
+              :key="colIndex"
+              class="px-5 py-4 sm:px-6"
             >
-              <td v-if="selectable" class="px-5 py-4 sm:px-6">
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    class="w-4 h-4 rounded"
-                    :checked="selectedRows.includes(record.id || index)"
-                    @change="toggleSelect(record.id || index)"
-                  />
-                </div>
-              </td>
-              <td
-                v-for="(col, colIndex) in columns"
-                :key="colIndex"
-                class="px-5 py-4 sm:px-6"
-              >
-                <template v-if="col.render">
-                  <component
-                    :is="col.render"
-                    :record="record"
-                    :index="index"
-                  ></component>
-                </template>
-                <template v-else>
-                  <slot :name="`col-${columns[colIndex].key}`" :record="record"><p class="text-[#64748B] text-theme-sm">{{ record[col.key] }}</p></slot>
-                </template>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              <template v-if="col.render">
+                <component
+                  :is="col.render"
+                  :record="record"
+                  :index="index"
+                ></component>
+              </template>
+              <template v-else>
+                <slot :name="`col-${columns[colIndex].key}`" :record="record"><p class="text-[#64748B] text-theme-sm">{{ record[col.key] }}</p></slot>
+              </template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -97,7 +93,7 @@ const emit = defineEmits(['selectionChange'])
 
 const selectedRows = ref<(string | number)[]>([])
 const tableWrapper = ref<HTMLElement | null>(null)
-const tbodyMaxHeight = ref<number>(0)
+const tableMaxHeight = ref<number>(0)
 
 const allSelected = computed(() => {
   return props.records.length > 0 && selectedRows.value.length === props.records.length
@@ -130,43 +126,33 @@ watch(selectedRows, (newVal) => {
   emit('selectionChange', newVal)
 })
 
-// 計算 tbody 的最大高度
-const calculateTbodyHeight = () => {
+// 計算表格（表頭 + 內容）可捲動容器的最大高度
+const calculateTableHeight = () => {
   if (!tableWrapper.value) return
-  
+
   // 獲取 overflow-hidden 的父層元素高度
   const parentElement = tableWrapper.value.parentElement
   if (!parentElement) return
-  
-  const parentHeight = parentElement.clientHeight
-  console.log('Parent height:', parentHeight)
-  
-  // 獲取表頭高度
-  const theadHeight = tableWrapper.value.querySelector('thead')?.clientHeight || 0
-  console.log('Thead height:', theadHeight)
-  
-  // 如果提供了最大高度參數，則使用該參數，否則根據父容器高度計算
+
+  // 如果提供了最大高度參數，則使用該參數，否則填滿父容器（保留一些邊距）
   if (props.maxHeight > 0) {
-    tbodyMaxHeight.value = props.maxHeight
+    tableMaxHeight.value = props.maxHeight
   } else {
-    // 計算 tbody 的最大高度（父容器高度減去表頭高度，再減去一些邊距）
-    tbodyMaxHeight.value = Math.max(parentHeight - theadHeight - 20, 100) // 至少100px高度
+    tableMaxHeight.value = Math.max(parentElement.clientHeight - 20, 100) // 至少100px高度
   }
-  
-  console.log('Calculated tbody max height:', tbodyMaxHeight.value)
 }
 
 // 監聽窗口大小變化
 const handleResize = () => {
   nextTick(() => {
-    calculateTbodyHeight()
+    calculateTableHeight()
   })
 }
 
 onMounted(() => {
   // 使用 nextTick 確保 DOM 已完全渲染
   nextTick(() => {
-    calculateTbodyHeight()
+    calculateTableHeight()
   })
   window.addEventListener('resize', handleResize)
 })
@@ -179,26 +165,35 @@ onUnmounted(() => {
 
 <style scoped>
 /* 添加必要的樣式 */
-.tbody-container {
+.table-container {
   overflow-y: auto;
   width: 100%;
 }
 
+/* 表頭固定在捲動容器頂端。border-collapse 下 sticky 元素的 border 不會跟著固定，底線改用 box-shadow */
+.sticky-th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  box-shadow: inset 0 -1px 0 #e5e7eb;
+}
+
 /* 自定義滾動條樣式 */
-.tbody-container::-webkit-scrollbar {
+.table-container::-webkit-scrollbar {
   width: 6px;
 }
 
-.tbody-container::-webkit-scrollbar-track {
+.table-container::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-.tbody-container::-webkit-scrollbar-thumb {
+.table-container::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 3px;
 }
 
-.tbody-container::-webkit-scrollbar-thumb:hover {
+.table-container::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 

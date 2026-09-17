@@ -7,6 +7,14 @@
 </template>
 <script setup lang="ts">
   import 'vue3-carousel/carousel.css';
+
+  // 每頁預設的 canonical / og:url 指向自己，頁面用 SeoHead 指定 url 時會覆蓋
+  const route = useRoute()
+  const canonicalUrl = computed(() => `https://yiho-concrete.com.tw${route.path.replace(/\/$/, '')}`)
+  useHead({
+    link: [{ rel: 'canonical', href: canonicalUrl }],
+    meta: [{ property: 'og:url', content: canonicalUrl }]
+  })
 </script>
 
 <style>

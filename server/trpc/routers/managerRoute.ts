@@ -180,6 +180,19 @@ export default router({
         }
       })
     }),
+    updateNews: adminProcedure.input(z.object({ id: z.number(), title: z.string().trim().min(1), link: z.string().trim().min(1) })).mutation(async (opts) => {
+      const news = await prisma.news.findFirst({ where: { id: opts.input.id } });
+      if (!news) {
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'News not found' });
+      }
+      return prisma.news.update({
+        where: { id: opts.input.id },
+        data: {
+          title: opts.input.title,
+          link: opts.input.link
+        }
+      })
+    }),
     batchDeleteNews: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
       return prisma.news.deleteMany({ where: { id: { in: opts.input } } })
     }),
