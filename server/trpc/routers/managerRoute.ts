@@ -123,7 +123,7 @@ export default router({
     batchDeleteAchievements: adminProcedure.input(z.array(z.number())).mutation(async (opts) => {
       return prisma.achievementItem.deleteMany({ where: { id: { in: opts.input } } })
     }),
-    addJob: adminProcedure.input(z.object({ name: z.string(), experience: z.string(), education: z.string(), link: z.string().optional() })).mutation(async (opts) => {
+    addJob: adminProcedure.input(z.object({ name: z.string().trim().min(1), experience: z.string().trim().min(1), education: z.string().trim().min(1), link: z.string().trim().min(1) })).mutation(async (opts) => {
       return prisma.jobs.create({
         data: {
           name: opts.input.name,
@@ -131,6 +131,22 @@ export default router({
           education: opts.input.education,
           link: opts.input.link,
           created_at: (new Date()).toISOString(),
+          updated_at: (new Date()).toISOString()
+        }
+      })
+    }),
+    updateJob: adminProcedure.input(z.object({ id: z.number(), name: z.string().trim().min(1), experience: z.string().trim().min(1), education: z.string().trim().min(1), link: z.string().trim().min(1) })).mutation(async (opts) => {
+      const job = await prisma.jobs.findFirst({ where: { id: opts.input.id } });
+      if (!job) {
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'Job not found' });
+      }
+      return prisma.jobs.update({
+        where: { id: opts.input.id },
+        data: {
+          name: opts.input.name,
+          experience: opts.input.experience,
+          education: opts.input.education,
+          link: opts.input.link,
           updated_at: (new Date()).toISOString()
         }
       })
@@ -171,7 +187,7 @@ export default router({
         orderBy: { created_at: 'desc' }
       })
     }),
-    addNews: adminProcedure.input(z.object({ title: z.string(), link: z.string() })).mutation(async (opts) => {
+    addNews: adminProcedure.input(z.object({ title: z.string().trim().min(1), link: z.string().trim().min(1) })).mutation(async (opts) => {
       return prisma.news.create({
         data: {
           title: opts.input.title,

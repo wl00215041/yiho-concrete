@@ -10,7 +10,7 @@
         <FormField forId="file" title="選擇檔案" required>
           <FileUpload @onSelect="handleFileSelect" :accept="accepts" description="檔案最多可上傳 1 個，檔案格式限定為 .docx, .doc, .xls, .xlsx, .pdf"></FileUpload>
         </FormField>
-        <button class="bg-[#3C50E0] py-3 text-[#EFF4FB] font-medium w-full rounded disabled:bg-slate-400" type="submit">新增</Button>
+        <button class="bg-[#3C50E0] py-3 text-[#EFF4FB] font-medium w-full rounded disabled:bg-slate-400" type="submit">儲存</button>
       </form>
     </div>
   </Modal>

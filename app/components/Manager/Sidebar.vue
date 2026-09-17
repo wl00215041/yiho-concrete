@@ -13,10 +13,10 @@
       'py-8 flex',
       !isExpanded && !isHovered ? 'pad:justify-center' : 'justify-start',
     ]">
-      <router-link to="/">
+      <NuxtLink to="/">
         <SvgoAdminPageLogo v-if="isExpanded || isHovered || isMobileOpen" class="dark:hidden w-[177px]" filled
           :fontControlled="false"></SvgoAdminPageLogo>
-      </router-link>
+      </NuxtLink>
     </div>
     <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
       <nav class="mb-6">
@@ -63,7 +63,7 @@
                     },
                   ]"></SvgoChevronDown>
                 </button>
-                <router-link v-else-if="item.path" :to="item.path" :class="[
+                <NuxtLink v-else-if="item.path" :to="item.path" :class="[
                   'menu-item group',
                   {
                     'menu-item-active': isActive(item.path),
@@ -78,7 +78,7 @@
                     <component :is="item.icon" />
                   </span>
                   <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">{{ item.name }}</span>
-                </router-link>
+                </NuxtLink>
                 <transition @enter="startTransition" @after-enter="endTransition" @before-leave="startTransition"
                   @after-leave="endTransition">
                   <div v-show="isSubmenuOpen(groupIndex, index) &&
@@ -86,7 +86,7 @@
                     ">
                     <ul class="mt-2 space-y-1 ml-9">
                       <li v-for="subItem in item.subItems" :key="subItem.name">
-                        <router-link :to="subItem.path" :class="[
+                        <NuxtLink :to="subItem.path" :class="[
                           'menu-dropdown-item',
                           {
                             'menu-dropdown-item-active': isActive(
@@ -126,7 +126,7 @@
                               pro
                             </span>
                           </span>
-                        </router-link>
+                        </NuxtLink>
                       </li>
                     </ul>
                   </div>

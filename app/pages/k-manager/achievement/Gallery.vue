@@ -58,7 +58,8 @@ const isYearModalOpened = ref(false)
 const { data: years, execute, refresh } = await $trpcClient.manager.getAchievementGalleryYears.useQuery()
 
 const selectedYear = ref(years.value?.length ? years.value[0].year : 0)
-const { data: galleryList, refresh: galleryRefresh } = await $trpcClient.manager.getAchievementGalleryList.useQuery(selectedYear)
+// lazy：前端換頁時不等資料回來才切換頁面，資料到了再填入（SSR 首次載入仍會等）
+const { data: galleryList, refresh: galleryRefresh } = await $trpcClient.manager.getAchievementGalleryList.useQuery(selectedYear, { lazy: true })
 const yearList = computed(() => {
   const pin = [ { name: '顯示於首頁', value: -1 } ]
   return pin.concat(years.value?.map((year) => ({ name: year.year.toString(), value: year.year })) || [])

@@ -59,7 +59,8 @@ watch(
 
 <style lang="scss" scoped>
 .navbar {
-  @apply relative flex justify-between items-center;
+  // 手機／平板時不可設為 relative：.nav-links 要以外層的 sticky header 為定位基準
+  @apply desktop:relative flex justify-between items-center;
 }
 
 .menu-toggle {
@@ -67,9 +68,12 @@ watch(
 }
 
 .nav-links {
-  @apply fixed desktop:relative top-[93px] pad:top-[109px] desktop:top-0 left-0 right-0 lg:left-auto;
+  // 展開的選單貼齊所屬 header 的下緣（top-full），高度為視窗高度扣掉 header 高度（100% = header 高度）。
+  // 不要寫死 px：首頁 header 是 80px、內頁 PageHeader 是 93px／109px，寫死會在較矮的 header 下方露出縫隙
+  @apply absolute desktop:relative top-full desktop:top-0 left-0 right-0 lg:left-auto;
+  @apply h-[calc(100dvh-100%)] desktop:h-auto overflow-y-auto desktop:overflow-visible;
   @apply flex desktop:gap-8 lg:inline-flex flex-col desktop:flex-row lg:w-[18.75rem] desktop:w-auto;
-  @apply opacity-0 desktop:opacity-100 pointer-events-none desktop:pointer-events-auto bottom-0 bg-[#333333] desktop:bg-transparent bg-opacity-90 z-40;
+  @apply opacity-0 desktop:opacity-100 pointer-events-none desktop:pointer-events-auto bg-[#333333] desktop:bg-transparent bg-opacity-90 z-40;
   @apply transition-all duration-300 ease-in-out;
 }
 

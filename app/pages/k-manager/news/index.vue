@@ -52,7 +52,8 @@ const selectedJob = ref<number[]>([])
 
 const { $trpcClient } = useNuxtApp()
 
-const { data: news, execute, refresh } = await $trpcClient.manager.getNews.useQuery()
+// lazy：前端換頁時不等資料回來才切換頁面，資料到了再填入（SSR 首次載入仍會等）
+const { data: news, execute, refresh } = await $trpcClient.manager.getNews.useQuery(undefined, { lazy: true })
 
 const newsList = computed(() => {
   return news.value?.map((news) => {

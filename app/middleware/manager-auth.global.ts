@@ -3,6 +3,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
   if (!to.path.startsWith('/k-manager/')) {
     return
   }
+
+  // 後台不需要全站的 out-in 轉場動畫（淡出 0.4s + 淡入 0.4s），每次換頁會白等約 0.8 秒
+  to.meta.pageTransition = false
   
   // 排除不需要認證的頁面
   const publicPages = ['/k-manager/signin', '/k-manager/signout', '/k-manager/register']

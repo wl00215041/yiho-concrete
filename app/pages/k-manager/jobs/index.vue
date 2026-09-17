@@ -16,9 +16,15 @@
       <div class="flex-1">
         <ManagerTable :columns="columns" :records="jobList || []" :selectable="true"
           @selectionChange="onSelectionChange">
-
+          <template #col-link="{ record }">
+            <a :href="record.link" target="_blank" rel="noopener" class="text-[#64748B] text-theme-sm break-all hover:underline">{{ record.link }}</a>
+          </template>
+          <template #col-edit="{ record }">
+            <SvgoEdit class="cursor-pointer" @click="onEdit(record)" filled></SvgoEdit>
+          </template>
         </ManagerTable>
       </div>
+      <ManagerJobsModifyJobModel v-model:isOpen="isModifyModalOpened" :job="editingJob" @onUpdate="onUpdate"></ManagerJobsModifyJobModel>
 
       <ManagerConfirmDialog v-model="opened" @confirm="onConfirm"></ManagerConfirmDialog>
     </div>
@@ -40,9 +46,14 @@ const columns = [
   { title: '學歷', key: 'education', width: 'w-2/11' },
   { title: '連結', key: 'link', width: 'w-2/11' },
   { title: '發布時間', key: 'created_at', width: 'w-2/11' },
+  { title: '編輯', key: 'edit' },
 ];
 
+type EditableJob = { id: number, name: string, experience: string, education: string, link: string }
+
 const isAddModalOpened = ref(false)
+const isModifyModalOpened = ref(false)
+const editingJob = ref<EditableJob | null>(null)
 const selectedJob = ref<number[]>([])
 
 const { opened, open, onConfirm } = useConfirm({
@@ -54,7 +65,8 @@ const { opened, open, onConfirm } = useConfirm({
 
 const { $trpcClient } = useNuxtApp()
 
-const { data: jobs, execute, refresh } = await $trpcClient.manager.getJobs.useQuery()
+// lazy：前端換頁時不等資料回來才切換頁面，資料到了再填入（SSR 首次載入仍會等）
+const { data: jobs, execute, refresh } = await $trpcClient.manager.getJobs.useQuery(undefined, { lazy: true })
 
 const jobList = computed(() => {
   return jobs.value?.map((job) => {
@@ -68,6 +80,17 @@ const jobList = computed(() => {
 const onAdd = async (job: any) => {
   await $trpcClient.manager.addJob.mutate(job)
   isAddModalOpened.value = false
+  refresh()
+}
+
+const onEdit = (record: EditableJob) => {
+  editingJob.value = { id: record.id, name: record.name, experience: record.experience, education: record.education, link: record.link || '' }
+  isModifyModalOpened.value = true
+}
+
+const onUpdate = async (payload: EditableJob) => {
+  await $trpcClient.manager.updateJob.mutate(payload)
+  isModifyModalOpened.value = false
   refresh()
 }
 

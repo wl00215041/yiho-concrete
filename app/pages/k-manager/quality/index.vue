@@ -67,7 +67,8 @@ const isAddModelOpened = ref(false)
 const isModifyModelOpened = ref(false)
 const editingId = ref<number | null>(null)
 
-const { data: certifications, refresh: galleryRefresh } = await $trpcClient.manager.getCertificationsByType.useQuery(selectedType)
+// lazy：前端換頁時不等資料回來才切換頁面，資料到了再填入（SSR 首次載入仍會等）
+const { data: certifications, refresh: galleryRefresh } = await $trpcClient.manager.getCertificationsByType.useQuery(selectedType, { lazy: true })
 
 const certificationList = computed(() => {
   return certifications.value?.map((certification) => {

@@ -67,7 +67,7 @@
           class="bg-[#3C50E0] py-3 text-[#EFF4FB] font-medium w-full rounded disabled:bg-slate-400" 
           type="submit"
         >
-          新增
+          儲存
         </button>
       </form>
     </div>

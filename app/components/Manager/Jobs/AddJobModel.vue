@@ -5,11 +5,12 @@
       <form @submit.prevent="add">
         <div class="flex flex-col gap-4 mb-6">
           <label class="text-[#1C2434] font-medium mb-[10px]" for="name">職缺名稱<Required></Required></label>
-          <input id="name" class="py-3 px-6" type="text" v-model="payload.name" placeholder="請輸入職缺名稱" />
+          <input id="name" class="py-3 px-6" type="text" v-model="payload.name" placeholder="請輸入職缺名稱" required />
         </div>
         <div class="flex flex-col gap-4 mb-6">
           <label class="text-[#1C2434] font-medium mb-[10px]" for="edu">學歷要求<Required></Required></label>
-          <select v-model="payload.education" id="edu" class="selector"  placeholder="請選擇學歷要求">
+          <select v-model="payload.education" id="edu" class="selector" required>
+            <option value="" disabled>請選擇學歷要求</option>
             <option value="不拘">不拘</option>
             <option value="國中以上">國中以上</option>
             <option value="高中職以上">高中職以上</option>
@@ -19,7 +20,8 @@
         </div>
         <div class="flex flex-col gap-4 mb-6">
           <label class="text-[#1C2434] font-medium mb-[10px]" for="exp">經歷要求<Required></Required></label>
-          <select v-model="payload.experience" id="edu" class="selector" placeholder="請選擇經歷要求">
+          <select v-model="payload.experience" id="exp" class="selector" required>
+            <option value="" disabled>請選擇經歷要求</option>
             <option value="不拘">不拘</option>
             <option value="1年以上">1年以上</option>
             <option value="3年以上">3年以上</option>
@@ -29,7 +31,7 @@
         </div>
         <div class="flex flex-col gap-4 mb-6">
           <label class="text-[#1C2434] font-medium mb-[10px]" for="link">職缺連結<Required></Required></label>
-          <input id="link" class="py-3 px-6" type="text" v-model="payload.link" placeholder="請輸入職缺名稱" />
+          <input id="link" class="py-3 px-6" type="text" v-model="payload.link" placeholder="請輸入職缺連結" required />
         </div>
         <button class="bg-[#3C50E0] py-3 text-[#EFF4FB] font-medium w-full rounded disabled:bg-slate-400" type="submit">新增</Button>
       </form>

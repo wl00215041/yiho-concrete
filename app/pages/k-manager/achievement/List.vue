@@ -62,7 +62,8 @@ const { opened, open, onConfirm } = useConfirm({
 const { data: years, execute, refresh } = await $trpcClient.manager.getAchievementYears.useQuery()
 const selectedYear = ref(years.value?.length ? years.value[0].year : 0)
 
-const { data: achievements, refresh: achievementsRefresh } = await $trpcClient.manager.getAchievements.useQuery(selectedYear)
+// lazy：前端換頁時不等資料回來才切換頁面，資料到了再填入（SSR 首次載入仍會等）
+const { data: achievements, refresh: achievementsRefresh } = await $trpcClient.manager.getAchievements.useQuery(selectedYear, { lazy: true })
 
 const achievementList = computed(() => {
   return achievements.value?.map((achievement) => {
